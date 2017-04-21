@@ -8,12 +8,13 @@ package main;
 import utils.PropertiesUtils;
 import java.io.File;
 import java.util.Properties;
-import units.aspects.Buff;
+import units.buffs.BuffImpl;
 import units.aspects.defense.ProtectionType;
 import units.aspects.attack.AttackAction;
 import units.aspects.attack.AttackSource;
-import units.enums.AttributeName;
-import units.models.AspectType;
+import units.attributes.AttributeName;
+import units.aspects.AspectType;
+import units.buffs.Buff;
 import units.models.Unit;
 
 /**
@@ -26,12 +27,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        Properties props = PropertiesUtils.read(new File("src/data/DarkLord.properties"));
-//        Unit mrocznyWladca = Unit.create(props);
-//        AttackAction action = new AttackAction(120, AttackSource.MEELE);
-//        AttributeName armorAttribute = mrocznyWladca.getDefensive().getAttribute(ProtectionType.ARMOR).getName();
-//        Buff buff = Buff.createWardBuff(armorAttribute);
-//        mrocznyWladca.getAspect(AspectType.ATTACK).addBuff(buff);
-//        int reducedDamage = mrocznyWladca.getDefensive().getReducedDamage(action);
+        String buffDescription = "armor/++/50";
+        Buff buff = new BuffImpl(buffDescription);
     }
 }

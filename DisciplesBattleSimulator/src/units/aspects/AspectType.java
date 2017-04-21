@@ -6,6 +6,11 @@
 
 package units.aspects;
 
-public enum ChangeType {
-    WARD, VALUE
+/**
+ * @TODO: Add description to: class, fields, methods
+ * @author Michał 'Wicia' Wietecha
+ */
+public enum AspectType {
+//    DESCRIPTION("description"), 
+//    ATTACK("attack"), 
 }

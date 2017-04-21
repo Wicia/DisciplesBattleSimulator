@@ -3,7 +3,7 @@ package units.aspects.defense;
 import java.util.Arrays;
 import java.util.List;
 import units.aspects.attack.AttackSource;
-import units.enums.AttributeName;
+import units.attributes.AttributeName;
 
 public enum ProtectionType implements AttributeName{
 

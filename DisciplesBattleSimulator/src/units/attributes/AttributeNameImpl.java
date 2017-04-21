@@ -4,13 +4,22 @@
  * and open the template in the editor.
  */
 
-package units.models;
+package units.attributes;
 
 /**
  * @TODO: Add description to: class, fields, methods
  * @author Michał 'Wicia' Wietecha
  */
-public enum AspectType {
-//    DESCRIPTION("description"), 
-//    ATTACK("attack"), 
+public class AttributeNameImpl implements AttributeName{
+
+    private final String name;
+
+    public AttributeNameImpl(String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public String getFullName() {
+        return this.name;
+    }
 }

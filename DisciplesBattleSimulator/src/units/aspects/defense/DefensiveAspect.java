@@ -2,13 +2,13 @@ package units.aspects.defense;
 
 import java.util.Arrays;
 import java.util.Properties;
-import units.aspects.Buff;
-import units.aspects.ChangeType;
+import units.buffs.BuffImpl;
+import units.buffs.ChangeType;
 import units.models.Unit;
 import units.aspects.UnitAspect;
-import units.aspects.UnitAttribute;
+import units.attributes.UnitAttribute;
 import units.aspects.attack.AttackAction;
-import units.enums.AttributeName;
+import units.attributes.AttributeName;
 
 public class DefensiveAspect extends UnitAspect {
 
@@ -60,10 +60,7 @@ public class DefensiveAspect extends UnitAspect {
     }
     
     private boolean isProtectedByBuffs(ProtectionType protectionType){
-        Buff positiveBuff = super.getPositiveBuff(protectionType);
-        return(positiveBuff != null 
-                && ChangeType.WARD.equals(positiveBuff.getChangeType()));
-        //TODO: usuwanie buffa
+        return false;
     }
     
     private int reduceDamage(AttackAction action, ProtectionType type){

@@ -1,6 +1,4 @@
-package units.aspects;
-
-import units.enums.AttributeName;
+package units.attributes;
 
 public class UnitAttribute<AttributeValue> {
 

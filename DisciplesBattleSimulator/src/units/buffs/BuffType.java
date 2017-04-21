@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package units.enums;
 
-public interface AttributeName {
-    public String getFullName();
+package units.buffs;
+
+public enum BuffType {
+    POSITIVE, NEGATIVE
 }

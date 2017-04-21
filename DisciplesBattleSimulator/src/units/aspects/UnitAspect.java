@@ -1,16 +1,19 @@
 package units.aspects;
 
+import units.attributes.UnitAttribute;
+import units.buffs.BuffType;
+import units.buffs.BuffImpl;
 import java.util.HashMap;
 import java.util.Map;
 import units.models.Unit;
-import units.enums.AttributeName;
+import units.attributes.AttributeName;
 
 public abstract class UnitAspect {
 
     private final Unit unitReference;
     private final Map<String, UnitAttribute> attributes;
-    private final Map<AttributeName, Buff> positiveBuffs;
-    private final Map<AttributeName, Buff> negativeBuffs;
+    private final Map<AttributeName, BuffImpl> positiveBuffs;
+    private final Map<AttributeName, BuffImpl> negativeBuffs;
     
     public UnitAspect(Unit unitReference) {
         this.attributes = new HashMap<>();
@@ -31,20 +34,15 @@ public abstract class UnitAspect {
         return this.attributes.get(name.getFullName());
     }
 
-    public Buff getNegativeBuff(AttributeName attribute){
+    public BuffImpl getNegativeBuff(AttributeName attribute){
         return this.negativeBuffs.get(attribute);
     }
     
-    public Buff getPositiveBuff(AttributeName attribute){
+    public BuffImpl getPositiveBuff(AttributeName attribute){
         return this.positiveBuffs.get(attribute);
     }
     
-    public void addBuff(Buff buff){
-        if(BuffType.POSITIVE.equals(buff.getType())){
-            this.positiveBuffs.put(buff.getAttributeName(), buff);
-        }
-        else{
-            this.negativeBuffs.put(buff.getAttributeName(), buff);
-        }
+    public void addBuff(BuffImpl buff){
+        
     }
 }

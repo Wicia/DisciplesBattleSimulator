@@ -1,5 +1,6 @@
 package units.models;
 
+import units.aspects.AspectType;
 import java.util.Map;
 import java.util.Properties;
 import units.aspects.UnitAspect;
