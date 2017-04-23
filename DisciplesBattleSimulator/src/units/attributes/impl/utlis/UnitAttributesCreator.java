@@ -18,8 +18,8 @@ import units.attributes.impl.base.UnitAttributes;
 import units.attributes.impl.models.UnitArmor;
 import units.attributes.impl.models.UnitDamage;
 import units.attributes.impl.models.UnitDescription;
-import units.attributes.impl.models.UnitHitPoints;
-import units.attributes.impl.models.UnitMaxHitPoints;
+import units.attributes.impl.models.hitpoints.UnitHitPoints;
+import units.attributes.impl.models.hitpoints.UnitMaxHitPoints;
 import units.attributes.impl.models.UnitName;
 
 /**

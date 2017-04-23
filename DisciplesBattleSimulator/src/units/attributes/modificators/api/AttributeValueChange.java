@@ -5,6 +5,7 @@
  */
 package units.attributes.modificators.api;
 
+import units.attributes.api.AttributeValue;
 import units.attributes.impl.base.AbstractAttribute;
 
 /**
@@ -13,7 +14,7 @@ import units.attributes.impl.base.AbstractAttribute;
  */
 public interface AttributeValueChange<Value> {
     
-    AbstractAttribute apply(AbstractAttribute attribute);
+    AttributeValue getNewValue(AbstractAttribute attribute);
 
     <Value> Value getModificatorValue();
     

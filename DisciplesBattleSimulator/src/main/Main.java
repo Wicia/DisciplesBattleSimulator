@@ -11,7 +11,7 @@ import units.attack.AttackAction;
 import units.attack.AttackSource;
 import units.attributes.impl.base.AbstractAttribute;
 import units.attributes.impl.models.UnitArmor;
-import units.attributes.impl.models.UnitHitPoints;
+import units.attributes.impl.models.hitpoints.UnitHitPoints;
 import units.attributes.modificators.impl.AttributeValueChangeImpl;
 import units.models.AbstractUnit;
 import units.models.WarriorUnit;

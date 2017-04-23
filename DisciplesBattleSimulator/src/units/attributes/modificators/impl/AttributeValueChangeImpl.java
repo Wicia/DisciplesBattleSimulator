@@ -24,7 +24,7 @@ public class AttributeValueChangeImpl<Value>
     }
     
     @Override
-    public AbstractAttribute apply(AbstractAttribute attribute){
+    public AttributeValue getNewValue(AbstractAttribute attribute){
         AttributeValue<Integer> attributeValue = attribute.getValue();
         Integer simpleValue = attributeValue.value();
         AttributeValue newValue = null;
@@ -34,9 +34,8 @@ public class AttributeValueChangeImpl<Value>
         if(changeValue instanceof Double){
             newValue = getPecentageValue(simpleValue);
         }
-        attribute.setValue(newValue);
-        
-        return attribute;
+
+        return newValue;
     }
     
     private NumericValue getNewNumericValue(Integer simpleValue){

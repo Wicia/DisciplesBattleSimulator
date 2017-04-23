@@ -1,4 +1,4 @@
-package units.attributes.impl.models;
+package units.attributes.impl.models.hitpoints;
 
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
