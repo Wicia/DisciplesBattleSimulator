@@ -9,9 +9,10 @@ import units.attributes.modificators.api.AttributeValueChange;
 public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
     
     public static final String CODE = "maxHitPoints";
+    public static final int DEFAULT_MAX_HIT_POINTS = 1;
     
     public UnitMaxHitPoints() {
-        this(null);
+        this(new NumericValue(DEFAULT_MAX_HIT_POINTS));
     }
     
     public UnitMaxHitPoints(AttributeValue value) {
@@ -20,16 +21,6 @@ public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
 
     public AttributeValue getCurrentHitPoints(){
         return super.getValue();
-    }
-
-    @Override
-    public void setValue(AttributeValue value) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

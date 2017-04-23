@@ -9,8 +9,6 @@ package units.attributes.impl.base;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
 
 
 /**
@@ -28,19 +26,6 @@ public class UnitAttributes {
     public UnitAttributes(List<AbstractAttribute> attributes) {
         this.attributes = transformList(attributes);
     }
-
-    public UnitAttributes(Properties properties) {
-        this.attributes = transformProperties(properties);
-    }
-    
-    private Map<String, AbstractAttribute> transformProperties(Properties props){
-        Map<String, AbstractAttribute> result = new HashMap<>();
-        Set<Object> keySet = props.keySet();
-        for(Object property : keySet){
-            
-        } 
-        return result;
-    }
     
     private Map<String, AbstractAttribute> transformList(
             List<AbstractAttribute> attributes){
@@ -49,8 +34,8 @@ public class UnitAttributes {
         return result;
     }
     
-    public AbstractAttribute getAttributeById(String id){
-       return this.attributes.get(id);
+    public <V> V getAttributeById(String id){
+       return (V) this.attributes.get(id);
     }
     
     public void addAttribute(AbstractAttribute attribute){

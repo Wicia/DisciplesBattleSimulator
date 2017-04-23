@@ -7,6 +7,12 @@ package main;
 
 import java.io.File;
 import java.util.Properties;
+import units.attack.AttackAction;
+import units.attack.AttackSource;
+import units.attributes.impl.base.AbstractAttribute;
+import units.attributes.impl.models.UnitArmor;
+import units.attributes.impl.models.UnitHitPoints;
+import units.attributes.modificators.impl.AttributeValueChangeImpl;
 import units.models.AbstractUnit;
 import units.models.WarriorUnit;
 import utils.PropertiesUtils;
@@ -23,5 +29,10 @@ public class Main {
     public static void main(String[] args) {
         Properties props = PropertiesUtils.read(new File("src/data/DarkLord.properties"));
         AbstractUnit unit = WarriorUnit.create(props);
+        UnitArmor armor = (UnitArmor) unit.getAttributes().getAttributeById(UnitArmor.CODE);
+        armor.getReducedDamage(new AttackAction(10, AttackSource.MEELE));
+        UnitHitPoints hitPoints = unit.getAttributes().getAttributeById(UnitHitPoints.CODE);
+        AttributeValueChangeImpl<Integer> change = new AttributeValueChangeImpl<>(-100);
+        hitPoints.updateValue(change, unit.getAttributes());
     }
 }

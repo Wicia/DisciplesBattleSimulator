@@ -7,6 +7,7 @@ package units.attributes.modificators.impl;
 
 import units.attributes.api.AttributeValue;
 import units.attributes.impl.base.AbstractAttribute;
+import units.attributes.impl.base.NumericValue;
 import units.attributes.modificators.api.AttributeValueChange;
 
 /**
@@ -16,31 +17,49 @@ import units.attributes.modificators.api.AttributeValueChange;
 public class AttributeValueChangeImpl<Value> 
         implements AttributeValueChange<Value> {
     
-    private final Value factorValue;
+    private final Value changeValue;
     
     public AttributeValueChangeImpl(Value value){
-        this.factorValue = value;
+        this.changeValue = value;
     }
     
     @Override
     public AbstractAttribute apply(AbstractAttribute attribute){
         AttributeValue<Integer> attributeValue = attribute.getValue();
         Integer simpleValue = attributeValue.value();
-        if(factorValue instanceof Integer){
-            int modificatorValue = getModificatorValue();
-            simpleValue = simpleValue + modificatorValue;
+        AttributeValue newValue = null;
+        if(changeValue instanceof Integer){
+            newValue = getNewNumericValue(simpleValue);
         }
-        if(factorValue instanceof Double){
-            double modificatorValue = getModificatorValue();
-            double x = getPecentage(modificatorValue); //TODO: nazwa!
-            simpleValue = (int)(simpleValue * x);
+        if(changeValue instanceof Double){
+            newValue = getPecentageValue(simpleValue);
         }
+        attribute.setValue(newValue);
         
         return attribute;
+    }
+    
+    private NumericValue getNewNumericValue(Integer simpleValue){
+        int modificatorValue = getModificatorValue();
+        simpleValue = simpleValue + modificatorValue;
+        return new NumericValue(simpleValue);
+    }
+    
+    private NumericValue getPecentageValue(Integer simpleValue) {
+        if (simpleValue == 0) {
+            double modificatorValue = getModificatorValue();
+            simpleValue = (int) modificatorValue;
+        } 
+        else {
+            double modificatorValue = getModificatorValue();
+            double pecentModificator = asPecentage(modificatorValue);
+            simpleValue = (int) (simpleValue * pecentModificator);
+        }
+        return new NumericValue(simpleValue);
     }
 
     @Override
     public <Value> Value getModificatorValue() {
-        return (Value) factorValue;
+        return (Value) changeValue;
     }
 }

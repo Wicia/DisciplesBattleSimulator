@@ -9,6 +9,7 @@ import units.attributes.modificators.api.AttributeValueChange;
 public class UnitHitPoints extends AbstractAttribute implements Attribute{
     
     public static final String CODE = "hitPoints";
+    public static final int DEFAULT_HIT_POINTS = 1;
 
     private enum DeltaFactor{
         
@@ -34,10 +35,10 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     }
     
     public UnitHitPoints() {
-        this(null);
+        this(new NumericValue(DEFAULT_HIT_POINTS));
     }
     
-    public UnitHitPoints(AttributeValue<Long> value) {
+    public UnitHitPoints(AttributeValue value) {
         super(CODE, value);
     }
 
@@ -45,7 +46,6 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     @Override
     public void updateValue(AttributeValueChange change, UnitAttributes attributes) {
         AbstractAttribute result = change.apply(this);
-        this.setValue(result.getValue());
         this.updateReferencedAttributes(attributes);
     }
     
@@ -60,9 +60,9 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     }
     
     private double getHitPointsChangeFactor(AbstractAttribute attribute){
-        AttributeValue<Long> maxHpValue = attribute.getValue();
-        Long maxHp = maxHpValue.value();
-        Long curentHitPoints = this.getSimpleValue();
+        AttributeValue<Integer> maxHpValue = attribute.getValue();
+        int maxHp = maxHpValue.value();
+        int curentHitPoints = this.getSimpleValue();
         double factor = (curentHitPoints * 100.0) / (maxHp * 1.0);
         if(curentHitPoints < maxHp){
             factor *= (-1.0);
@@ -72,7 +72,7 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public Long getSimpleValue() {
-        return (Long) super.getValue().value();
+    public Integer getSimpleValue() {
+        return (Integer) super.getValue().value();
     }
 }

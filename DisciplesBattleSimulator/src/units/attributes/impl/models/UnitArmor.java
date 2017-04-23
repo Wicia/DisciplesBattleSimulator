@@ -13,7 +13,7 @@ public class UnitArmor extends AbstractAttribute implements Attribute{
     public static final int MAX_PROTECTION_LEVEL = 100;
     
     public UnitArmor() {
-        this(null);
+        this(new NumericValue(DEFAULT_PROTECTION_LEVEL));
     }
     
     public UnitArmor(AttributeValue value) {
@@ -43,16 +43,6 @@ public class UnitArmor extends AbstractAttribute implements Attribute{
 
     public Integer getProtectionLevel() {
         return (Integer) super.getValue().value();
-    }
-
-    @Override
-    public void setValue(AttributeValue value) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

@@ -17,8 +17,7 @@ public interface AttributeValueChange<Value> {
 
     <Value> Value getModificatorValue();
     
-    //TODO: Zmienic nazwe
-    default double getPecentage(double value){
+    default double asPecentage(double value){
         return (100 + value) / 100;
     }
 }

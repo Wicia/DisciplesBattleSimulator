@@ -18,10 +18,6 @@ public abstract class AbstractAttribute {
         this.negativeBuffs = new ArrayList<>();
     }
     
-    public AbstractAttribute(Object id){
-        this((String) id, null);
-    }
-    
     public AbstractAttribute(String id, AttributeValue value) {
         initProperties();
         this.id = id;

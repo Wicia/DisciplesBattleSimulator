@@ -9,23 +9,14 @@ import units.attributes.modificators.api.AttributeValueChange;
 public class UnitName extends AbstractAttribute implements Attribute{
     
     public static final String CODE = "name";
+    public static final String DEFAULT_NAME = "NaN";
     
     public UnitName() {
-        this(null);
+        this(new TextValue(DEFAULT_NAME));
     }
     
     public UnitName(AttributeValue value) {
         super(CODE, value);
-    }
-
-    @Override
-    public void setValue(AttributeValue value) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

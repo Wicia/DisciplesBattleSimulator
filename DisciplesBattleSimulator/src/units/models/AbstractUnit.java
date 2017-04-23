@@ -6,16 +6,11 @@
 
 package units.models;
 
-import java.util.Properties;
 import units.attributes.impl.base.UnitAttributes;
 
 public abstract class AbstractUnit {
     
     private final UnitAttributes attributes;
-
-    public AbstractUnit(Properties properties) {
-        this(new UnitAttributes(properties));
-    }
     
     public AbstractUnit(UnitAttributes attributes) {
         this.attributes = attributes;

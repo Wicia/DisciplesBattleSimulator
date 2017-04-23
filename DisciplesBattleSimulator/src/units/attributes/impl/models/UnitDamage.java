@@ -8,23 +8,14 @@ import units.attributes.modificators.api.AttributeValueChange;
 public class UnitDamage extends AbstractAttribute implements Attribute{
     
     public static final String CODE = "damage";
+    public static final int DEFAULT_DAMAGE = 0;
     
     public UnitDamage() {
-        this(null);
+        this(new NumericValue(DEFAULT_DAMAGE));
     }
     
     public UnitDamage(AttributeValue value) {
         super(CODE, value);
-    }
-
-    @Override
-    public void setValue(AttributeValue value) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

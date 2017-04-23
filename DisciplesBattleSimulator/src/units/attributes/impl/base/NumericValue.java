@@ -2,12 +2,12 @@ package units.attributes.impl.base;
 
 import units.attributes.api.AttributeValue;
 
-public class AttributeNumericValue implements AttributeValue<Integer>{
+public class NumericValue implements AttributeValue<Integer>{
 
     private final Integer value;
 
-    public AttributeNumericValue(AttributeValue value){
-        this.value = (Integer)value.value();
+    public NumericValue(Integer value){
+        this.value = value;
     }
 
     @Override
