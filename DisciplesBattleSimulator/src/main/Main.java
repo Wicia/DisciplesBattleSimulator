@@ -7,14 +7,14 @@ package main;
 
 import java.io.File;
 import java.util.Properties;
-import units.attack.AttackAction;
-import units.attack.AttackSource;
-import units.attributes.impl.models.UnitArmor;
+import units.attributes.impl.models.damage.AttackAction;
+import units.attributes.impl.models.damage.AttackSource;
+import units.attributes.impl.models.armor.UnitArmor;
 import units.attributes.impl.models.hitpoints.UnitHitPoints;
 import units.attributes.modificators.impl.AttributeValueChangeImpl;
 import units.models.AbstractUnit;
 import units.models.UnitImpl;
-import utils.PropertiesUtils;
+import units.utils.PropertiesUtils;
 
 /**
  *

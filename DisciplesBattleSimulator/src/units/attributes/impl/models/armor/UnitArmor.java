@@ -1,6 +1,6 @@
-package units.attributes.impl.models;
+package units.attributes.impl.models.armor;
 
-import units.attack.AttackAction;
+import units.attributes.impl.models.damage.AttackAction;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
 import units.attributes.api.AttributeName;

@@ -1,6 +1,6 @@
-package units.protection;
+package units.attributes.impl.models.armor;
 
-import units.attack.AttackSource;
+import units.attributes.impl.models.damage.AttackSource;
 
 public enum ProtectionType {
 

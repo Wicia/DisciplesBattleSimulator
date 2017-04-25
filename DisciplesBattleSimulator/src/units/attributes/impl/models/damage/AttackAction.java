@@ -1,6 +1,6 @@
-package units.attack;
+package units.attributes.impl.models.damage;
 
-import units.attack.AttackSource;
+import units.attributes.impl.models.damage.AttackSource;
 
 public class AttackAction {
 
