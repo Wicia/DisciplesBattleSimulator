@@ -2,13 +2,14 @@ package units.attributes.impl.models;
 
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
+import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
 
 
 public class UnitDescription extends AbstractAttribute implements Attribute{
     
-    public static final String CODE = "description";
+    public static final AttributeName NAME = AttributeName.DESCRIPTION;
     public static final String DEFAULT_DESC = "NaN";
     
     public UnitDescription() {
@@ -16,7 +17,7 @@ public class UnitDescription extends AbstractAttribute implements Attribute{
     }
     
     public UnitDescription(AttributeValue value) {
-        super(CODE, value);
+        super(NAME, value);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class UnitDescription extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValue(AttributeValueChange change, UnitAttributes attributes) {
+    public void updateValue(AttributeValueChange change, AttributesCollection attributes) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

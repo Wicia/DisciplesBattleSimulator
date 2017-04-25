@@ -10,11 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.impl.base.AbstractAttribute;
 import units.attributes.impl.base.NumericValue;
 import units.attributes.impl.base.TextValue;
-import units.attributes.impl.base.UnitAttributes;
+import units.attributes.impl.base.AttributesCollection;
 import units.attributes.impl.models.UnitArmor;
 import units.attributes.impl.models.UnitDamage;
 import units.attributes.impl.models.UnitDescription;
@@ -28,7 +29,7 @@ import units.attributes.impl.models.UnitName;
  */
 public class UnitAttributesCreator {
     
-    private Map<String, AbstractAttribute> possibleAttributes;
+    private Map<AttributeName, AbstractAttribute> possibleAttributes;
 
     public UnitAttributesCreator() {
         this.initProperties();
@@ -49,11 +50,11 @@ public class UnitAttributesCreator {
     }
     
     private void addDefaultAttribute(AbstractAttribute attribute){
-        this.possibleAttributes.put(attribute.getId(), attribute);
+        this.possibleAttributes.put(attribute.getName(), attribute);
     }
     
-    public UnitAttributes load(Properties props){
-        UnitAttributes result = new UnitAttributes();
+    public AttributesCollection load(Properties props){
+        AttributesCollection result = new AttributesCollection();
         Set<Object> keySet = props.keySet();
         for(Object propName : keySet){
             Object propertyValue = props.get(propName);

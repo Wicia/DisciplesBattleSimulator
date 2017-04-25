@@ -9,36 +9,37 @@ package units.attributes.impl.base;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import units.attributes.api.AttributeName;
 
 
 /**
  * @TODO: Add description to: class, fields, methods
  * @author Michał 'Wicia' Wietecha
  */
-public class UnitAttributes {
+public class AttributesCollection {
     
-    private final Map<String, AbstractAttribute> attributes;
+    private final Map<AttributeName, AbstractAttribute> attributes;
     
-    public UnitAttributes() {
+    public AttributesCollection() {
         this.attributes = new HashMap<>();
     }
     
-    public UnitAttributes(List<AbstractAttribute> attributes) {
+    public AttributesCollection(List<AbstractAttribute> attributes) {
         this.attributes = transformList(attributes);
     }
     
-    private Map<String, AbstractAttribute> transformList(
+    private Map<AttributeName, AbstractAttribute> transformList(
             List<AbstractAttribute> attributes){
-        Map<String, AbstractAttribute> result = new HashMap<>();
+        Map<AttributeName, AbstractAttribute> result = new HashMap<>();
         attributes.stream().forEach((AbstractAttribute a) -> (addAttribute(a)));
         return result;
     }
     
-    public <V> V getAttributeById(String id){
-       return (V) this.attributes.get(id);
+    public <V> V getAttributeByName(AttributeName name){
+       return (V) this.attributes.get(name);
     }
     
     public void addAttribute(AbstractAttribute attribute){
-        this.attributes.put(attribute.getId(), attribute);
+        this.attributes.put(attribute.getName(), attribute);
     }
 }

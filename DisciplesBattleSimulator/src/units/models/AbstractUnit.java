@@ -6,17 +6,17 @@
 
 package units.models;
 
-import units.attributes.impl.base.UnitAttributes;
+import units.attributes.impl.base.AttributesCollection;
 
 public abstract class AbstractUnit {
     
-    private final UnitAttributes attributes;
+    private final AttributesCollection attributes;
     
-    public AbstractUnit(UnitAttributes attributes) {
+    public AbstractUnit(AttributesCollection attributes) {
         this.attributes = attributes;
     }
 
-    public UnitAttributes getAttributes() {
+    public AttributesCollection getAttributes() {
         return attributes;
     }
 }

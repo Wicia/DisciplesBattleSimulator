@@ -4,7 +4,7 @@ public interface Attribute<V> {
 
     void setValue(AttributeValue value);
 
-    String getId();
+    AttributeName getName();
 
     <V> V getSimpleValue();
 }

@@ -3,12 +3,13 @@ package units.attributes.impl.models;
 import units.attack.AttackAction;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
+import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
 
 public class UnitArmor extends AbstractAttribute implements Attribute{
     
-    public static final String CODE = "armor";
+    public static final AttributeName NAME = AttributeName.RESIST_WEAPON;
     public static final int DEFAULT_PROTECTION_LEVEL = 0;
     public static final int MAX_PROTECTION_LEVEL = 100;
     
@@ -17,7 +18,7 @@ public class UnitArmor extends AbstractAttribute implements Attribute{
     }
     
     public UnitArmor(AttributeValue value) {
-        super(CODE, value);
+        super(NAME, value);
     }
     
     public int getReducedDamage(AttackAction attackAction) {
@@ -51,7 +52,7 @@ public class UnitArmor extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValue(AttributeValueChange change, UnitAttributes attributes) {
+    public void updateValue(AttributeValueChange change, AttributesCollection attributes) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

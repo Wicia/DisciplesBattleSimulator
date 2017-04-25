@@ -5,8 +5,7 @@
  */
 package units.attributes.impl.models.hitpoints;
 
-import units.attributes.impl.models.UnitArmor;
-import units.attributes.impl.models.UnitDamage;
+import units.attributes.api.AttributeName;
 import units.attributes.modificators.api.AttributeValueChange;
 import units.attributes.modificators.impl.AttributeValueChangeImpl;
 
@@ -16,19 +15,19 @@ import units.attributes.modificators.impl.AttributeValueChangeImpl;
  */
 enum LinkedAttributesDelta {
 
-    ARMOR(UnitArmor.CODE, 0.6),
-    DAMAGE(UnitDamage.CODE, 1.0);
+    ARMOR(AttributeName.RESIST_WEAPON, 0.6),
+    DAMAGE(AttributeName.DAMAGE, 1.0);
 
-    private final String attributeCode;
+    private final AttributeName name;
     private final double conversionValue;
 
-    private LinkedAttributesDelta(String attributeCode, double conversionValue) {
-        this.attributeCode = attributeCode;
+    private LinkedAttributesDelta(AttributeName name, double conversionValue) {
+        this.name = name;
         this.conversionValue = conversionValue;
     }
 
-    public String getAttributeId() {
-        return attributeCode;
+    public AttributeName getAttributeName() {
+        return name;
     }
 
     public AttributeValueChange getAttributeChange(double attributeChangeFactor) {

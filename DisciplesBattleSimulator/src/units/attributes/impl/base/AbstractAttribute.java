@@ -2,12 +2,13 @@ package units.attributes.impl.base;
 
 import java.util.ArrayList;
 import java.util.List;
+import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
 
 public abstract class AbstractAttribute {
     
-    private final String id;
+    private final AttributeName name;
     private AttributeValue value;
     
     private List<AttributeValueChange> positiveBuffs;
@@ -18,9 +19,9 @@ public abstract class AbstractAttribute {
         this.negativeBuffs = new ArrayList<>();
     }
     
-    public AbstractAttribute(String id, AttributeValue value) {
+    public AbstractAttribute(AttributeName name, AttributeValue value) {
         initProperties();
-        this.id = id;
+        this.name = name;
         this.value = value;
     }
 
@@ -28,8 +29,8 @@ public abstract class AbstractAttribute {
         this.value = value;
     }
 
-    public String getId() {
-        return id;
+    public AttributeName getName() {
+        return name;
     }
 
     public AttributeValue getValue(){
@@ -37,5 +38,5 @@ public abstract class AbstractAttribute {
     }
     
     public abstract void updateValue(AttributeValueChange change, 
-            UnitAttributes attributes);
+            AttributesCollection attributes);
 }

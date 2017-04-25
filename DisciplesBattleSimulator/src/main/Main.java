@@ -28,9 +28,9 @@ public class Main {
     public static void main(String[] args) {
         Properties props = PropertiesUtils.read(new File("src/data/DarkLord.properties"));
         AbstractUnit unit = UnitImpl.create(props);
-        UnitArmor armor = (UnitArmor) unit.getAttributes().getAttributeById(UnitArmor.CODE);
+        UnitArmor armor = (UnitArmor) unit.getAttributes().getAttributeByName(UnitArmor.NAME);
         armor.getReducedDamage(new AttackAction(10, AttackSource.MEELE));
-        UnitHitPoints hitPoints = unit.getAttributes().getAttributeById(UnitHitPoints.CODE);
+        UnitHitPoints hitPoints = unit.getAttributes().getAttributeByName(UnitHitPoints.NAME);
         AttributeValueChangeImpl<Integer> change = new AttributeValueChangeImpl<>(-100);
         hitPoints.updateValue(change, unit.getAttributes());
     }
