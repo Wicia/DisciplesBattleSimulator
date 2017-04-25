@@ -47,8 +47,8 @@ Temporary Items
 .apdisk
 
 # IDE files anf directories
-nbproject/
-build/
-.class
+/DisciplesBattleSimulator/nbproject/
+/DisciplesBattleSimulator/build/
 /DisciplesBattleSimulator/dist/
+.class
 *.policy
