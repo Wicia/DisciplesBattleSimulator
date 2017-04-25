@@ -4,15 +4,15 @@ import java.util.Properties;
 import units.attributes.impl.base.UnitAttributes;
 import units.attributes.impl.utlis.UnitAttributesCreator;
 
-public class WarriorUnit extends AbstractUnit{
+public class UnitImpl extends AbstractUnit{
 
     public static AbstractUnit create(Properties props) {
         UnitAttributesCreator creator = new UnitAttributesCreator();
         UnitAttributes attributes = creator.load(props);
-        return new WarriorUnit(attributes);
+        return new UnitImpl(attributes);
     }
     
-    private WarriorUnit(UnitAttributes attributes) {
+    private UnitImpl(UnitAttributes attributes) {
         super(attributes);
     }
 }
