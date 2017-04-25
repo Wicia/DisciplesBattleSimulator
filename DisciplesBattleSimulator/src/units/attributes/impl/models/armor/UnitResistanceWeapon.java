@@ -7,18 +7,18 @@ import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
 
-public class UnitArmor extends AbstractAttribute implements Attribute{
+public class UnitResistanceWeapon extends AbstractAttribute implements Attribute{
     
     public static final AttributeName NAME = AttributeName.RESIST_WEAPON;
     public static final int DEFAULT_PROTECTION_LEVEL = 0;
     public static final int MAX_PROTECTION_LEVEL = 100;
     
-    public UnitArmor() {
+    public UnitResistanceWeapon() {
         this(new NumericValue(DEFAULT_PROTECTION_LEVEL));
     }
     
-    public UnitArmor(AttributeValue value) {
-        super(NAME, value);
+    public UnitResistanceWeapon(AttributeValue value) {
+        super(NAME, value, null);
     }
     
     public int getReducedDamage(AttackAction attackAction) {

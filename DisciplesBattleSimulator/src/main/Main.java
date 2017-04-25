@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.Properties;
 import units.attributes.impl.models.damage.AttackAction;
 import units.attributes.impl.models.damage.AttackSource;
-import units.attributes.impl.models.armor.UnitArmor;
+import units.attributes.impl.models.armor.UnitResistanceWeapon;
 import units.attributes.impl.models.hitpoints.UnitHitPoints;
 import units.attributes.modificators.impl.AttributeValueChangeImpl;
 import units.models.AbstractUnit;
@@ -26,9 +26,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Properties props = PropertiesUtils.read(new File("src/data/DarkLord.properties"));
+        Properties props = PropertiesUtils.read(new File("src/units/data/DarkLord.properties"));
         AbstractUnit unit = UnitImpl.create(props);
-        UnitArmor armor = (UnitArmor) unit.getAttributes().getAttributeByName(UnitArmor.NAME);
+        UnitResistanceWeapon armor = (UnitResistanceWeapon) unit.getAttributes().getAttributeByName(UnitResistanceWeapon.NAME);
         armor.getReducedDamage(new AttackAction(10, AttackSource.MEELE));
         UnitHitPoints hitPoints = unit.getAttributes().getAttributeByName(UnitHitPoints.NAME);
         AttributeValueChangeImpl<Integer> change = new AttributeValueChangeImpl<>(-100);

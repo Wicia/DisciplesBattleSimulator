@@ -9,7 +9,7 @@ import units.attributes.modificators.api.AttributeValueChange;
 
 public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
     
-    public static final AttributeName NAME = AttributeName.HIT_POINTS;
+    public static final AttributeName NAME = AttributeName.MAX_HIT_POINTS;
     public static final int DEFAULT_MAX_HIT_POINTS = 1;
     
     public UnitMaxHitPoints() {
@@ -17,7 +17,7 @@ public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
     }
     
     public UnitMaxHitPoints(AttributeValue value) {
-        super(NAME, value);
+        super(NAME, value, null);
     }
 
     public AttributeValue getCurrentHitPoints(){

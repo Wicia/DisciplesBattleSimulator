@@ -1,22 +1,23 @@
-package units.attributes.impl.models.damage;
+package units.attributes.impl.models.armor;
 
+import units.attributes.impl.models.damage.AttackAction;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
 
-public class UnitDamage extends AbstractAttribute implements Attribute{
+public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     
-    public static final AttributeName NAME = AttributeName.DAMAGE;
-    public static final int DEFAULT_DAMAGE = 0;
+    public static final AttributeName NAME = AttributeName.ARMOR_DURABILITY;
+    public static final int MIN_DURABILITY = 0;
     
-    public UnitDamage() {
-        this(new NumericValue(DEFAULT_DAMAGE));
+    public UnitArmorDurability() {
+        this(new NumericValue(MIN_DURABILITY));
     }
     
-    public UnitDamage(AttributeValue value) {
-        super(NAME, value, null);
+    public UnitArmorDurability(AttributeValue value) {
+        super(NAME, value, new LinkedAttributesChangeImpl());
     }
 
     @Override

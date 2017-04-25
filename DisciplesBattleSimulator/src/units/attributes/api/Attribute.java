@@ -1,5 +1,7 @@
 package units.attributes.api;
 
+import units.attributes.impl.base.LinkedAttributesChange;
+
 public interface Attribute<V> {
 
     void setValue(AttributeValue value);
@@ -7,4 +9,6 @@ public interface Attribute<V> {
     AttributeName getName();
 
     <V> V getSimpleValue();
+    
+    LinkedAttributesChange getLinkedAttributesChange();
 }

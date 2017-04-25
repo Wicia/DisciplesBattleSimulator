@@ -17,7 +17,7 @@ public class UnitDescription extends AbstractAttribute implements Attribute{
     }
     
     public UnitDescription(AttributeValue value) {
-        super(NAME, value);
+        super(NAME, value, null);
     }
 
     @Override

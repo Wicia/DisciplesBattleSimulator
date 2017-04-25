@@ -10,6 +10,7 @@ public abstract class AbstractAttribute {
     
     private final AttributeName name;
     private AttributeValue value;
+    private final LinkedAttributesChange delta;
     
     private List<AttributeValueChange> positiveBuffs;
     private List<AttributeValueChange> negativeBuffs;
@@ -19,10 +20,12 @@ public abstract class AbstractAttribute {
         this.negativeBuffs = new ArrayList<>();
     }
     
-    public AbstractAttribute(AttributeName name, AttributeValue value) {
+    public AbstractAttribute(AttributeName name, AttributeValue value, 
+            LinkedAttributesChange delta) {
         initProperties();
         this.name = name;
         this.value = value;
+        this.delta = delta;
     }
 
     public void setValue(AttributeValue value){
@@ -35,6 +38,10 @@ public abstract class AbstractAttribute {
 
     public AttributeValue getValue(){
         return this.value;
+    }
+    
+    public LinkedAttributesChange getLinkedAttributesChange(){
+        return this.delta;
     }
     
     public abstract void updateValue(AttributeValueChange change, 

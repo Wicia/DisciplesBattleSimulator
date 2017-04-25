@@ -1,5 +1,6 @@
 package units.attributes.impl.models.hitpoints;
 
+import java.util.Set;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
 import units.attributes.api.AttributeName;
@@ -16,7 +17,7 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     }
     
     public UnitHitPoints(AttributeValue value) {
-        super(NAME, value);
+        super(NAME, value, new LinkedAttributesChangeImpl());
     }
 
     @Override
@@ -29,13 +30,14 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     private void updateReferencedAttributes(AttributesCollection attributes){
         AbstractAttribute maxHpAttribute = attributes.getAttributeByName(UnitMaxHitPoints.NAME);
         double hitPointsChangeFactor = getHitPointsChangeFactor(maxHpAttribute);
-        for(LinkedAttributesDelta factor : LinkedAttributesDelta.values()){
-            String code = factor.getAttributeName().getCode();
-            AbstractAttribute attribute = attributes.getAttributeByName(factor.getAttributeName());
-            AttributeValueChange attributeChange = factor.getAttributeChange(hitPointsChangeFactor);
+        LinkedAttributesChange linkedAttributesChange = super.getLinkedAttributesChange();
+        Set<AttributeName> linkedAttributesNames = linkedAttributesChange.getLinkedAttributesNames();
+        linkedAttributesNames.stream().forEach((name) -> {
+            AbstractAttribute attribute = attributes.getAttributeByName(name);
+            AttributeValueChange attributeChange = linkedAttributesChange.getAttributeChange(name, hitPointsChangeFactor);
             AttributeValue newValue = attributeChange.getNewValue(attribute);
             attribute.setValue(newValue);
-        }
+        });
     }
     
     private double getHitPointsChangeFactor(AbstractAttribute maxHitPointsAttribute){

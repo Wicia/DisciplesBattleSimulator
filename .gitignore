@@ -51,3 +51,4 @@ nbproject/
 build/
 .class
 /DisciplesBattleSimulator/dist/
+*.policy

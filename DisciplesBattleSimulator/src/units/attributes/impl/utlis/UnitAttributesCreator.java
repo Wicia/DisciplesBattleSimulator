@@ -16,7 +16,7 @@ import units.attributes.impl.base.AbstractAttribute;
 import units.attributes.impl.base.NumericValue;
 import units.attributes.impl.base.TextValue;
 import units.attributes.impl.base.AttributesCollection;
-import units.attributes.impl.models.armor.UnitArmor;
+import units.attributes.impl.models.armor.UnitResistanceWeapon;
 import units.attributes.impl.models.damage.UnitDamage;
 import units.attributes.impl.models.UnitDescription;
 import units.attributes.impl.models.hitpoints.UnitHitPoints;
@@ -29,7 +29,7 @@ import units.attributes.impl.models.UnitName;
  */
 public class UnitAttributesCreator {
     
-    private Map<AttributeName, AbstractAttribute> possibleAttributes;
+    private Map<String, AbstractAttribute> possibleAttributes;
 
     public UnitAttributesCreator() {
         this.initProperties();
@@ -42,7 +42,7 @@ public class UnitAttributesCreator {
     
     private void saveDefaultImplementations() {
         addDefaultAttribute(new UnitName());
-        addDefaultAttribute(new UnitArmor());
+        addDefaultAttribute(new UnitResistanceWeapon());
         addDefaultAttribute(new UnitDamage());
         addDefaultAttribute(new UnitDescription());
         addDefaultAttribute(new UnitHitPoints());
@@ -50,7 +50,7 @@ public class UnitAttributesCreator {
     }
     
     private void addDefaultAttribute(AbstractAttribute attribute){
-        this.possibleAttributes.put(attribute.getName(), attribute);
+        this.possibleAttributes.put(attribute.getName().getCode(), attribute);
     }
     
     public AttributesCollection load(Properties props){

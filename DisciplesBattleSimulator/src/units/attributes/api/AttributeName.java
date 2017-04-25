@@ -11,12 +11,13 @@ package units.attributes.api;
  */
 public enum AttributeName {
     
-     RESIST_WEAPON("armor"), 
-            DAMAGE("damage"), 
-       DESCRIPTION("description"), 
-              NAME("name"), 
-        HIT_POINTS("hitPoints"), 
-    MAX_HIT_POINTS("maxHitPoints");
+       RESIST_WEAPON("resistanceWeapon"), 
+              DAMAGE("damage"), 
+         DESCRIPTION("description"), 
+                NAME("name"), 
+          HIT_POINTS("hitPoints"), 
+      MAX_HIT_POINTS("maxHitPoints"), 
+    ARMOR_DURABILITY("armorDurability");
     
     private final String code;
 
