@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import units.attributes.api.Attribute;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.impl.base.AbstractAttribute;
@@ -22,6 +23,7 @@ import units.attributes.impl.models.UnitDescription;
 import units.attributes.impl.models.hitpoints.UnitHitPoints;
 import units.attributes.impl.models.hitpoints.UnitMaxHitPoints;
 import units.attributes.impl.models.UnitName;
+import units.attributes.impl.models.armor.UnitArmorClass;
 
 /**
  * @TODO: Add description to: class, fields, methods
@@ -29,7 +31,7 @@ import units.attributes.impl.models.UnitName;
  */
 public class UnitAttributesCreator {
     
-    private Map<String, AbstractAttribute> possibleAttributes;
+    private Map<String, Attribute> possibleAttributes;
 
     public UnitAttributesCreator() {
         this.initProperties();
@@ -47,9 +49,10 @@ public class UnitAttributesCreator {
         addDefaultAttribute(new UnitDescription());
         addDefaultAttribute(new UnitHitPoints());
         addDefaultAttribute(new UnitMaxHitPoints());
+        addDefaultAttribute(new UnitArmorClass());
     }
     
-    private void addDefaultAttribute(AbstractAttribute attribute){
+    private void addDefaultAttribute(Attribute attribute){
         this.possibleAttributes.put(attribute.getName().getCode(), attribute);
     }
     
@@ -58,7 +61,7 @@ public class UnitAttributesCreator {
         Set<Object> keySet = props.keySet();
         for(Object propName : keySet){
             Object propertyValue = props.get(propName);
-            AbstractAttribute attribute = possibleAttributes.get(propName.toString());
+            Attribute attribute = possibleAttributes.get(propName.toString());
             if(attribute != null){
                 attribute.setValue(getValue(propertyValue));
                 result.addAttribute(attribute);

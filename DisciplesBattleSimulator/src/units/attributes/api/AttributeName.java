@@ -5,6 +5,10 @@
  */
 package units.attributes.api;
 
+import java.util.ArrayList;
+import java.util.List;
+import units.attributes.impl.base.AttributesCollection;
+
 /**
  *
  * @author A653901
@@ -17,7 +21,7 @@ public enum AttributeName {
                 NAME("name"), 
           HIT_POINTS("hitPoints"), 
       MAX_HIT_POINTS("maxHitPoints"), 
-    ARMOR_DURABILITY("armorDurability");
+         ARMOR_CLASS("armorClass");
     
     private final String code;
 
@@ -27,5 +31,15 @@ public enum AttributeName {
 
     public String getCode() {
         return code;
+    }
+    
+    public static List<AttributeName> filterByDomain(AttributesCollection attributes, 
+            AttributeDomain domain){
+        List<AttributeName> result = new ArrayList<>();
+        attributes.getAttributes().stream().filter((attribute) -> (
+                domain.equals(attribute.getDomain()))).forEachOrdered((attribute) -> {
+            result.add(attribute.getName());
+           });
+        return result;
     }
 }

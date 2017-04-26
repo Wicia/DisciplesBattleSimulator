@@ -3,6 +3,7 @@ package units.attributes.impl.models.hitpoints;
 import java.util.Set;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
+import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
@@ -17,7 +18,7 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     }
     
     public UnitHitPoints(AttributeValue value) {
-        super(NAME, value, new LinkedAttributesChangeImpl());
+        super(NAME, value, AttributeDomain.HIT_POINTS, new LinkedAttributesChangeImpl());
     }
 
     @Override

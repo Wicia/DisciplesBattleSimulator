@@ -10,5 +10,7 @@ public interface Attribute<V> {
 
     <V> V getSimpleValue();
     
+    AttributeDomain getDomain();
+    
     LinkedAttributesChange getLinkedAttributesChange();
 }

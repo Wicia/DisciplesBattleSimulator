@@ -2,6 +2,7 @@ package units.attributes.impl.models.damage;
 
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
+import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
@@ -16,7 +17,7 @@ public class UnitDamage extends AbstractAttribute implements Attribute{
     }
     
     public UnitDamage(AttributeValue value) {
-        super(NAME, value, null);
+        super(NAME, value, AttributeDomain.ATTACK, null);
     }
 
     @Override

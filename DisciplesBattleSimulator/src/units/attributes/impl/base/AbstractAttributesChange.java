@@ -40,6 +40,12 @@ public abstract class AbstractAttributesChange {
         this.attributeNameToFactor.put(name, factor);
     }
     
+    public void addLinkedAttributeChangeValue(List<AttributeName> names, double factor){
+        for(AttributeName name : names){
+            this.addLinkedAttributeChangeValue(name, factor);
+        }
+    }
+    
     public Set<AttributeName> getLinkedAttributesNames(){
         return this.attributeNameToFactor.keySet();
     }

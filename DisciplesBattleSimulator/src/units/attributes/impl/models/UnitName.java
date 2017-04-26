@@ -2,6 +2,7 @@ package units.attributes.impl.models;
 
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
+import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
@@ -17,7 +18,7 @@ public class UnitName extends AbstractAttribute implements Attribute{
     }
     
     public UnitName(AttributeValue value) {
-        super(NAME, value, null);
+        super(NAME, value, AttributeDomain.DESCRIPTION, null);
     }
 
     @Override

@@ -16,7 +16,14 @@ import units.attributes.impl.base.LinkedAttributesChange;
 class LinkedAttributesChangeImpl extends AbstractAttributesChange
         implements LinkedAttributesChange {
 
+    public LinkedAttributesChangeImpl(double factor) {
+        //TODO
+        super.addLinkedAttributeChangeValue(AttributeName.RESIST_WEAPON, 
+                UnitArmorClass.DEFAULT_CLASS.getFactor());
+    }
+    
     public LinkedAttributesChangeImpl() {
-        super.addLinkedAttributeChangeValue(AttributeName.RESIST_WEAPON, 0.6);
+        super.addLinkedAttributeChangeValue(AttributeName.RESIST_WEAPON, 
+                UnitArmorClass.DEFAULT_CLASS.getFactor());
     }
 }

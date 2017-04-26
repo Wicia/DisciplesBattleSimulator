@@ -3,6 +3,7 @@ package units.attributes.impl.models.armor;
 import units.attributes.impl.models.damage.AttackAction;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
+import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
 import units.attributes.modificators.api.AttributeValueChange;
@@ -18,7 +19,7 @@ public class UnitResistanceWeapon extends AbstractAttribute implements Attribute
     }
     
     public UnitResistanceWeapon(AttributeValue value) {
-        super(NAME, value, null);
+        super(NAME, value, AttributeDomain.PROTECTION, null);
     }
     
     public int getReducedDamage(AttackAction attackAction) {
