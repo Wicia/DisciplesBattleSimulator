@@ -23,7 +23,7 @@ import units.attributes.impl.models.UnitDescription;
 import units.attributes.impl.models.hitpoints.UnitHitPoints;
 import units.attributes.impl.models.hitpoints.UnitMaxHitPoints;
 import units.attributes.impl.models.UnitName;
-import units.attributes.impl.models.armor.UnitArmorClass;
+import units.attributes.impl.models.armor.UnitArmorDurability;
 
 /**
  * @TODO: Add description to: class, fields, methods
@@ -49,7 +49,7 @@ public class UnitAttributesCreator {
         addDefaultAttribute(new UnitDescription());
         addDefaultAttribute(new UnitHitPoints());
         addDefaultAttribute(new UnitMaxHitPoints());
-        addDefaultAttribute(new UnitArmorClass());
+        addDefaultAttribute(new UnitArmorDurability());
     }
     
     private void addDefaultAttribute(Attribute attribute){
@@ -63,7 +63,7 @@ public class UnitAttributesCreator {
             Object propertyValue = props.get(propName);
             Attribute attribute = possibleAttributes.get(propName.toString());
             if(attribute != null){
-                attribute.setValue(getValue(propertyValue));
+                attribute.setValueOnly(getValue(propertyValue));
                 result.addAttribute(attribute);
             }
         }

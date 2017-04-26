@@ -5,6 +5,8 @@
  */
 package units.attributes.impl.models.armor;
 
+import java.util.List;
+import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.impl.base.AbstractAttributesChange;
 import units.attributes.impl.base.LinkedAttributesChange;
@@ -16,14 +18,14 @@ import units.attributes.impl.base.LinkedAttributesChange;
 class LinkedAttributesChangeImpl extends AbstractAttributesChange
         implements LinkedAttributesChange {
 
-    public LinkedAttributesChangeImpl(double factor) {
-        //TODO
-        super.addLinkedAttributeChangeValue(AttributeName.RESIST_WEAPON, 
-                UnitArmorClass.DEFAULT_CLASS.getFactor());
+    public LinkedAttributesChangeImpl() {
+        this(UnitArmorDurability.DEFAULT_DURABILITY * 1.0);
     }
     
-    public LinkedAttributesChangeImpl() {
-        super.addLinkedAttributeChangeValue(AttributeName.RESIST_WEAPON, 
-                UnitArmorClass.DEFAULT_CLASS.getFactor());
+    public LinkedAttributesChangeImpl(double factor) {
+        super.addLinkedAttributeChangeValue(AttributeName.RESIST_WEAPON, factor);
+        List<AttributeName> filterByDomain = AttributeName.filterByDomain(
+                AttributeDomain.PROTECTION);
+        super.addLinkedAttributeChangeValue(filterByDomain, factor);
     }
 }

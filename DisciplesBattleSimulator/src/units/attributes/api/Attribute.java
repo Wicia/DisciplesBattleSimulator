@@ -4,7 +4,7 @@ import units.attributes.impl.base.LinkedAttributesChange;
 
 public interface Attribute<V> {
 
-    void setValue(AttributeValue value);
+    void setValueOnly(AttributeValue value);
 
     AttributeName getName();
 

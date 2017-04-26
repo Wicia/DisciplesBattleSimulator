@@ -41,9 +41,9 @@ public abstract class AbstractAttributesChange {
     }
     
     public void addLinkedAttributeChangeValue(List<AttributeName> names, double factor){
-        for(AttributeName name : names){
+        names.stream().forEach((name) -> {
             this.addLinkedAttributeChangeValue(name, factor);
-        }
+        });
     }
     
     public Set<AttributeName> getLinkedAttributesNames(){

@@ -5,8 +5,8 @@
  */
 package units.attributes.modificators.impl;
 
+import units.attributes.api.Attribute;
 import units.attributes.api.AttributeValue;
-import units.attributes.impl.base.AbstractAttribute;
 import units.attributes.impl.base.NumericValue;
 import units.attributes.modificators.api.AttributeValueChange;
 
@@ -17,21 +17,20 @@ import units.attributes.modificators.api.AttributeValueChange;
 public class AttributeValueChangeImpl<Value> 
         implements AttributeValueChange<Value> {
     
-    private final Value changeValue;
+    private final Value valueToChange;
     
-    public AttributeValueChangeImpl(Value value){
-        this.changeValue = value;
+    public AttributeValueChangeImpl(Value valueToChange){
+        this.valueToChange = valueToChange;
     }
     
     @Override
-    public AttributeValue getNewValue(AbstractAttribute attribute){
-        AttributeValue<Integer> attributeValue = attribute.getValue();
-        Integer simpleValue = attributeValue.value();
+    public AttributeValue getNewValue(Attribute attribute){
+        Integer simpleValue = (Integer) attribute.getSimpleValue();
         AttributeValue newValue = null;
-        if(changeValue instanceof Integer){
+        if(valueToChange instanceof Integer){
             newValue = getNewNumericValue(simpleValue);
         }
-        if(changeValue instanceof Double){
+        if(valueToChange instanceof Double){
             newValue = getPecentageValue(simpleValue);
         }
 
@@ -57,8 +56,7 @@ public class AttributeValueChangeImpl<Value>
         return new NumericValue(simpleValue);
     }
 
-    @Override
-    public <Value> Value getModificatorValue() {
-        return (Value) changeValue;
+    private <Value> Value getModificatorValue() {
+        return (Value) valueToChange;
     }
 }

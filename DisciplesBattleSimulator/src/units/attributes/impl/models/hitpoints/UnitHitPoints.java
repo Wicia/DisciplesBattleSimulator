@@ -23,8 +23,7 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
 
     @Override
     public void updateValue(AttributeValueChange change, AttributesCollection attributes) {
-        AttributeValue newValue = change.getNewValue(this);
-        this.setValue(newValue);
+        this.setValueOnly(change.getNewValue(this));
         this.updateReferencedAttributes(attributes);
     }
     
@@ -34,10 +33,10 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
         LinkedAttributesChange linkedAttributesChange = super.getLinkedAttributesChange();
         Set<AttributeName> linkedAttributesNames = linkedAttributesChange.getLinkedAttributesNames();
         linkedAttributesNames.stream().forEach((name) -> {
-            AbstractAttribute attribute = attributes.getAttributeByName(name);
+            Attribute attribute = attributes.getAttributeByName(name);
             AttributeValueChange attributeChange = linkedAttributesChange.getAttributeChange(name, hitPointsChangeFactor);
             AttributeValue newValue = attributeChange.getNewValue(attribute);
-            attribute.setValue(newValue);
+            attribute.setValueOnly(newValue);
         });
     }
     
