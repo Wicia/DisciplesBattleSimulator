@@ -22,13 +22,9 @@ public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public AttributeValue getSimpleValue() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void setValueOnly(AttributeValue value){
-        double newValue = (double) value.value();
+        int newValue = (int) value.get();
+        super.setValueOnly(value);
         LinkedAttributesChangeImpl change = new LinkedAttributesChangeImpl(newValue);
         super.setLinkedAttributeChange(change);
     }

@@ -7,8 +7,8 @@ public interface Attribute<V> {
     void setValueOnly(AttributeValue value);
 
     AttributeName getName();
-
-    <V> V getSimpleValue();
+    
+    AttributeValue<V> getValue();
     
     AttributeDomain getDomain();
     

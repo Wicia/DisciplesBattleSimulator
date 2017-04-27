@@ -11,12 +11,12 @@ public class TextValue implements AttributeValue<String>{
     }
 
     @Override
-    public String value() {
+    public String get() {
         return value;
     }
 
     @Override
-    public String getCopy() {
-        return this.value();
+    public String copy() {
+        return this.get();
     }
 }

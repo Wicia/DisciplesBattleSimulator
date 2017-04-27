@@ -44,12 +44,7 @@ public class UnitResistanceWeapon extends AbstractAttribute implements Attribute
     }
 
     public Integer getProtectionLevel() {
-        return (Integer) super.getValue().value();
-    }
-
-    @Override
-    public AttributeValue getSimpleValue() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (Integer) super.getValue().get();
     }
 
     @Override

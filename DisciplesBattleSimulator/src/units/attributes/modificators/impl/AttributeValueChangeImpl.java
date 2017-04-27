@@ -25,13 +25,13 @@ public class AttributeValueChangeImpl<Value>
     
     @Override
     public AttributeValue getNewValue(Attribute attribute){
-        Integer simpleValue = (Integer) attribute.getSimpleValue();
+        AttributeValue<Integer> wrappedWalue = attribute.getValue();
         AttributeValue newValue = null;
         if(valueToChange instanceof Integer){
-            newValue = getNewNumericValue(simpleValue);
+            newValue = getNewNumericValue(wrappedWalue.get());
         }
         if(valueToChange instanceof Double){
-            newValue = getPecentageValue(simpleValue);
+            newValue = getPecentageValue(wrappedWalue.get());
         }
 
         return newValue;

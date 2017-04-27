@@ -7,6 +7,7 @@ package main;
 
 import java.io.File;
 import java.util.Properties;
+import units.attributes.api.AttributeName;
 import units.attributes.impl.models.damage.AttackAction;
 import units.attributes.impl.models.damage.AttackSource;
 import units.attributes.impl.models.armor.UnitResistanceWeapon;
@@ -33,5 +34,6 @@ public class Main {
         UnitHitPoints hitPoints = unit.getAttributes().getAttributeByName(UnitHitPoints.NAME);
         AttributeValueChangeImpl<Integer> change = new AttributeValueChangeImpl<>(-100);
         hitPoints.updateValue(change, unit.getAttributes());
+        Object attributeByName = unit.getAttributes().getAttributeByName(AttributeName.ARMOR_DURABILITY);
     }
 }

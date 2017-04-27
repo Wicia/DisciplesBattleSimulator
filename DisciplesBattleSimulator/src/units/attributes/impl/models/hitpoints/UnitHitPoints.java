@@ -42,18 +42,13 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     
     private double getHitPointsChangeFactor(AbstractAttribute maxHitPointsAttribute){
         AttributeValue<Integer> maxHpValue = maxHitPointsAttribute.getValue();
-        int maxHp = maxHpValue.value();
-        int curentHitPoints = this.getSimpleValue();
+        int maxHp = maxHpValue.get();
+        int curentHitPoints = (int) getValue().get();
         double factor = (curentHitPoints * 100.0) / (maxHp * 1.0);
         if(curentHitPoints < maxHp){
             factor *= (-1.0);
         }
         
         return factor;
-    }
-
-    @Override
-    public Integer getSimpleValue() {
-        return (Integer) super.getValue().value();
     }
 }

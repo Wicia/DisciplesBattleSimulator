@@ -11,12 +11,12 @@ public class NumericValue implements AttributeValue<Integer>{
     }
 
     @Override
-    public Integer value() {
+    public Integer get() {
         return value;
     }
 
     @Override
-    public Integer getCopy() {
-        return this.value();
+    public Integer copy() {
+        return this.get();
     }
 }
