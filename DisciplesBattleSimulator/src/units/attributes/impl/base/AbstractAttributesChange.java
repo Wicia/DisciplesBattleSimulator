@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import units.attributes.api.AttributeName;
-import units.attributes.modificators.api.AttributeValueChange;
-import units.attributes.modificators.impl.AttributeValueChangeImpl;
+import units.attributes.impl.modificators.api.AttributeValueChange;
+import units.attributes.impl.modificators.impl.AttributeValueChangeImpl;
 
 /**
  *

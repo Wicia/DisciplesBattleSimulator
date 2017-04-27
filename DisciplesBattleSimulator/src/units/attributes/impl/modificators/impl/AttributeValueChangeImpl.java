@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package units.attributes.modificators.impl;
+package units.attributes.impl.modificators.impl;
 
 import units.attributes.api.Attribute;
 import units.attributes.api.AttributeValue;
 import units.attributes.impl.base.NumericValue;
-import units.attributes.modificators.api.AttributeValueChange;
+import units.attributes.impl.modificators.api.AttributeValueChange;
+
 
 /**
  *
  * @author Michał 'Wicia' Wietecha
  */
-public class AttributeValueChangeImpl<Value> 
-        implements AttributeValueChange<Value> {
+public class AttributeValueChangeImpl<Value> implements AttributeValueChange<Value> {
     
     private final Value valueToChange;
     

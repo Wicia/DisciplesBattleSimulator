@@ -6,7 +6,7 @@ import units.attributes.impl.utlis.UnitAttributesCreator;
 
 public class UnitImpl extends AbstractUnit{
 
-    public static AbstractUnit create(Properties props) {
+    public static UnitImpl create(Properties props) {
         UnitAttributesCreator creator = new UnitAttributesCreator();
         AttributesCollection attributes = creator.load(props);
         return new UnitImpl(attributes);

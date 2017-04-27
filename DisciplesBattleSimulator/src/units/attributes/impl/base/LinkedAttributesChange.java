@@ -7,7 +7,8 @@ package units.attributes.impl.base;
 
 import java.util.Set;
 import units.attributes.api.AttributeName;
-import units.attributes.modificators.api.AttributeValueChange;
+import units.attributes.impl.modificators.api.AttributeValueChange;
+
 
 /**
  *

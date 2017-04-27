@@ -1,12 +1,14 @@
 package units.attributes.impl.models.hitpoints;
 
 import java.util.Set;
+import units.actions.impl.ChangeAttributesValuesAction;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
 import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
-import units.attributes.modificators.api.AttributeValueChange;
+import units.attributes.impl.modificators.api.AttributeValueChange;
+
 
 public class UnitHitPoints extends AbstractAttribute implements Attribute{
     
@@ -22,8 +24,8 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValue(AttributeValueChange change, AttributesCollection attributes) {
-        this.setValueOnly(change.getNewValue(this));
+    public void updateValue(ChangeAttributesValuesAction action, AttributesCollection attributes) {
+        this.setValueOnly(action.getAttributeChange(NAME).getNewValue(this));
         this.updateReferencedAttributes(attributes);
     }
     

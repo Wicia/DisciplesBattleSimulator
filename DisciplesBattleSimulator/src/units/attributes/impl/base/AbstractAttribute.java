@@ -1,9 +1,10 @@
 package units.attributes.impl.base;
 
+import units.actions.impl.ChangeAttributesValuesAction;
 import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
-import units.attributes.modificators.api.AttributeValueChange;
+
 
 public abstract class AbstractAttribute {
     
@@ -46,11 +47,10 @@ public abstract class AbstractAttribute {
     
     /**
      * Zmiana wartości atrybutu wraz ze zmianami atrybutów powiązanych.
-     * @param change zmiana wartości atrybutu.
+     * @param action akcja zmiany wartości atrybutu.
      * @param attributes lista atrybutów jednostki.
      */
-    public abstract void updateValue(AttributeValueChange change, 
-            AttributesCollection attributes);
+    public abstract void updateValue(ChangeAttributesValuesAction action,  AttributesCollection attributes);
 
     public void setLinkedAttributeChange(LinkedAttributesChange attributeChange) {
         this.attributeChange = attributeChange;

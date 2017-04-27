@@ -1,12 +1,13 @@
 package units.attributes.impl.models.armor;
 
+import units.actions.impl.ChangeAttributesValuesAction;
 import units.attributes.impl.models.damage.AttackAction;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
 import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
-import units.attributes.modificators.api.AttributeValueChange;
+
 
 public class UnitResistanceWeapon extends AbstractAttribute implements Attribute{
     
@@ -48,7 +49,7 @@ public class UnitResistanceWeapon extends AbstractAttribute implements Attribute
     }
 
     @Override
-    public void updateValue(AttributeValueChange change, AttributesCollection attributes) {
+    public void updateValue(ChangeAttributesValuesAction action, AttributesCollection attributes) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

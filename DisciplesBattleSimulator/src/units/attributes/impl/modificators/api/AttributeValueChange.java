@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package units.attributes.modificators.api;
+package units.attributes.impl.modificators.api;
 
 import units.attributes.api.Attribute;
 import units.attributes.api.AttributeValue;

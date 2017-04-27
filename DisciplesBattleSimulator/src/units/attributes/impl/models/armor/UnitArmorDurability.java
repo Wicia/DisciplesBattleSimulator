@@ -1,12 +1,14 @@
 package units.attributes.impl.models.armor;
 
 import java.util.Set;
+import units.actions.impl.ChangeAttributesValuesAction;
 import units.attributes.impl.base.*;
 import units.attributes.api.Attribute;
 import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
-import units.attributes.modificators.api.AttributeValueChange;
+import units.attributes.impl.modificators.api.AttributeValueChange;
+
 
 public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     
@@ -30,8 +32,12 @@ public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     }
     
     @Override
-    public void updateValue(AttributeValueChange change, AttributesCollection attributes) {
-        this.setValueOnly(change.getNewValue(this));
+    public void updateValue(ChangeAttributesValuesAction action, AttributesCollection attributes) {
+        //this.performReactionForAction(action);
+        
+        //TODO: ustaw nowa wartosc tylko gdy test to negatywny buff
+        
+        //this.setValueOnly(attributeChange.getNewValue(this));
         //TODO: pobranie z ValueChange liczby damage
         int takenDamage = -1;
         this.updateReferencedAttributes(attributes, takenDamage);
