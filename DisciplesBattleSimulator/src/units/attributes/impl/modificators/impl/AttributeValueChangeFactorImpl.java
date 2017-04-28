@@ -5,8 +5,10 @@
  */
 package units.attributes.impl.modificators.impl;
 
+import units.attributes.api.Attribute;
 import units.attributes.api.AttributeValue;
 import units.attributes.impl.base.NumericValue;
+import units.attributes.impl.base.RealValue;
 import units.attributes.impl.modificators.api.AttributeValueChangeFactor;
 
 /**
@@ -18,6 +20,9 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
     private final AttributeValue valueToChange;
     
     public AttributeValueChangeFactorImpl(AttributeValue valueToChange){
+        if(valueToChange.get() instanceof Double){
+            valueToChange = convert(valueToChange);
+        }
         this.valueToChange = valueToChange;
     }
     
@@ -32,6 +37,18 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
         }
 
         return newValue;
+    }
+    
+    private AttributeValue convert(AttributeValue attributeValue){
+        double value = (double) attributeValue.get();
+        if(value < 0){
+            
+        }
+        if(value == 0.0 || value >= 1.0){
+            value /= 100.0;
+        }
+        
+        return new RealValue(value);
     }
     
     private NumericValue getNewNumericValue(Integer simpleValue){
@@ -52,6 +69,18 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
         }
         return new NumericValue(simpleValue);
     }
+    
+    @Override
+    public AttributeValue getPecentageChangeFactor(AttributeValue beforeValue, 
+            AttributeValue currentValue){       
+//        double factor = (currentValue * 100.0) / (maxHp * 1.0);
+//        if(currentValue < maxHp){
+//            factor *= (-1.0);
+//        }
+        
+        //return new RealValue(factor);
+        return null;
+    }
 
     private <Value> Value getSimpleModificatorValue() {
         return (Value) valueToChange.get();
@@ -60,5 +89,9 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
     @Override
     public AttributeValue getModificatorValue() {
         return this.valueToChange;
+    }
+    
+    private double asPecentage(double value){
+        return (100 + value) / 100;
     }
 }

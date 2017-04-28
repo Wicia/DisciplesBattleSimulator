@@ -17,7 +17,6 @@ public interface AttributeValueChangeFactor {
     
     AttributeValue getModificatorValue();
     
-    default double asPecentage(double value){
-        return (100 + value) / 100;
-    }
+    AttributeValue getPecentageChangeFactor(AttributeValue beforeValue, 
+            AttributeValue currentValue);
 }

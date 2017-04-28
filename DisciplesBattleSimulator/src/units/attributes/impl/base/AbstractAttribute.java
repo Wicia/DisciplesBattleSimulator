@@ -1,6 +1,7 @@
 package units.attributes.impl.base;
 
 import units.actions.impl.ChangeAttributesValuesAction;
+import units.attributes.api.Attribute;
 import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;

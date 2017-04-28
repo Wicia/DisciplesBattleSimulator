@@ -10,6 +10,9 @@ import java.util.Properties;
 import units.actions.api.ActionType;
 import units.actions.impl.ChangeAttributesValuesAction;
 import units.attributes.api.AttributeName;
+import units.attributes.api.AttributeValue;
+import units.attributes.impl.base.NumericValue;
+import units.attributes.impl.base.RealValue;
 import units.attributes.impl.models.damage.AttackAction;
 import units.attributes.impl.models.damage.AttackSource;
 import units.attributes.impl.models.armor.UnitResistanceWeapon;
@@ -39,6 +42,12 @@ public class Main {
     }
     
     private static void getAction(UnitImpl unit){
+        AttributeValueChangeFactorImpl a = new AttributeValueChangeFactorImpl(new RealValue(75.0));
+        AttributeValueChangeFactorImpl b = new AttributeValueChangeFactorImpl(new RealValue(-75.0)); // >>> 
+        AttributeValueChangeFactorImpl c = new AttributeValueChangeFactorImpl(new RealValue(0.75));
         
+        
+        
+        //AttributeValue newValue = factor.getNewValue(new NumericValue(50));
     }
 }
