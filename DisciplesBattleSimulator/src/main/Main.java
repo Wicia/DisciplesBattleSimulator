@@ -14,7 +14,7 @@ import units.attributes.impl.models.damage.AttackAction;
 import units.attributes.impl.models.damage.AttackSource;
 import units.attributes.impl.models.armor.UnitResistanceWeapon;
 import units.attributes.impl.models.hitpoints.UnitHitPoints;
-import units.attributes.impl.modificators.impl.AttributeValueChangeImpl;
+import units.attributes.impl.modificators.impl.AttributeValueChangeFactorImpl;
 import units.models.AbstractUnit;
 import units.models.UnitImpl;
 import units.utils.PropertiesUtils;
@@ -30,7 +30,6 @@ public class Main {
      */
     public static void main(String[] args) {
         UnitImpl unit = loadUnit();
-        testChangeAttributeValue(unit);
         getAction(unit);
     }
     
@@ -40,14 +39,6 @@ public class Main {
     }
     
     private static void getAction(UnitImpl unit){
-        ChangeAttributesValuesAction action = new ChangeAttributesValuesAction(ActionType.ATTACK);
-        AttributeValueChangeImpl<Integer> change = new AttributeValueChangeImpl<>(-100);
-        action.addAttributeValueChange(AttributeName.HIT_POINTS, change);
-    }
-    
-    private static void testChangeAttributeValue(UnitImpl unit){
-        UnitResistanceWeapon armor = (UnitResistanceWeapon) unit.getAttributes().
-                getAttributeByName(UnitResistanceWeapon.NAME);
-        armor.getReducedDamage(new AttackAction(10, AttackSource.MEELE));
+        
     }
 }

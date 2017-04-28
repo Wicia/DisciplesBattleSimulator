@@ -6,18 +6,17 @@
 package units.attributes.impl.models.hitpoints;
 
 import units.attributes.api.AttributeName;
-import units.attributes.impl.base.AbstractAttributesChange;
+import units.attributes.impl.base.AbstractLinkedAttributesChange;
 import units.attributes.impl.base.LinkedAttributesChange;
 
 /**
  *
  * @author Michał 'Wicia' Wietecha
  */
-class LinkedAttributesChangeImpl extends AbstractAttributesChange 
+class LinkedAttributesChangeImpl extends AbstractLinkedAttributesChange 
         implements LinkedAttributesChange{
 
     public LinkedAttributesChangeImpl() {
-        super.addLinkedAttributeChangeValue(AttributeName.RESIST_WEAPON, 0.6);
-        super.addLinkedAttributeChangeValue(AttributeName.DAMAGE, 1.0);
+        super.addLinkedAttributeChangeValue(AttributeName.DAMAGE, 0.75);
     }
 }

@@ -7,7 +7,7 @@ import units.attributes.api.Attribute;
 import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
-import units.attributes.impl.modificators.api.AttributeValueChange;
+import units.attributes.impl.modificators.api.AttributeValueChangeFactor;
 
 
 public class UnitHitPoints extends AbstractAttribute implements Attribute{
@@ -24,33 +24,29 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValue(ChangeAttributesValuesAction action, AttributesCollection attributes) {
-        this.setValueOnly(action.getAttributeChange(NAME).getNewValue(this));
-        this.updateReferencedAttributes(attributes);
+    public void updateValue(ChangeAttributesValuesAction action) {
+        this.setValueOnly(action.getAttributeChange(NAME).getNewValue(getAttributeValue()));
+        this.updateReferencedAttributes(action);
     }
     
-    private void updateReferencedAttributes(AttributesCollection attributes){
-        AbstractAttribute maxHpAttribute = attributes.getAttributeByName(UnitMaxHitPoints.NAME);
-        double hitPointsChangeFactor = getHitPointsChangeFactor(maxHpAttribute);
+    private void updateReferencedAttributes(ChangeAttributesValuesAction action){
         LinkedAttributesChange linkedAttributesChange = super.getLinkedAttributesChange();
         Set<AttributeName> linkedAttributesNames = linkedAttributesChange.getLinkedAttributesNames();
         linkedAttributesNames.stream().forEach((name) -> {
-            Attribute attribute = attributes.getAttributeByName(name);
-            AttributeValueChange attributeChange = linkedAttributesChange.getAttributeChange(name, hitPointsChangeFactor);
-            AttributeValue newValue = attributeChange.getNewValue(attribute);
-            attribute.setValueOnly(newValue);
+            AttributeValueChangeFactor changeFactor = action.getAttributeChange(name);
+            //TODO
         });
     }
     
-    private double getHitPointsChangeFactor(AbstractAttribute maxHitPointsAttribute){
-        AttributeValue<Integer> maxHpValue = maxHitPointsAttribute.getValue();
+    private AttributeValue getHitPointsChangeFactor(Attribute maxHitPointsAttribute){
+        AttributeValue<Integer> maxHpValue = maxHitPointsAttribute.getAttributeValue();
         int maxHp = maxHpValue.get();
-        int curentHitPoints = (int) getValue().get();
+        int curentHitPoints = (int) getAttributeValue().get();
         double factor = (curentHitPoints * 100.0) / (maxHp * 1.0);
         if(curentHitPoints < maxHp){
             factor *= (-1.0);
         }
         
-        return factor;
+        return new RealValue(factor);
     }
 }

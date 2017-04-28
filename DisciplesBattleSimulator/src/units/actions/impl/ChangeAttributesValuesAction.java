@@ -7,9 +7,11 @@ package units.actions.impl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import units.actions.api.ActionType;
 import units.attributes.api.AttributeName;
-import units.attributes.impl.modificators.api.AttributeValueChange;
+import units.attributes.impl.base.AttributesCollection;
+import units.attributes.impl.modificators.api.AttributeValueChangeFactor;
 
 /**
  *
@@ -18,23 +20,34 @@ import units.attributes.impl.modificators.api.AttributeValueChange;
 public class ChangeAttributesValuesAction {
     
     private final ActionType type;
-            
-    private Map<AttributeName, AttributeValueChange> changes;
     
-    public ChangeAttributesValuesAction(ActionType type) {
+    //TODO: czy nie jest tak ze zawsze bedzie tylko 1 zmiana?
+    private Map<AttributeName, AttributeValueChangeFactor> changes;
+    private AttributesCollection attributes;
+    
+    public ChangeAttributesValuesAction(AttributesCollection attributes, ActionType type) {
         this.type = type;
         this.changes = new HashMap<>();
+        this.attributes = attributes;
     }
 
     public ActionType getType() {
         return type;
     }
     
-    public void addAttributeValueChange(AttributeName name, AttributeValueChange change){
+    public void addAttributeValueChange(AttributeName name, AttributeValueChangeFactor change){
         this.changes.put(name, change);
     }
     
-    public AttributeValueChange getAttributeChange(AttributeName name){
+    public AttributeValueChangeFactor getAttributeChange(AttributeName name){
         return this.changes.getOrDefault(name, null);
+    }
+    
+    public Set<AttributeName> getChangedAttributesNames(){
+        return this.changes.keySet();
+    }
+
+    public AttributesCollection getAttributes() {
+        return attributes;
     }
 }

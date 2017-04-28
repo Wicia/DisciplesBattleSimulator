@@ -53,7 +53,7 @@ public class UnitAttributesCreator {
     }
     
     private void addDefaultAttribute(Attribute attribute){
-        this.possibleAttributes.put(attribute.getName().getCode(), attribute);
+        this.possibleAttributes.put(attribute.getAttributeName().getCode(), attribute);
     }
     
     public AttributesCollection load(Properties props){

@@ -21,11 +21,11 @@ public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
     }
 
     public AttributeValue getCurrentHitPoints(){
-        return super.getValue();
+        return super.getAttributeValue();
     }
 
     @Override
-    public void updateValue(ChangeAttributesValuesAction action, AttributesCollection attributes) {
+    public void updateValue(ChangeAttributesValuesAction action) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

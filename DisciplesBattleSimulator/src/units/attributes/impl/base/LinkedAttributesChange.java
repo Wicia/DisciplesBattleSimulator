@@ -7,8 +7,8 @@ package units.attributes.impl.base;
 
 import java.util.Set;
 import units.attributes.api.AttributeName;
-import units.attributes.impl.modificators.api.AttributeValueChange;
-
+import units.attributes.api.AttributeValue;
+import units.attributes.impl.modificators.api.AttributeValueChangeFactor;
 
 /**
  *
@@ -16,9 +16,8 @@ import units.attributes.impl.modificators.api.AttributeValueChange;
  */
 public interface LinkedAttributesChange {
 
-    AttributeValueChange getAttributeChange(AttributeName attributeName, double attributeChangeFactor);
-    
-    void addLinkedAttributeChangeValue(AttributeName name, double factor);
+    AttributeValueChangeFactor calculateAttributeChangeFactor(
+            AttributeName attributeName, AttributeValue value);
     
     Set<AttributeName> getLinkedAttributesNames();
 }

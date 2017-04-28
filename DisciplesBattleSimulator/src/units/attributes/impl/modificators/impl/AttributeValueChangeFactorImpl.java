@@ -5,58 +5,60 @@
  */
 package units.attributes.impl.modificators.impl;
 
-import units.attributes.api.Attribute;
 import units.attributes.api.AttributeValue;
 import units.attributes.impl.base.NumericValue;
-import units.attributes.impl.modificators.api.AttributeValueChange;
-
+import units.attributes.impl.modificators.api.AttributeValueChangeFactor;
 
 /**
  *
  * @author Michał 'Wicia' Wietecha
  */
-public class AttributeValueChangeImpl<Value> implements AttributeValueChange<Value> {
+public class AttributeValueChangeFactorImpl implements AttributeValueChangeFactor {
     
-    private final Value valueToChange;
+    private final AttributeValue valueToChange;
     
-    public AttributeValueChangeImpl(Value valueToChange){
+    public AttributeValueChangeFactorImpl(AttributeValue valueToChange){
         this.valueToChange = valueToChange;
     }
     
     @Override
-    public AttributeValue getNewValue(Attribute attribute){
-        AttributeValue<Integer> wrappedWalue = attribute.getValue();
+    public AttributeValue getNewValue(AttributeValue attribute){
         AttributeValue newValue = null;
-        if(valueToChange instanceof Integer){
-            newValue = getNewNumericValue(wrappedWalue.get());
+        if(valueToChange.get() instanceof Integer){
+            newValue = getNewNumericValue((Integer) attribute.get());
         }
-        if(valueToChange instanceof Double){
-            newValue = getPecentageValue(wrappedWalue.get());
+        if(valueToChange.get() instanceof Double){
+            newValue = getPecentageValue((Integer) attribute.get());
         }
 
         return newValue;
     }
     
     private NumericValue getNewNumericValue(Integer simpleValue){
-        int modificatorValue = getModificatorValue();
+        int modificatorValue = getSimpleModificatorValue();
         simpleValue = simpleValue + modificatorValue;
         return new NumericValue(simpleValue);
     }
     
     private NumericValue getPecentageValue(Integer simpleValue) {
         if (simpleValue == 0) {
-            double modificatorValue = getModificatorValue();
+            double modificatorValue = getSimpleModificatorValue();
             simpleValue = (int) modificatorValue;
         } 
         else {
-            double modificatorValue = getModificatorValue();
+            double modificatorValue = getSimpleModificatorValue();
             double pecentModificator = asPecentage(modificatorValue);
             simpleValue = (int) (simpleValue * pecentModificator);
         }
         return new NumericValue(simpleValue);
     }
 
-    private <Value> Value getModificatorValue() {
-        return (Value) valueToChange;
+    private <Value> Value getSimpleModificatorValue() {
+        return (Value) valueToChange.get();
+    }
+
+    @Override
+    public AttributeValue getModificatorValue() {
+        return this.valueToChange;
     }
 }

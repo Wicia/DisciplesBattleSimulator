@@ -29,11 +29,11 @@ public abstract class AbstractAttribute {
         this.value = value;
     }
 
-    public AttributeName getName() {
+    public AttributeName getAttributeName() {
         return name;
     }
 
-    public AttributeValue getValue(){
+    public AttributeValue getAttributeValue(){
         return this.value;
     }
     
@@ -50,7 +50,7 @@ public abstract class AbstractAttribute {
      * @param action akcja zmiany wartości atrybutu.
      * @param attributes lista atrybutów jednostki.
      */
-    public abstract void updateValue(ChangeAttributesValuesAction action,  AttributesCollection attributes);
+    public abstract void updateValue(ChangeAttributesValuesAction action);
 
     public void setLinkedAttributeChange(LinkedAttributesChange attributeChange) {
         this.attributeChange = attributeChange;

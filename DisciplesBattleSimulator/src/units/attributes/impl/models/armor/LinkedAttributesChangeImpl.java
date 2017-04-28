@@ -8,14 +8,14 @@ package units.attributes.impl.models.armor;
 import java.util.List;
 import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
-import units.attributes.impl.base.AbstractAttributesChange;
+import units.attributes.impl.base.AbstractLinkedAttributesChange;
 import units.attributes.impl.base.LinkedAttributesChange;
 
 /**
  *
  * @author Michał 'Wicia' Wietecha
  */
-class LinkedAttributesChangeImpl extends AbstractAttributesChange
+class LinkedAttributesChangeImpl extends AbstractLinkedAttributesChange
         implements LinkedAttributesChange {
 
     public LinkedAttributesChangeImpl() {

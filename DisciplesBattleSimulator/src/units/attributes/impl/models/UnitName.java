@@ -22,7 +22,7 @@ public class UnitName extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValue(ChangeAttributesValuesAction action, AttributesCollection attributes) {
+    public void updateValue(ChangeAttributesValuesAction action) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

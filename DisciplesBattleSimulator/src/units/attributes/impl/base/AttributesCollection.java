@@ -35,12 +35,12 @@ public class AttributesCollection {
         return result;
     }
     
-    public <V> V getAttributeByName(AttributeName name){
-       return (V) this.attributes.get(name);
+    public Attribute getAttributeByName(AttributeName name){
+       return this.attributes.get(name);
     }
     
     public void addAttribute(Attribute attribute){
-        this.attributes.put(attribute.getName(), attribute);
+        this.attributes.put(attribute.getAttributeName(), attribute);
     }
     
     public List<Attribute> getAttributes(){

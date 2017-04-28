@@ -5,16 +5,17 @@
  */
 package units.attributes.impl.modificators.api;
 
-import units.attributes.api.Attribute;
 import units.attributes.api.AttributeValue;
 
 /**
  *
  * @author Michał 'Wicia' Wietecha
  */
-public interface AttributeValueChange<Value> {
+public interface AttributeValueChangeFactor {
     
-    AttributeValue getNewValue(Attribute attribute);
+    AttributeValue getNewValue(AttributeValue value);
+    
+    AttributeValue getModificatorValue();
     
     default double asPecentage(double value){
         return (100 + value) / 100;

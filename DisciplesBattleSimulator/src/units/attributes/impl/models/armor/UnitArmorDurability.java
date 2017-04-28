@@ -7,7 +7,7 @@ import units.attributes.api.Attribute;
 import units.attributes.api.AttributeDomain;
 import units.attributes.api.AttributeName;
 import units.attributes.api.AttributeValue;
-import units.attributes.impl.modificators.api.AttributeValueChange;
+import units.attributes.impl.modificators.api.AttributeValueChangeFactor;
 
 
 public class UnitArmorDurability extends AbstractAttribute implements Attribute{
@@ -32,26 +32,23 @@ public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     }
     
     @Override
-    public void updateValue(ChangeAttributesValuesAction action, AttributesCollection attributes) {
-        //this.performReactionForAction(action);
-        
-        //TODO: ustaw nowa wartosc tylko gdy test to negatywny buff
-        
+    public void updateValue(ChangeAttributesValuesAction action) {      
+        //TODO: ustaw nowa wartosc tylko gdy test to negatywny buff 
         //this.setValueOnly(attributeChange.getNewValue(this));
         //TODO: pobranie z ValueChange liczby damage
-        int takenDamage = -1;
-        this.updateReferencedAttributes(attributes, takenDamage);
+        this.updateReferencedAttributes(action);
     }
     
-    private void updateReferencedAttributes(AttributesCollection attributes, int takenDamage){
+    private void updateReferencedAttributes(ChangeAttributesValuesAction action){
         LinkedAttributesChange linkedAttributesChange = this.getLinkedAttributesChange();
         Set<AttributeName> linkedAttributesNames = linkedAttributesChange.
                 getLinkedAttributesNames();
         for(AttributeName name : linkedAttributesNames){
-            AttributeValueChange attributeChange = 
-                    linkedAttributesChange.getAttributeChange(name, takenDamage);
-            Attribute attributeByName = attributes.getAttributeByName(name);
-            attributeByName.setValueOnly(attributeChange.getNewValue(attributeByName));
+            AttributeValueChangeFactor changeFactor = action.getAttributeChange(name);
+            AttributeValueChangeFactor newChangeFactor = 
+                    linkedAttributesChange.calculateAttributeChangeFactor(name, changeFactor.getModificatorValue());
+            Attribute attributeToUpdate = action.getAttributes().getAttributeByName(name);
+            attributeToUpdate.setValueOnly(newChangeFactor.getNewValue(attributeToUpdate.getAttributeValue()));
         }
     }
 }
