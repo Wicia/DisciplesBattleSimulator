@@ -7,20 +7,21 @@ package main;
 
 import java.io.File;
 import java.util.Properties;
-import units.actions.api.ActionType;
-import units.actions.impl.ChangeAttributesValuesAction;
-import units.attributes.api.AttributeName;
-import units.attributes.api.AttributeValue;
-import units.attributes.impl.base.NumericValue;
-import units.attributes.impl.base.RealValue;
-import units.attributes.impl.models.damage.AttackAction;
-import units.attributes.impl.models.damage.AttackSource;
-import units.attributes.impl.models.armor.UnitResistanceWeapon;
-import units.attributes.impl.models.hitpoints.UnitHitPoints;
-import units.attributes.impl.modificators.impl.AttributeValueChangeFactorImpl;
-import units.models.AbstractUnit;
-import units.models.UnitImpl;
-import units.utils.PropertiesUtils;
+import units.api.actions.ActionType;
+import units.impl.actions.ChangeAttributesValuesAction;
+import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeValue;
+import units.impl.attributes.values.NumericValue;
+import units.impl.attributes.values.RealValue;
+import units.impl.attributes.models.damage.AttackAction;
+import units.impl.attributes.models.damage.AttackSource;
+import units.impl.attributes.models.armor.UnitResistanceWeapon;
+import units.impl.attributes.models.hitpoints.UnitHitPoints;
+import units.api.modificators.AttributeValueChangeFactor;
+import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
+import units.impl.attributes.models.AbstractUnit;
+import units.impl.attributes.models.UnitImpl;
+import units.impl.utils.PropertiesUtils;
 
 /**
  *
@@ -42,12 +43,6 @@ public class Main {
     }
     
     private static void getAction(UnitImpl unit){
-        AttributeValueChangeFactorImpl a = new AttributeValueChangeFactorImpl(new RealValue(75.0));
-        AttributeValueChangeFactorImpl b = new AttributeValueChangeFactorImpl(new RealValue(-75.0)); // >>> 
-        AttributeValueChangeFactorImpl c = new AttributeValueChangeFactorImpl(new RealValue(0.75));
-        
-        
-        
-        //AttributeValue newValue = factor.getNewValue(new NumericValue(50));
+        loadUnit().applyAction(unit.createAction());
     }
 }
