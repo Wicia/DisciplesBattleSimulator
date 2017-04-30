@@ -10,5 +10,5 @@ package units.api.attributes;
  * @author A653901
  */
 public enum AttributeDomain {
-    DESCRIPTION, ATTACK, PROTECTION, PROGRESS, ACTION, HIT_POINTS;
+    DESCRIPTION, ATTACK, RESISTANCE, PROGRESS, ACTION, HIT_POINTS;
 }

@@ -1,4 +1,4 @@
-package units.impl.attributes.models;
+package units.impl.base;
 
 import java.util.Properties;
 import units.impl.attributes.base.AttributesCollection;

@@ -14,13 +14,13 @@ import units.api.attributes.AttributeValue;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.RealValue;
 import units.impl.attributes.models.damage.AttackAction;
-import units.impl.attributes.models.damage.AttackSource;
+import units.api.attributes.AttackSource;
 import units.impl.attributes.models.armor.UnitResistanceWeapon;
 import units.impl.attributes.models.hitpoints.UnitHitPoints;
 import units.api.modificators.AttributeValueChangeFactor;
 import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
-import units.impl.attributes.models.AbstractUnit;
-import units.impl.attributes.models.UnitImpl;
+import units.impl.base.AbstractUnit;
+import units.impl.base.UnitImpl;
 import units.impl.utils.PropertiesUtils;
 
 /**

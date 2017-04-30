@@ -24,7 +24,7 @@ public class UnitDamage extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValue(AttributesCollection attributes, ChangeAttributesValuesAction action) {
+    public void updateValueForAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
         AttributeValueChangeFactor attributeChange = action.getAttributeChange(NAME);
         this.setValueOnly(attributeChange.getNewValue(getAttributeValue()));
     }

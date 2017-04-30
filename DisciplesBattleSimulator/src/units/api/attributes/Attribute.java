@@ -13,7 +13,7 @@ public interface Attribute<V> {
      * @param attributes
      * @param action 
      */
-    void updateValue(AttributesCollection attributes, ChangeAttributesValuesAction action);
+    void updateValueForAction(AttributesCollection attributes, ChangeAttributesValuesAction action);
     
     /**
      * Dla zmiany wartości atrybutu z poziomu aktualizacji powiązanych atrybutów.

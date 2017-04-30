@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package units.impl.attributes.models;
+package units.impl.base;
 
 import units.api.actions.ActionType;
 import units.impl.actions.ChangeAttributesValuesAction;
@@ -31,7 +31,7 @@ public abstract class AbstractUnit {
     public void applyAction(ChangeAttributesValuesAction action){
         for(AttributeId name : action.getChangedAttributesNames()){
             Attribute attribute = attributes.getAttributeByName(name);
-            attribute.updateValue(attributes, action);
+            attribute.updateValueForAction(attributes, action);
         }
     }
     

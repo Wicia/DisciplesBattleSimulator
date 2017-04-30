@@ -1,4 +1,4 @@
-package units.impl.attributes.models;
+package units.impl.attributes.models.description;
 
 import units.impl.actions.ChangeAttributesValuesAction;
 import units.api.attributes.Attribute;
@@ -9,21 +9,22 @@ import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.base.AttributesCollection;
 import units.impl.attributes.values.TextValue;
 
-public class UnitDescription extends AbstractAttribute implements Attribute{
+
+public class UnitName extends AbstractAttribute implements Attribute{
     
-    public static final AttributeId NAME = AttributeId.DESCRIPTION;
-    public static final String DEFAULT_DESC = "NaN";
+    public static final AttributeId NAME = AttributeId.NAME;
+    public static final String DEFAULT_NAME = "NaN";
     
-    public UnitDescription() {
-        this(new TextValue(DEFAULT_DESC));
+    public UnitName() {
+        this(new TextValue(DEFAULT_NAME));
     }
     
-    public UnitDescription(AttributeValue value) {
+    public UnitName(AttributeValue value) {
         super(NAME, value, null);
     }
 
     @Override
-    public void updateValue(AttributesCollection attributes, ChangeAttributesValuesAction action) {
+    public void updateValueForAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

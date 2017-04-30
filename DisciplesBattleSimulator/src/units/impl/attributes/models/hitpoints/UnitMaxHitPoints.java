@@ -27,7 +27,7 @@ public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValue(AttributesCollection attributes, ChangeAttributesValuesAction action) {
+    public void updateValueForAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

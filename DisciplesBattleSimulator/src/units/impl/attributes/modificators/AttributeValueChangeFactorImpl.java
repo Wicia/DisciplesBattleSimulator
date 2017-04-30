@@ -18,6 +18,31 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
     
     private final AttributeValue valueToChange;
     
+    public AttributeValueChangeFactorImpl(AttributeValue beforeValue, 
+            AttributeValue currentValue){  
+        
+        Object before = beforeValue.get();
+        Object current = currentValue.get();
+        
+        if(before.getClass() != current.getClass()){
+            throw new IllegalArgumentException("Atrybuty są różnych typów!");
+        }
+        
+        double delta = 0;
+        if(before instanceof Double){
+            double simpleBeforeValue = (double) before;
+            double simpleCurrentValue = (double) current;
+            delta = (simpleCurrentValue * 100.0) / simpleBeforeValue;
+        }
+        if(before instanceof Integer){
+            int simpleBeforeValue = (int) before;
+            int simpleCurrentValue = (int) current;
+            delta = (simpleCurrentValue * 100.0) / (simpleBeforeValue * 1.0);
+        }
+        
+        this.valueToChange = new RealValue(delta);
+    }
+    
     public AttributeValueChangeFactorImpl(AttributeValue valueToChange){
         if(valueToChange.get() instanceof Double){
             valueToChange = convert(valueToChange);

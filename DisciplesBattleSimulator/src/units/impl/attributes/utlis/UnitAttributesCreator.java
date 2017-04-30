@@ -11,19 +11,17 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import units.api.attributes.Attribute;
-import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
-import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.TextValue;
 import units.impl.attributes.base.AttributesCollection;
+import units.impl.attributes.models.armor.UnitArmor;
 import units.impl.attributes.models.armor.UnitResistanceWeapon;
 import units.impl.attributes.models.damage.UnitDamage;
-import units.impl.attributes.models.UnitDescription;
+import units.impl.attributes.models.description.UnitNote;
 import units.impl.attributes.models.hitpoints.UnitHitPoints;
 import units.impl.attributes.models.hitpoints.UnitMaxHitPoints;
-import units.impl.attributes.models.UnitName;
-import units.impl.attributes.models.armor.UnitArmorDurability;
+import units.impl.attributes.models.description.UnitName;
 
 /**
  * @TODO: Add description to: class, fields, methods
@@ -46,10 +44,10 @@ public class UnitAttributesCreator {
         addDefaultAttribute(new UnitName());
         addDefaultAttribute(new UnitResistanceWeapon());
         addDefaultAttribute(new UnitDamage());
-        addDefaultAttribute(new UnitDescription());
+        addDefaultAttribute(new UnitNote());
         addDefaultAttribute(new UnitHitPoints());
         addDefaultAttribute(new UnitMaxHitPoints());
-        addDefaultAttribute(new UnitArmorDurability());
+        addDefaultAttribute(new UnitArmor());
     }
     
     private void addDefaultAttribute(Attribute attribute){

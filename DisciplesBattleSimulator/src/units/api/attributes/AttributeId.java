@@ -14,14 +14,14 @@ import java.util.List;
  * @author A653901
  */
 public enum AttributeId {
-    
-       RESIST_WEAPON(AttributeDomain.PROTECTION, "resistanceWeapon"), 
-              DAMAGE(AttributeDomain.ATTACK, "damage"), 
-         DESCRIPTION(AttributeDomain.DESCRIPTION, "description"), 
-                NAME(AttributeDomain.DESCRIPTION, "name"), 
-          HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints"), 
-      MAX_HIT_POINTS(AttributeDomain.HIT_POINTS, "maxHitPoints"), 
-    ARMOR_DURABILITY(AttributeDomain.PROTECTION, "armorDurability");
+
+    RESIST_WEAPON(AttributeDomain.RESISTANCE, "resistance.weapon"),
+    DAMAGE(AttributeDomain.ATTACK, "attack.damage"),
+    NOTE(AttributeDomain.DESCRIPTION, "description.note"),
+    NAME(AttributeDomain.DESCRIPTION, "description.name"),
+    HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.current"),
+    MAX_HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.max"), 
+    ARMOR(AttributeDomain.RESISTANCE, "resistance.armor");
     
     private final String code;
     private final AttributeDomain domain;

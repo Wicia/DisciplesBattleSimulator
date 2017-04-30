@@ -7,8 +7,6 @@ package units.api.modificators;
 
 import java.util.Set;
 import units.api.attributes.AttributeId;
-import units.api.attributes.AttributeValue;
-import units.api.modificators.AttributeValueChangeFactor;
 
 /**
  *
@@ -20,7 +18,4 @@ public interface LinkedAttributesChange {
             AttributeId attributeName, AttributeValueChangeFactor mainAttributeChangeValue);
     
     Set<AttributeId> getLinkedAttributesNames();
-    
-    AttributeValueChangeFactor getPecentageChangeFactor(AttributeValue beforeValue, 
-            AttributeValue currentValue);
 }

@@ -13,11 +13,10 @@ import units.api.modificators.LinkedAttributesChange;
  *
  * @author Michał 'Wicia' Wietecha
  */
-class LinkedAttributesChangeImpl extends AbstractLinkedAttributesChange 
+class HitPointsLinkedAttributesChange extends AbstractLinkedAttributesChange 
         implements LinkedAttributesChange{
 
-    public LinkedAttributesChangeImpl() {
+    public HitPointsLinkedAttributesChange() {
         super.addLinkedAttributeChangeValue(AttributeId.DAMAGE, 0.75);
-        super.addLinkedAttributeChangeValue(AttributeId.ARMOR_DURABILITY, 0.0);
     }
 }
