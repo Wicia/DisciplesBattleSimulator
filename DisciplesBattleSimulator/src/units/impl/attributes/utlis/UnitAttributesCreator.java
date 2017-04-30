@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import units.api.attributes.Attribute;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.values.NumericValue;
@@ -53,7 +53,7 @@ public class UnitAttributesCreator {
     }
     
     private void addDefaultAttribute(Attribute attribute){
-        this.possibleAttributes.put(attribute.getAttributeName().getCode(), attribute);
+        this.possibleAttributes.put(attribute.getAttributeId().getCode(), attribute);
     }
     
     public AttributesCollection load(Properties props){

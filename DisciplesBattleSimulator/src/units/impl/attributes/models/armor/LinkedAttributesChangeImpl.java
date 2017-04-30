@@ -7,7 +7,7 @@ package units.impl.attributes.models.armor;
 
 import java.util.List;
 import units.api.attributes.AttributeDomain;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.impl.attributes.base.AbstractLinkedAttributesChange;
 import units.api.modificators.LinkedAttributesChange;
 
@@ -23,8 +23,8 @@ class LinkedAttributesChangeImpl extends AbstractLinkedAttributesChange
     }
     
     public LinkedAttributesChangeImpl(double factor) {
-        super.addLinkedAttributeChangeValue(AttributeName.RESIST_WEAPON, factor);
-        List<AttributeName> filterByDomain = AttributeName.filterByDomain(
+        super.addLinkedAttributeChangeValue(AttributeId.RESIST_WEAPON, factor);
+        List<AttributeId> filterByDomain = AttributeId.filterByDomain(
                 AttributeDomain.PROTECTION);
         super.addLinkedAttributeChangeValue(filterByDomain, factor);
     }

@@ -6,20 +6,21 @@
 
 package units.impl.attributes.base;
 
+import common.api.validators.Validatable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import units.api.attributes.Attribute;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 
 /**
  * @TODO: Add description to: class, fields, methods
  * @author Michał 'Wicia' Wietecha
  */
-public class AttributesCollection {
+public class AttributesCollection implements Validatable{
     
-    private final Map<AttributeName, Attribute> attributes;
+    private final Map<AttributeId, Attribute> attributes;
     
     public AttributesCollection() {
         this.attributes = new HashMap<>();
@@ -29,18 +30,18 @@ public class AttributesCollection {
         this.attributes = transformList(attributes);
     }
     
-    private Map<AttributeName, Attribute> transformList(List<Attribute> attributes){
-        Map<AttributeName, Attribute> result = new HashMap<>();
+    private Map<AttributeId, Attribute> transformList(List<Attribute> attributes){
+        Map<AttributeId, Attribute> result = new HashMap<>();
         attributes.stream().forEach((Attribute a) -> (addAttribute(a)));
         return result;
     }
     
-    public Attribute getAttributeByName(AttributeName name){
+    public Attribute getAttributeByName(AttributeId name){
        return this.attributes.get(name);
     }
     
     public void addAttribute(Attribute attribute){
-        this.attributes.put(attribute.getAttributeName(), attribute);
+        this.attributes.put(attribute.getAttributeId(), attribute);
     }
     
     public List<Attribute> getAttributes(){
@@ -49,5 +50,12 @@ public class AttributesCollection {
     
     public boolean isEmpty(){
         return this.attributes.isEmpty();
+    }
+    
+    @Override
+    public void validate(){
+        if(attributes == null || attributes.isEmpty()){
+            throw new IllegalStateException("Brak atrybutów!");
+        }
     }
 }

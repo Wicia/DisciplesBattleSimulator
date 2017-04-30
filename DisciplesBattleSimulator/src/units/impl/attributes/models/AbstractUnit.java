@@ -9,7 +9,7 @@ package units.impl.attributes.models;
 import units.api.actions.ActionType;
 import units.impl.actions.ChangeAttributesValuesAction;
 import units.api.attributes.Attribute;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.impl.attributes.base.AttributesCollection;
 import units.impl.attributes.values.NumericValue;
 import units.api.modificators.AttributeValueChangeFactor;
@@ -24,17 +24,21 @@ public abstract class AbstractUnit {
         this.attributes = attributes;
     }
     
+    public void test(){
+        
+    }
+    
     public void applyAction(ChangeAttributesValuesAction action){
-        for(AttributeName name : action.getChangedAttributesNames()){
+        for(AttributeId name : action.getChangedAttributesNames()){
             Attribute attribute = attributes.getAttributeByName(name);
-            attribute.updateValue(action);
+            attribute.updateValue(attributes, action);
         }
     }
     
     public ChangeAttributesValuesAction createAction(){
-        ChangeAttributesValuesAction action = new ChangeAttributesValuesAction(attributes, ActionType.ATTACK);
+        ChangeAttributesValuesAction action = new ChangeAttributesValuesAction(ActionType.ATTACK);
         AttributeValueChangeFactor factor = new AttributeValueChangeFactorImpl(new NumericValue(-100));
-        action.addAttributeValueChange(AttributeName.HIT_POINTS, factor);
+        action.addAttributeValueChange(AttributeId.HIT_POINTS, factor);
         return action;
     }
 }

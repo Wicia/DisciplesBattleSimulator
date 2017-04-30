@@ -10,9 +10,10 @@ public interface Attribute<V> {
     
     /**
      * Dla zmiany wartości atrybutu z poziomu aplikowania akcji na atrybut.
+     * @param attributes
      * @param action 
      */
-    void updateValue(ChangeAttributesValuesAction action);
+    void updateValue(AttributesCollection attributes, ChangeAttributesValuesAction action);
     
     /**
      * Dla zmiany wartości atrybutu z poziomu aktualizacji powiązanych atrybutów.
@@ -21,11 +22,9 @@ public interface Attribute<V> {
      */
     void updateValue(AttributesCollection attributes, AttributeValue newValue);
 
-    AttributeName getAttributeName();
+    AttributeId getAttributeId();
     
     AttributeValue getAttributeValue();
-    
-    AttributeDomain getDomain();
     
     LinkedAttributesChange getLinkedAttributesChange();
 }

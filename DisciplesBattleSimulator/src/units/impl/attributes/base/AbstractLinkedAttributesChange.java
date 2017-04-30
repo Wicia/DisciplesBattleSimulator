@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
 import units.api.modificators.AttributeValueChangeFactor;
@@ -21,13 +21,13 @@ import units.api.modificators.AttributeValueChangeFactor;
  */
 public abstract class AbstractLinkedAttributesChange {
 
-    private Map<AttributeName, AttributeValue> attributeNameToFactor;
+    private Map<AttributeId, AttributeValue> attributeNameToFactor;
 
     public AbstractLinkedAttributesChange(){
         this.attributeNameToFactor = new HashMap<>();
     }
 
-    public AttributeValueChangeFactor calculateAttributeChangeFactor(AttributeName attributeName, 
+    public AttributeValueChangeFactor calculateAttributeChangeFactor(AttributeId attributeName, 
             AttributeValueChangeFactor mainAttributeChangeValue) {
         double conversionValue = getFactorValue(attributeName);
         double attributeFactor = (double)mainAttributeChangeValue.getModificatorValue().get();
@@ -35,7 +35,7 @@ public abstract class AbstractLinkedAttributesChange {
         return new AttributeValueChangeFactorImpl(new RealValue(finalfactor));
     }
     
-    private double getFactorValue(AttributeName attributeName){
+    private double getFactorValue(AttributeId attributeName){
         AttributeValue value = this.attributeNameToFactor.get(attributeName);
         if(value == null){
             throw new IllegalArgumentException("Getting value for unknown attribute " 
@@ -44,17 +44,17 @@ public abstract class AbstractLinkedAttributesChange {
         return (double) value.get();
     }
     
-    public void addLinkedAttributeChangeValue(AttributeName name, double factor){
+    public void addLinkedAttributeChangeValue(AttributeId name, double factor){
         this.attributeNameToFactor.put(name, new RealValue(factor));
     }
     
-    public void addLinkedAttributeChangeValue(List<AttributeName> names, double factor){
+    public void addLinkedAttributeChangeValue(List<AttributeId> names, double factor){
         names.stream().forEach((name) -> {
             this.addLinkedAttributeChangeValue(name, factor);
         });
     }
     
-    public Set<AttributeName> getLinkedAttributesNames(){
+    public Set<AttributeId> getLinkedAttributesNames(){
         return this.attributeNameToFactor.keySet();
     }
     

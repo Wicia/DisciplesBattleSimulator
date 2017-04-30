@@ -2,24 +2,20 @@ package units.impl.attributes.base;
 
 import units.api.modificators.LinkedAttributesChange;
 import units.impl.actions.ChangeAttributesValuesAction;
-import units.api.attributes.Attribute;
-import units.api.attributes.AttributeDomain;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 
 
 public abstract class AbstractAttribute {
     
-    private final AttributeName name;
+    private final AttributeId id;
     private AttributeValue value;
     private LinkedAttributesChange attributeChange;
-    private final AttributeDomain domain; // TODO: bedzie to po cos potrzebne???
     
-    public AbstractAttribute(AttributeName name, AttributeValue value, 
-            AttributeDomain domain, LinkedAttributesChange attributeChange) {
-        this.name = name;
+    public AbstractAttribute(AttributeId id, AttributeValue value, 
+            LinkedAttributesChange attributeChange) {
+        this.id = id;
         this.value = value;
-        this.domain = domain;
         this.attributeChange = attributeChange;
     }
 
@@ -31,8 +27,8 @@ public abstract class AbstractAttribute {
         this.value = value;
     }
 
-    public AttributeName getAttributeName() {
-        return name;
+    public AttributeId getAttributeId() {
+        return this.id;
     }
 
     public AttributeValue getAttributeValue(){
@@ -42,17 +38,8 @@ public abstract class AbstractAttribute {
     public LinkedAttributesChange getLinkedAttributesChange(){
         return this.attributeChange;
     }
-
-    public AttributeDomain getDomain() {
-        return domain;
-    }
     
-    /**
-     * Zmiana wartości atrybutu wraz ze zmianami atrybutów powiązanych.
-     * @param action akcja zmiany wartości atrybutu.
-     * @param attributes lista atrybutów jednostki.
-     */
-    public abstract void updateValue(ChangeAttributesValuesAction action);
+    public abstract void updateValue(AttributesCollection attributes, ChangeAttributesValuesAction action);
     
     public abstract void updateValue(AttributesCollection attributes, AttributeValue newValue);
 

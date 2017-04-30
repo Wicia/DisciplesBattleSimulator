@@ -4,7 +4,7 @@ import java.util.Set;
 import units.impl.actions.ChangeAttributesValuesAction;
 import units.api.attributes.Attribute;
 import units.api.attributes.AttributeDomain;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
 import units.api.modificators.LinkedAttributesChange;
@@ -15,7 +15,7 @@ import units.impl.attributes.values.NumericValue;
 
 public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     
-    public static final AttributeName NAME = AttributeName.ARMOR_DURABILITY;
+    public static final AttributeId NAME = AttributeId.ARMOR_DURABILITY;
     public static final int DEFAULT_DURABILITY = 0;
     
     public UnitArmorDurability() {
@@ -23,7 +23,7 @@ public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     }
     
     public UnitArmorDurability(AttributeValue<Integer> value) {
-        super(NAME, value, AttributeDomain.PROTECTION, new LinkedAttributesChangeImpl());
+        super(NAME, value, new LinkedAttributesChangeImpl());
     }
 
     @Override
@@ -35,18 +35,18 @@ public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     }
     
     @Override
-    public void updateValue(ChangeAttributesValuesAction action) {      
+    public void updateValue(AttributesCollection attributes, ChangeAttributesValuesAction action) {      
         AttributeValueChangeFactor attributeChange = action.getAttributeChange(NAME);
         AttributeValue newValue = attributeChange.getNewValue(getAttributeValue());
         AttributeValueChangeFactor hpChangeFactor = super.getLinkedAttributesChange().
                 getPecentageChangeFactor(getAttributeValue(), newValue);
         this.setValueOnly(attributeChange.getNewValue(getAttributeValue()));
-        this.updateReferencedAttributes(action.getAttributes(), hpChangeFactor);
+        this.updateReferencedAttributes(attributes, hpChangeFactor);
     }
     
     private void updateReferencedAttributes(AttributesCollection attributes, AttributeValueChangeFactor hpChangeFactor){
         LinkedAttributesChange linkedAttributesChange = super.getLinkedAttributesChange();
-        Set<AttributeName> linkedAttributesNames = linkedAttributesChange.getLinkedAttributesNames();
+        Set<AttributeId> linkedAttributesNames = linkedAttributesChange.getLinkedAttributesNames();
         linkedAttributesNames.stream().forEach((name) -> {
             AttributeValueChangeFactor linkedAttributeChangeFactor = 
                 linkedAttributesChange.calculateAttributeChangeFactor(name, hpChangeFactor);

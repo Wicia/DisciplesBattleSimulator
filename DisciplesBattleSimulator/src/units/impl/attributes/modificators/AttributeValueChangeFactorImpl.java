@@ -31,22 +31,22 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
             throw new IllegalArgumentException("0 nie jest akceptowane!");
         }
         if(value > 0 && value < 1){
-            throw new IllegalArgumentException("Wartość powinna być > 1!");
+            return new RealValue(value);
         }
-        
-        value /= 100.0;
-        
-        return new RealValue(value);
+        else{
+            value /= 100.0;
+            return new RealValue(value);
+        }
     }
     
     @Override
-    public AttributeValue getNewValue(AttributeValue attribute){
+    public AttributeValue getNewValue(AttributeValue attributeValue){
         AttributeValue newValue = null;
         if(valueToChange.get() instanceof Integer){
-            newValue = getNewNumericValue((Integer) attribute.get());
+            newValue = getNewNumericValue((Integer) attributeValue.get());
         }
         if(valueToChange.get() instanceof Double){
-            newValue = getPecentageValue((Integer) attribute.get());
+            newValue = getPecentageValue((Integer) attributeValue.get());
         }
 
         return newValue;
@@ -65,7 +65,7 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
         } 
         else {
             double modificatorValue = getSimpleModificatorValue();
-            double pecentModificator = asPecentage(modificatorValue);
+            double pecentModificator = 1.0 - modificatorValue;
             simpleValue = (int) (simpleValue * pecentModificator);
         }
         return new NumericValue(simpleValue);
@@ -78,9 +78,5 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
     @Override
     public AttributeValue getModificatorValue() {
         return this.valueToChange;
-    }
-    
-    private double asPecentage(double value){
-        return (100 + value) / 100;
     }
 }

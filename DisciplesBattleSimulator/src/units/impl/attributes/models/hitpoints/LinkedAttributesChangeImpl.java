@@ -5,7 +5,7 @@
  */
 package units.impl.attributes.models.hitpoints;
 
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.impl.attributes.base.AbstractLinkedAttributesChange;
 import units.api.modificators.LinkedAttributesChange;
 
@@ -17,6 +17,7 @@ class LinkedAttributesChangeImpl extends AbstractLinkedAttributesChange
         implements LinkedAttributesChange{
 
     public LinkedAttributesChangeImpl() {
-        super.addLinkedAttributeChangeValue(AttributeName.DAMAGE, 0.75);
+        super.addLinkedAttributeChangeValue(AttributeId.DAMAGE, 0.75);
+        super.addLinkedAttributeChangeValue(AttributeId.ARMOR_DURABILITY, 0.0);
     }
 }

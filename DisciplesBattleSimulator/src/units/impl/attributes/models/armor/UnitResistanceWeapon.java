@@ -4,7 +4,7 @@ import units.impl.actions.ChangeAttributesValuesAction;
 import units.impl.attributes.models.damage.AttackAction;
 import units.api.attributes.Attribute;
 import units.api.attributes.AttributeDomain;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.base.AttributesCollection;
@@ -13,7 +13,7 @@ import units.impl.attributes.values.NumericValue;
 
 public class UnitResistanceWeapon extends AbstractAttribute implements Attribute{
     
-    public static final AttributeName NAME = AttributeName.RESIST_WEAPON;
+    public static final AttributeId NAME = AttributeId.RESIST_WEAPON;
     public static final int DEFAULT_PROTECTION_LEVEL = 0;
     public static final int MAX_PROTECTION_LEVEL = 100;
     
@@ -22,7 +22,7 @@ public class UnitResistanceWeapon extends AbstractAttribute implements Attribute
     }
     
     public UnitResistanceWeapon(AttributeValue value) {
-        super(NAME, value, AttributeDomain.PROTECTION, null);
+        super(NAME, value, null);
     }
     
     public int getReducedDamage(AttackAction attackAction) {
@@ -51,7 +51,7 @@ public class UnitResistanceWeapon extends AbstractAttribute implements Attribute
     }
 
     @Override
-    public void updateValue(ChangeAttributesValuesAction action) {
+    public void updateValue(AttributesCollection attributes, ChangeAttributesValuesAction action) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

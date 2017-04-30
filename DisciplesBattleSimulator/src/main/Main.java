@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.Properties;
 import units.api.actions.ActionType;
 import units.impl.actions.ChangeAttributesValuesAction;
-import units.api.attributes.AttributeName;
+import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.RealValue;
@@ -43,6 +43,8 @@ public class Main {
     }
     
     private static void getAction(UnitImpl unit){
-        loadUnit().applyAction(unit.createAction());
+        AbstractUnit loadUnit = loadUnit();
+        loadUnit.applyAction(unit.createAction());
+        loadUnit.test();
     }
 }
