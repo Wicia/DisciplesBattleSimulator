@@ -24,12 +24,12 @@ public class UnitName extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValueForAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
+    public void updateWithAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void updateValue(AttributesCollection attributes, AttributeValue newValue) {
+    public void update(AttributesCollection attributes, AttributeValue newValue) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

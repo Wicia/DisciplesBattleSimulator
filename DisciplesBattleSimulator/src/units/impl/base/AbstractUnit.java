@@ -31,7 +31,7 @@ public abstract class AbstractUnit {
     public void applyAction(ChangeAttributesValuesAction action){
         for(AttributeId name : action.getChangedAttributesNames()){
             Attribute attribute = attributes.getAttributeByName(name);
-            attribute.updateValueForAction(attributes, action);
+            attribute.updateWithAction(attributes, action);
         }
     }
     

@@ -24,13 +24,13 @@ public class UnitDamage extends AbstractAttribute implements Attribute{
     }
 
     @Override
-    public void updateValueForAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
+    public void updateWithAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
         AttributeValueChangeFactor attributeChange = action.getAttributeChange(NAME);
-        this.setValueOnly(attributeChange.getNewValue(getAttributeValue()));
+        this.setValue(attributeChange.getNewValue(getAttributeValue()));
     }
 
     @Override
-    public void updateValue(AttributesCollection attributes, AttributeValue newValue) {
-        this.setValueOnly(newValue);
+    public void update(AttributesCollection attributes, AttributeValue newValue) {
+        this.setValue(newValue);
     }
 }

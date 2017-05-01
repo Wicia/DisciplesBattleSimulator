@@ -21,12 +21,18 @@ public abstract class AbstractAttribute {
         this.value = value;
         this.attributeChange = attributeChange;
     }
+    
+    public AbstractAttribute(AttributeId id, AttributeValue value) {
+        this.id = id;
+        this.value = value;
+        this.attributeChange = null;
+    }
 
     /**
      * Ustawienie wartości dla atrybutu, bez zmian w atrybutach powiązanych.
      * @param value nowa wartość atrybutu.
      */
-    public void setValueOnly(AttributeValue value){
+    public void setValue(AttributeValue value){
         this.value = value;
     }
 
@@ -42,25 +48,25 @@ public abstract class AbstractAttribute {
         return this.attributeChange;
     }
     
-    public void updateValue(AttributesCollection attributes, AttributeValue newValue){
-        this.setValueOnly(newValue);
+    public void update(AttributesCollection attributes, AttributeValue newValue){
+        this.setValue(newValue);
     }
     
-    public void updateValueForAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
+    public void updateWithAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
         AttributeValueChangeFactor attributeChange = action.getAttributeChange(id);
-        this.setValueOnly(attributeChange.getNewValue(getAttributeValue()));
+        this.setValue(attributeChange.getNewValue(getAttributeValue()));
     }
     
-    public void updateReferencedAttributes(AttributesCollection attributes, AttributeValueChangeFactor hpChangeFactor){
+    public void updateReferencedAttributes(AttributesCollection attributes, AttributeValueChangeFactor mainAttributeChangeFactor){
         LinkedAttributesChange linkedAttributesChange = getLinkedAttributesChange();
         Set<AttributeId> linkedAttributesNames = linkedAttributesChange.getLinkedAttributesNames();
         linkedAttributesNames.stream().forEach((name) -> {
             AttributeValueChangeFactor linkedAttributeChangeFactor = 
-                linkedAttributesChange.calculateAttributeChangeFactor(name, hpChangeFactor);
+                linkedAttributesChange.calculateAttributeChangeFactor(name, mainAttributeChangeFactor);
             Attribute linkedAttribute = attributes.getAttributeByName(name);
             AttributeValue attributeValue = linkedAttribute.getAttributeValue();
             AttributeValue newValue = linkedAttributeChangeFactor.getNewValue(attributeValue);
-            linkedAttribute.updateValue(attributes, newValue);
+            linkedAttribute.update(attributes, newValue);
         });
     }
 

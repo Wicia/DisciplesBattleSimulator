@@ -1,4 +1,4 @@
-package units.impl.attributes.models.hitpoints;
+package units.impl.attributes.models.resistances;
 
 import units.impl.actions.ChangeAttributesValuesAction;
 import units.api.attributes.Attribute;
@@ -11,17 +11,17 @@ import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
 import units.impl.attributes.values.NumericValue;
 
 
-public class UnitHitPoints extends AbstractAttribute implements Attribute{
+public class UnitArmor extends AbstractAttribute implements Attribute{
     
-    public static final AttributeId NAME = AttributeId.HIT_POINTS;
-    public static final int DEFAULT_HIT_POINTS = 1;
+    public static final AttributeId NAME = AttributeId.ARMOR;
+    public static final int DEFAULT_ARMOR = 0;
     
-    public UnitHitPoints() {
-        this(new NumericValue(DEFAULT_HIT_POINTS));
+    public UnitArmor() {
+        this(new NumericValue(DEFAULT_ARMOR));
     }
     
-    public UnitHitPoints(AttributeValue value) {
-        super(NAME, value, new HitPointsLinkedAttributesChange());
+    public UnitArmor(AttributeValue value) {
+        super(NAME, value, new ArmorLinkedAttributesChange());
     }
 
     @Override

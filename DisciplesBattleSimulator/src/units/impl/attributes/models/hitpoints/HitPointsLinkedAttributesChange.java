@@ -18,5 +18,6 @@ class HitPointsLinkedAttributesChange extends AbstractLinkedAttributesChange
 
     public HitPointsLinkedAttributesChange() {
         super.addLinkedAttributeChangeValue(AttributeId.DAMAGE, 0.75);
+        super.addLinkedAttributeChangeValue(AttributeId.ARMOR, 0.15);
     }
 }

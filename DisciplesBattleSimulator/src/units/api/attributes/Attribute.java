@@ -6,21 +6,21 @@ import units.api.modificators.LinkedAttributesChange;
 
 public interface Attribute<V> {
 
-    void setValueOnly(AttributeValue value);
+    void setValue(AttributeValue value);
     
     /**
      * Dla zmiany wartości atrybutu z poziomu aplikowania akcji na atrybut.
      * @param attributes
      * @param action 
      */
-    void updateValueForAction(AttributesCollection attributes, ChangeAttributesValuesAction action);
+    void updateWithAction(AttributesCollection attributes, ChangeAttributesValuesAction action);
     
     /**
      * Dla zmiany wartości atrybutu z poziomu aktualizacji powiązanych atrybutów.
      * @param attributes
      * @param newValue 
      */
-    void updateValue(AttributesCollection attributes, AttributeValue newValue);
+    void update(AttributesCollection attributes, AttributeValue newValue);
 
     AttributeId getAttributeId();
     

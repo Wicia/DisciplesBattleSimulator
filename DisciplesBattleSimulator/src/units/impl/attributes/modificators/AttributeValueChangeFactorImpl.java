@@ -40,7 +40,7 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
             delta = (simpleCurrentValue * 100.0) / (simpleBeforeValue * 1.0);
         }
         
-        this.valueToChange = new RealValue(delta);
+        this.valueToChange = convert(delta);
     }
     
     public AttributeValueChangeFactorImpl(AttributeValue valueToChange){
@@ -50,8 +50,7 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
         this.valueToChange = valueToChange;
     }
     
-    private AttributeValue convert(AttributeValue attributeValue){
-        double value = (double) attributeValue.get();
+    private AttributeValue convert(Double value){
         if(value == 0){
             throw new IllegalArgumentException("0 nie jest akceptowane!");
         }
@@ -62,6 +61,11 @@ public class AttributeValueChangeFactorImpl implements AttributeValueChangeFacto
             value /= 100.0;
             return new RealValue(value);
         }
+    }
+    
+    private AttributeValue convert(AttributeValue attributeValue){
+        double value = (double) attributeValue.get();
+        return convert(value);
     }
     
     @Override

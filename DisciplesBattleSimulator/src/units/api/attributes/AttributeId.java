@@ -15,13 +15,20 @@ import java.util.List;
  */
 public enum AttributeId {
 
-    RESIST_WEAPON(AttributeDomain.RESISTANCE, "resistance.weapon"),
-    DAMAGE(AttributeDomain.ATTACK, "attack.damage"),
     NOTE(AttributeDomain.DESCRIPTION, "description.note"),
     NAME(AttributeDomain.DESCRIPTION, "description.name"),
+    
     HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.current"),
     MAX_HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.max"), 
-    ARMOR(AttributeDomain.RESISTANCE, "resistance.armor");
+    
+    ARMOR(AttributeDomain.RESISTANCE, "resistance.armor"), 
+    RESIST_WEAPON(AttributeDomain.RESISTANCE, "resistance.weapon"),
+    RESIST_AIR(AttributeDomain.RESISTANCE, "resistance.air"),
+    RESIST_FIRE(AttributeDomain.RESISTANCE, "resistance.fire"),
+    RESIST_EARTH(AttributeDomain.RESISTANCE, "resistance.earth"),
+    RESIST_WATER(AttributeDomain.RESISTANCE, "resistance.water"),
+    
+    DAMAGE(AttributeDomain.ATTACK, "attack.damage");
     
     private final String code;
     private final AttributeDomain domain;
