@@ -19,7 +19,7 @@ public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
     }
     
     public UnitMaxHitPoints(AttributeValue value) {
-        super(NAME, value, null);
+        super(NAME, value);
     }
 
     public AttributeValue getCurrentHitPoints(){

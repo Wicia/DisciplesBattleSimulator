@@ -20,7 +20,7 @@ public class UnitDamage extends AbstractAttribute implements Attribute{
     }
     
     public UnitDamage(AttributeValue value) {
-        super(NAME, value, null);
+        super(NAME, value);
     }
 
     @Override

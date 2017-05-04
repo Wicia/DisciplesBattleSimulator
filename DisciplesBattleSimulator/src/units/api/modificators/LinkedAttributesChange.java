@@ -5,6 +5,7 @@
  */
 package units.api.modificators;
 
+import java.util.List;
 import java.util.Set;
 import units.api.attributes.AttributeId;
 
@@ -18,4 +19,8 @@ public interface LinkedAttributesChange {
             AttributeId attributeName, AttributeValueChangeFactor mainAttributeChangeValue);
     
     Set<AttributeId> getLinkedAttributesNames();
+    
+    void addLinkedAttributeChangeValue(List<AttributeId> names, double factor);
+    
+    void addLinkedAttributeChangeValue(AttributeId name, double factor);
 }

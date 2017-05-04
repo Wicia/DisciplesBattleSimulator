@@ -11,13 +11,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import units.api.attributes.Attribute;
+import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.TextValue;
@@ -41,17 +46,16 @@ import units.impl.attributes.models.resistances.UnitResistanceWater;
 public class UnitAttributesCreator {
     
     private Map<String, Attribute> possibleAttributes;
+    private Set<String> attributesWithLinkedAttributes;
+    private final String VALUE = "value";
 
     public UnitAttributesCreator() {
-        this.initProperties();
-        this.saveDefaultImplementations();
+        this.initPossibleAttributes();
+        this.initLinkedAttributes();
     }
     
-    private void initProperties(){
+    private void initPossibleAttributes(){
         this.possibleAttributes = new HashMap<>();
-    }
-    
-    private void saveDefaultImplementations() {
         addDefaultAttribute(new UnitName());
         addDefaultAttribute(new UnitResistanceWeapon());
         addDefaultAttribute(new UnitDamage());
@@ -62,7 +66,12 @@ public class UnitAttributesCreator {
         addDefaultAttribute(new UnitResistanceAir());
         addDefaultAttribute(new UnitResistanceEarth());
         addDefaultAttribute(new UnitResistanceFire());
-        addDefaultAttribute(new UnitResistanceWater());
+        addDefaultAttribute(new UnitResistanceWater());       
+    }
+    
+    private void initLinkedAttributes() {
+        this.attributesWithLinkedAttributes = new HashSet<>();
+        this.attributesWithLinkedAttributes.add(AttributeId.ARMOR.getCode());
     }
     
     private void addDefaultAttribute(Attribute attribute){
@@ -71,12 +80,26 @@ public class UnitAttributesCreator {
     
     public AttributesCollection load(File file) {
         
+        AttributesCollection result = new AttributesCollection();
+        
         try {
-            JSONObject jsonFile = parseJSONFile(file.getAbsolutePath());
-            Iterator keys = jsonFile.keys();
+            JSONObject jsonObject = parseJSONFile(file.getAbsolutePath());
+            Iterator keys = jsonObject.keys();
             while(keys.hasNext()){
                 Object next = keys.next();
-                System.out.println(next);
+                String attributeCode = next.toString();
+                if(hasLinkedAttributes(attributeCode)){
+                    loadLinkedAttributes(result, jsonObject, attributeCode);
+                }
+                else{
+                    
+                }
+                
+//                Attribute attribute = possibleAttributes.get(propName.toString());
+//                if(attribute != null){
+//                    attribute.setValue(getValue(propertyValue));
+//                    result.addAttribute(attribute);
+//                }
             }
         } 
         catch (IOException | JSONException e) {
@@ -84,6 +107,39 @@ public class UnitAttributesCreator {
         }
         
         return null;
+    }
+    
+    private AttributesCollection loadLinkedAttributes(AttributesCollection attributes, 
+            JSONObject mainObject, String attributeCode){
+        try {
+            Attribute attribute = possibleAttributes.get(attributeCode);
+            if(attribute != null){
+                attributes.addAttribute(attribute);
+            }
+            JSONObject subObject = mainObject.getJSONObject(attributeCode);
+            Iterator subAttributes = mainObject.getJSONObject(attributeCode).keys();
+            while(subAttributes.hasNext()){
+                Object nextAttributeCode = subAttributes.next();
+                if(VALUE.equals(nextAttributeCode)){
+                    attribute.setValue(getValue(nextAttributeCode));  
+                }
+                else{
+                    String subAttributeCode = (String) nextAttributeCode;
+                    String value = subObject.getString(subAttributeCode);
+                    AttributeId id = AttributeId.getByCode(subAttributeCode);
+                    attribute.getLinkedAttributesChange().
+                            addLinkedAttributeChangeValue(id, Double.valueOf(value));
+                }
+            }
+            
+        } 
+        catch (JSONException ex) {}
+        
+        return attributes;
+    }
+    
+    private boolean hasLinkedAttributes(String value){
+        return this.attributesWithLinkedAttributes.contains(value);
     }
     
     private JSONObject parseJSONFile(String filename) throws JSONException, IOException {
@@ -101,4 +157,19 @@ public class UnitAttributesCreator {
         catch(Exception ex){}
         return new TextValue(stringValue);
     }
+    
+//    public AttributesCollection load(Properties props){
+//        AttributesCollection result = new AttributesCollection();
+//        Set<Object> keySet = props.keySet();
+//        for(Object propName : keySet){
+//            Object propertyValue = props.get(propName);
+//            Attribute attribute = possibleAttributes.get(propName.toString());
+//            if(attribute != null){
+//                attribute.setValue(getValue(propertyValue));
+//                result.addAttribute(attribute);
+//            }
+//        }
+//        
+//        return result;
+//    }
 }

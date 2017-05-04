@@ -21,7 +21,7 @@ public class UnitArmor extends AbstractAttribute implements Attribute{
     }
     
     public UnitArmor(AttributeValue value) {
-        super(NAME, value, new ArmorLinkedAttributesChange());
+        super(NAME, value);
     }
 
     @Override

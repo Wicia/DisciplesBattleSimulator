@@ -19,7 +19,7 @@ public class UnitNote extends AbstractAttribute implements Attribute{
     }
     
     public UnitNote(AttributeValue value) {
-        super(NAME, value, null);
+        super(NAME, value);
     }
 
     @Override

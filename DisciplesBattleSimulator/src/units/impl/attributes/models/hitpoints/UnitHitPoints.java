@@ -21,7 +21,7 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     }
     
     public UnitHitPoints(AttributeValue value) {
-        super(NAME, value, new HitPointsLinkedAttributesChange());
+        super(NAME, value);
     }
 
     @Override

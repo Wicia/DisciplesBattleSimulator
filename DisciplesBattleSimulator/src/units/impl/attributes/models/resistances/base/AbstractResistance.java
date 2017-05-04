@@ -26,10 +26,6 @@ public class AbstractResistance extends AbstractAttribute{
     public static final double DEFAULT_RESISTANCE = 0.0;
     public static final double MAX_RESISTANCE = 100.0;
 
-    public AbstractResistance(AttributeId id, AttributeValue value, LinkedAttributesChange attributeChange) {
-        super(id, value, attributeChange);
-    }
-
     public AbstractResistance(AttributeId id, AttributeValue value) {
         super(id, value);
     }

@@ -20,7 +20,7 @@ public class UnitName extends AbstractAttribute implements Attribute{
     }
     
     public UnitName(AttributeValue value) {
-        super(NAME, value, null);
+        super(NAME, value);
     }
 
     @Override

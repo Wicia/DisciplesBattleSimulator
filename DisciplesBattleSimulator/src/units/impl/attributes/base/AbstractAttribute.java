@@ -7,6 +7,7 @@ import units.impl.actions.ChangeAttributesValuesAction;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
+import units.impl.attributes.modificators.LinkedAttributesChangeImpl;
 
 
 public abstract class AbstractAttribute {
@@ -15,17 +16,10 @@ public abstract class AbstractAttribute {
     private AttributeValue value;
     private LinkedAttributesChange attributeChange;
     
-    public AbstractAttribute(AttributeId id, AttributeValue value, 
-            LinkedAttributesChange attributeChange) {
-        this.id = id;
-        this.value = value;
-        this.attributeChange = attributeChange;
-    }
-    
     public AbstractAttribute(AttributeId id, AttributeValue value) {
         this.id = id;
         this.value = value;
-        this.attributeChange = null;
+        this.attributeChange = new LinkedAttributesChangeImpl();
     }
 
     /**
@@ -53,8 +47,8 @@ public abstract class AbstractAttribute {
     }
     
     public void updateWithAction(AttributesCollection attributes, ChangeAttributesValuesAction action) {
-        AttributeValueChangeFactor attributeChange = action.getAttributeChange(id);
-        this.setValue(attributeChange.getNewValue(getAttributeValue()));
+        AttributeValueChangeFactor attributeChangeFactor = action.getAttributeChange(id);
+        this.setValue(attributeChangeFactor.getNewValue(getAttributeValue()));
     }
     
     public void updateReferencedAttributes(AttributesCollection attributes, AttributeValueChangeFactor mainAttributeChangeFactor){

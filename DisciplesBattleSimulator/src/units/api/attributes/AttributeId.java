@@ -46,6 +46,16 @@ public enum AttributeId {
         return domain;
     }
     
+    public static AttributeId getByCode(String code){
+        for(AttributeId id : AttributeId.values()){
+            if(code.equals(id.getCode())){
+                return id;
+            }
+        }
+        
+        return null;
+    }
+    
     public static List<AttributeId> filterByDomain(AttributeDomain domain){
         List<AttributeId> result = new ArrayList<>();
         Arrays.asList(AttributeId.values()).stream().forEach((e) -> {
