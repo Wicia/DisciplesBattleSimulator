@@ -6,22 +6,8 @@
 package main;
 
 import java.io.File;
-import java.util.Properties;
-import units.api.actions.ActionType;
-import units.impl.actions.ChangeAttributesValuesAction;
-import units.api.attributes.AttributeId;
-import units.api.attributes.AttributeValue;
-import units.impl.attributes.values.NumericValue;
-import units.impl.attributes.values.RealValue;
-import units.impl.attributes.models.damage.AttackAction;
-import units.api.attributes.AttackSource;
-import units.impl.attributes.models.resistances.UnitResistanceWeapon;
-import units.impl.attributes.models.hitpoints.UnitHitPoints;
-import units.api.modificators.AttributeValueChangeFactor;
-import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
 import units.impl.base.AbstractUnit;
 import units.impl.base.UnitImpl;
-import units.impl.utils.PropertiesUtils;
 
 /**
  *
@@ -38,8 +24,7 @@ public class Main {
     }
     
     private static UnitImpl loadUnit(){
-        Properties props = PropertiesUtils.read(new File("src/units/data/DarkLord.properties"));
-        return UnitImpl.create(props);
+        return UnitImpl.create(new File("src/units/data/DarkLord.properties"));
     }
     
     private static void getAction(UnitImpl unit){

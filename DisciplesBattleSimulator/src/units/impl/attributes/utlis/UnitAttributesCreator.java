@@ -6,10 +6,17 @@
 
 package units.impl.attributes.utlis;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import org.json.JSONException;
+import org.json.JSONObject;
 import units.api.attributes.Attribute;
 import units.api.attributes.AttributeValue;
 import units.impl.attributes.values.NumericValue;
@@ -62,19 +69,26 @@ public class UnitAttributesCreator {
         this.possibleAttributes.put(attribute.getAttributeId().getCode(), attribute);
     }
     
-    public AttributesCollection load(Properties props){
-        AttributesCollection result = new AttributesCollection();
-        Set<Object> keySet = props.keySet();
-        for(Object propName : keySet){
-            Object propertyValue = props.get(propName);
-            Attribute attribute = possibleAttributes.get(propName.toString());
-            if(attribute != null){
-                attribute.setValue(getValue(propertyValue));
-                result.addAttribute(attribute);
+    public AttributesCollection load(File file) {
+        
+        try {
+            JSONObject jsonFile = parseJSONFile(file.getAbsolutePath());
+            Iterator keys = jsonFile.keys();
+            while(keys.hasNext()){
+                Object next = keys.next();
+                System.out.println(next);
             }
+        } 
+        catch (IOException | JSONException e) {
+            System.out.println(e);
         }
         
-        return result;
+        return null;
+    }
+    
+    private JSONObject parseJSONFile(String filename) throws JSONException, IOException {
+        String content = new String(Files.readAllBytes(Paths.get(filename)));
+        return new JSONObject(content);
     }
     
     private AttributeValue getValue(Object value){
