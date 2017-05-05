@@ -13,14 +13,14 @@ import units.api.attributes.AttributeId;
  *
  * @author Michał 'Wicia' Wietecha
  */
-public interface LinkedAttributesChange {
+public interface LinkedAttributes {
 
     AttributeValueChangeFactor calculateAttributeChangeFactor(
             AttributeId attributeName, AttributeValueChangeFactor mainAttributeChangeValue);
     
-    Set<AttributeId> getLinkedAttributesNames();
+    Set<AttributeId> geAttributesNames();
     
-    void addLinkedAttributeChangeValue(List<AttributeId> names, double factor);
+    void addChangeValue(List<AttributeId> names, double factor);
     
-    void addLinkedAttributeChangeValue(AttributeId name, double factor);
+    void addChangeValue(AttributeId name, double factor);
 }

@@ -13,17 +13,17 @@ import java.util.Set;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
-import units.api.modificators.LinkedAttributesChange;
+import units.api.modificators.LinkedAttributes;
 
 /**
  *
  * @author Michał 'Wicia' Wietecha
  */
-public class LinkedAttributesChangeImpl implements LinkedAttributesChange{
+public class LinkedAttributesImpl implements LinkedAttributes{
 
     private Map<AttributeId, AttributeValue> attributeNameToFactor;
 
-    public LinkedAttributesChangeImpl(){
+    public LinkedAttributesImpl(){
         this.attributeNameToFactor = new HashMap<>();
     }
 
@@ -46,19 +46,19 @@ public class LinkedAttributesChangeImpl implements LinkedAttributesChange{
     }
     
     @Override
-    public void addLinkedAttributeChangeValue(AttributeId name, double factor){
+    public void addChangeValue(AttributeId name, double factor){
         this.attributeNameToFactor.put(name, new RealValue(factor));
     }
     
     @Override
-    public void addLinkedAttributeChangeValue(List<AttributeId> names, double factor){
+    public void addChangeValue(List<AttributeId> names, double factor){
         names.stream().forEach((name) -> {
-            this.addLinkedAttributeChangeValue(name, factor);
+            this.addChangeValue(name, factor);
         });
     }
     
     @Override
-    public Set<AttributeId> getLinkedAttributesNames(){
+    public Set<AttributeId> geAttributesNames(){
         return this.attributeNameToFactor.keySet();
     }
 }

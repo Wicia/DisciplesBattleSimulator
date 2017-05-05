@@ -86,33 +86,44 @@ public class UnitAttributesCreator {
             JSONObject jsonObject = parseJSONFile(file.getAbsolutePath());
             Iterator keys = jsonObject.keys();
             while(keys.hasNext()){
-                Object next = keys.next();
-                String attributeCode = next.toString();
+                String attributeCode = keys.next().toString();
                 if(hasLinkedAttributes(attributeCode)){
-                    loadLinkedAttributes(result, jsonObject, attributeCode);
+                    Attribute attribute = loadAttributesWithLinked(result, 
+                            jsonObject, attributeCode);
+                    if(attribute != null){
+                        result.addAttribute(attribute);
+                    }
                 }
                 else{
-                    
+                    Attribute attribute = loadSingleAttribute(jsonObject, 
+                            attributeCode);
+                    if(attribute != null){
+                        result.addAttribute(attribute);
+                    }
                 }
-                
-//                Attribute attribute = possibleAttributes.get(propName.toString());
-//                if(attribute != null){
-//                    attribute.setValue(getValue(propertyValue));
-//                    result.addAttribute(attribute);
-//                }
             }
         } 
-        catch (IOException | JSONException e) {
-            System.out.println(e);
-        }
+        catch (IOException | JSONException ex) {}
         
-        return null;
+        return result;
     }
     
-    private AttributesCollection loadLinkedAttributes(AttributesCollection attributes, 
+    private Attribute loadSingleAttribute(JSONObject jsonObject, 
+            String attributeCode) throws JSONException{
+        Attribute attribute = possibleAttributes.get(attributeCode);
+        if(attribute != null){
+            Object propertyValue = jsonObject.get(attributeCode);
+            attribute.setValue(getValue(propertyValue));
+        }
+        
+        return attribute;
+    }
+    
+    private Attribute loadAttributesWithLinked(AttributesCollection attributes, 
             JSONObject mainObject, String attributeCode){
+        
+        Attribute attribute = possibleAttributes.get(attributeCode);
         try {
-            Attribute attribute = possibleAttributes.get(attributeCode);
             if(attribute != null){
                 attributes.addAttribute(attribute);
             }
@@ -127,15 +138,14 @@ public class UnitAttributesCreator {
                     String subAttributeCode = (String) nextAttributeCode;
                     String value = subObject.getString(subAttributeCode);
                     AttributeId id = AttributeId.getByCode(subAttributeCode);
-                    attribute.getLinkedAttributesChange().
-                            addLinkedAttributeChangeValue(id, Double.valueOf(value));
+                    attribute.getLinkedAttributes().addChangeValue(id, Double.valueOf(value));
                 }
             }
             
         } 
         catch (JSONException ex) {}
         
-        return attributes;
+        return attribute;
     }
     
     private boolean hasLinkedAttributes(String value){
@@ -149,7 +159,7 @@ public class UnitAttributesCreator {
     
     private AttributeValue getValue(Object value){
         String stringValue = (String)value;
-        Integer numericValue = null;
+        Integer numericValue;
         try{
             numericValue = Integer.parseInt(stringValue);
             return new NumericValue(numericValue);
@@ -157,19 +167,4 @@ public class UnitAttributesCreator {
         catch(Exception ex){}
         return new TextValue(stringValue);
     }
-    
-//    public AttributesCollection load(Properties props){
-//        AttributesCollection result = new AttributesCollection();
-//        Set<Object> keySet = props.keySet();
-//        for(Object propName : keySet){
-//            Object propertyValue = props.get(propName);
-//            Attribute attribute = possibleAttributes.get(propName.toString());
-//            if(attribute != null){
-//                attribute.setValue(getValue(propertyValue));
-//                result.addAttribute(attribute);
-//            }
-//        }
-//        
-//        return result;
-//    }
 }

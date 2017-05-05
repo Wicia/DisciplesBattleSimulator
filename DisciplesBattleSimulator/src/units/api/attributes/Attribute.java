@@ -2,7 +2,7 @@ package units.api.attributes;
 
 import units.impl.actions.ChangeAttributesValuesAction;
 import units.impl.attributes.base.AttributesCollection;
-import units.api.modificators.LinkedAttributesChange;
+import units.api.modificators.LinkedAttributes;
 
 public interface Attribute<V> {
 
@@ -26,5 +26,5 @@ public interface Attribute<V> {
     
     AttributeValue getAttributeValue();
     
-    LinkedAttributesChange getLinkedAttributesChange();
+    LinkedAttributes getLinkedAttributes();
 }

@@ -2,24 +2,24 @@ package units.impl.attributes.base;
 
 import java.util.Set;
 import units.api.attributes.Attribute;
-import units.api.modificators.LinkedAttributesChange;
 import units.impl.actions.ChangeAttributesValuesAction;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
-import units.impl.attributes.modificators.LinkedAttributesChangeImpl;
+import units.impl.attributes.modificators.LinkedAttributesImpl;
+import units.api.modificators.LinkedAttributes;
 
 
 public abstract class AbstractAttribute {
     
     private final AttributeId id;
     private AttributeValue value;
-    private LinkedAttributesChange attributeChange;
+    private LinkedAttributes linkedAttributes;
     
     public AbstractAttribute(AttributeId id, AttributeValue value) {
         this.id = id;
         this.value = value;
-        this.attributeChange = new LinkedAttributesChangeImpl();
+        this.linkedAttributes = new LinkedAttributesImpl();
     }
 
     /**
@@ -38,8 +38,8 @@ public abstract class AbstractAttribute {
         return this.value;
     }
     
-    public LinkedAttributesChange getLinkedAttributesChange(){
-        return this.attributeChange;
+    public LinkedAttributes getLinkedAttributes(){
+        return this.linkedAttributes;
     }
     
     public void update(AttributesCollection attributes, AttributeValue newValue){
@@ -52,8 +52,8 @@ public abstract class AbstractAttribute {
     }
     
     public void updateReferencedAttributes(AttributesCollection attributes, AttributeValueChangeFactor mainAttributeChangeFactor){
-        LinkedAttributesChange linkedAttributesChange = getLinkedAttributesChange();
-        Set<AttributeId> linkedAttributesNames = linkedAttributesChange.getLinkedAttributesNames();
+        LinkedAttributes linkedAttributesChange = getLinkedAttributes();
+        Set<AttributeId> linkedAttributesNames = linkedAttributesChange.geAttributesNames();
         linkedAttributesNames.stream().forEach((name) -> {
             AttributeValueChangeFactor linkedAttributeChangeFactor = 
                 linkedAttributesChange.calculateAttributeChangeFactor(name, mainAttributeChangeFactor);
@@ -62,9 +62,5 @@ public abstract class AbstractAttribute {
             AttributeValue newValue = linkedAttributeChangeFactor.getNewValue(attributeValue);
             linkedAttribute.update(attributes, newValue);
         });
-    }
-
-    public void setLinkedAttributeChange(LinkedAttributesChange attributeChange) {
-        this.attributeChange = attributeChange;
     }
 }

@@ -9,13 +9,13 @@ package units.impl.attributes.models.resistances.base;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
-import units.api.modificators.LinkedAttributesChange;
 import units.impl.actions.ChangeAttributesValuesAction;
 import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.base.AttributesCollection;
 import units.impl.attributes.models.damage.AttackAction;
 import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
 import units.impl.attributes.values.RealValue;
+import units.api.modificators.LinkedAttributes;
 
 /**
  * @TODO: Add description to: class, fields, methods
