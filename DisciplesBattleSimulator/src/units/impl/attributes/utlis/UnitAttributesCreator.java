@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import units.api.attributes.Attribute;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
+import units.api.modificators.LinkedAttributes;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.TextValue;
 import units.impl.attributes.base.AttributesCollection;
@@ -38,6 +39,7 @@ import units.impl.attributes.models.resistances.UnitResistanceAir;
 import units.impl.attributes.models.resistances.UnitResistanceEarth;
 import units.impl.attributes.models.resistances.UnitResistanceFire;
 import units.impl.attributes.models.resistances.UnitResistanceWater;
+import units.impl.attributes.modificators.LinkedAttributesImpl;
 
 /**
  * @TODO: Add description to: class, fields, methods
@@ -46,12 +48,10 @@ import units.impl.attributes.models.resistances.UnitResistanceWater;
 public class UnitAttributesCreator {
     
     private Map<String, Attribute> possibleAttributes;
-    private Set<String> attributesWithLinkedAttributes;
-    private final String VALUE = "value";
+    private final String LINKED = "attributes.links";
 
     public UnitAttributesCreator() {
         this.initPossibleAttributes();
-        this.initLinkedAttributes();
     }
     
     private void initPossibleAttributes(){
@@ -69,11 +69,6 @@ public class UnitAttributesCreator {
         addDefaultAttribute(new UnitResistanceWater());       
     }
     
-    private void initLinkedAttributes() {
-        this.attributesWithLinkedAttributes = new HashSet<>();
-        this.attributesWithLinkedAttributes.add(AttributeId.ARMOR.getCode());
-    }
-    
     private void addDefaultAttribute(Attribute attribute){
         this.possibleAttributes.put(attribute.getAttributeId().getCode(), attribute);
     }
@@ -87,18 +82,13 @@ public class UnitAttributesCreator {
             Iterator keys = jsonObject.keys();
             while(keys.hasNext()){
                 String attributeCode = keys.next().toString();
-                if(hasLinkedAttributes(attributeCode)){
-                    Attribute attribute = loadAttributesWithLinked(result, 
-                            jsonObject, attributeCode);
-                    if(attribute != null){
-                        result.addAttribute(attribute);
-                    }
+                if(LINKED.equals(attributeCode)){
                 }
                 else{
-                    Attribute attribute = loadSingleAttribute(jsonObject, 
-                            attributeCode);
+                    AttributeValue value = getAttributeValue(jsonObject, attributeCode);
+                    Attribute attribute = this.possibleAttributes.get(attributeCode);
                     if(attribute != null){
-                        result.addAttribute(attribute);
+                        attribute.setValue(value);
                     }
                 }
             }
@@ -108,48 +98,33 @@ public class UnitAttributesCreator {
         return result;
     }
     
-    private Attribute loadSingleAttribute(JSONObject jsonObject, 
+    private AttributeValue getAttributeValue(JSONObject jsonObject, 
             String attributeCode) throws JSONException{
-        Attribute attribute = possibleAttributes.get(attributeCode);
-        if(attribute != null){
-            Object propertyValue = jsonObject.get(attributeCode);
-            attribute.setValue(getValue(propertyValue));
-        }
-        
-        return attribute;
+        Object propertyValue = jsonObject.get(attributeCode);
+        return getValue(propertyValue);
     }
     
-    private Attribute loadAttributesWithLinked(AttributesCollection attributes, 
-            JSONObject mainObject, String attributeCode){
+    private Map<String, LinkedAttributes> loadLinkedAttributes(JSONObject mainObject){
         
-        Attribute attribute = possibleAttributes.get(attributeCode);
+        Map<String, LinkedAttributes> result = new HashMap<>();
         try {
-            if(attribute != null){
-                attributes.addAttribute(attribute);
-            }
-            JSONObject subObject = mainObject.getJSONObject(attributeCode);
-            Iterator subAttributes = mainObject.getJSONObject(attributeCode).keys();
-            while(subAttributes.hasNext()){
-                Object nextAttributeCode = subAttributes.next();
-                if(VALUE.equals(nextAttributeCode)){
-                    attribute.setValue(getValue(nextAttributeCode));  
+            JSONObject attributeLinks = mainObject.getJSONObject(LINKED);
+                JSONObject rootAttributeObject = attributeLinks.getJSONObject(rooAttributeCode);
+                Iterator linkedAttributesCodes = rootAttributeObject.keys();
+                LinkedAttributes attributes = new LinkedAttributesImpl();
+                while(linkedAttributesCodes.hasNext()){
+                    String linkedAttributeCode = (String) linkedAttributesCodes.next();
+                    double factorValue = rootAttributeObject.getDouble(linkedAttributeCode);
+                    AttributeId attributeId = this.possibleAttributes.get(linkedAttributeCode).getAttributeId();
+                    attributes.addChangeValue(attributeId, factorValue);
                 }
-                else{
-                    String subAttributeCode = (String) nextAttributeCode;
-                    String value = subObject.getString(subAttributeCode);
-                    AttributeId id = AttributeId.getByCode(subAttributeCode);
-                    attribute.getLinkedAttributes().addChangeValue(id, Double.valueOf(value));
-                }
+                result.put(rooAttributeCode, attributes);
             }
             
         } 
         catch (JSONException ex) {}
         
-        return attribute;
-    }
-    
-    private boolean hasLinkedAttributes(String value){
-        return this.attributesWithLinkedAttributes.contains(value);
+        return result;
     }
     
     private JSONObject parseJSONFile(String filename) throws JSONException, IOException {
