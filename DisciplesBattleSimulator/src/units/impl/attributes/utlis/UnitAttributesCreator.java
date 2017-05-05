@@ -83,6 +83,9 @@ public class UnitAttributesCreator {
             while(keys.hasNext()){
                 String attributeCode = keys.next().toString();
                 if(LINKED.equals(attributeCode)){
+                    Map<String, LinkedAttributes> loadLinkedAttributes = 
+                            loadLinkedAttributes(jsonObject);
+                    //TODO: wstaw je w pętli do odpowiedniego atrybutu
                 }
                 else{
                     AttributeValue value = getAttributeValue(jsonObject, attributeCode);
@@ -109,6 +112,9 @@ public class UnitAttributesCreator {
         Map<String, LinkedAttributes> result = new HashMap<>();
         try {
             JSONObject attributeLinks = mainObject.getJSONObject(LINKED);
+            Iterator attributesWithinks = attributeLinks.keys();
+            while(attributesWithinks.hasNext()){
+                String rooAttributeCode = (String) attributesWithinks.next();
                 JSONObject rootAttributeObject = attributeLinks.getJSONObject(rooAttributeCode);
                 Iterator linkedAttributesCodes = rootAttributeObject.keys();
                 LinkedAttributes attributes = new LinkedAttributesImpl();
