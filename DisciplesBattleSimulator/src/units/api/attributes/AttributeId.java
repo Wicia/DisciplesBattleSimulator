@@ -21,7 +21,7 @@ public enum AttributeId {
     HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.current"),
     MAX_HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.max"), 
     
-    ARMOR(AttributeDomain.RESISTANCE, "resistance.armor"), 
+    ARMOR_DURABILITY(AttributeDomain.RESISTANCE, "resistance.armorDurability"), 
     RESIST_WEAPON(AttributeDomain.RESISTANCE, "resistance.weapon"),
     RESIST_AIR(AttributeDomain.RESISTANCE, "resistance.air"),
     RESIST_FIRE(AttributeDomain.RESISTANCE, "resistance.fire"),

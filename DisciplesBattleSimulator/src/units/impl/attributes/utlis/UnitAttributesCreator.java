@@ -28,7 +28,7 @@ import units.api.modificators.LinkedAttributes;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.TextValue;
 import units.impl.attributes.base.AttributesCollection;
-import units.impl.attributes.models.resistances.UnitArmor;
+import units.impl.attributes.models.resistances.UnitArmorDurability;
 import units.impl.attributes.models.resistances.UnitResistanceWeapon;
 import units.impl.attributes.models.damage.UnitDamage;
 import units.impl.attributes.models.description.UnitNote;
@@ -62,7 +62,7 @@ public class UnitAttributesCreator {
         addDefaultAttribute(new UnitNote());
         addDefaultAttribute(new UnitHitPoints());
         addDefaultAttribute(new UnitMaxHitPoints());
-        addDefaultAttribute(new UnitArmor());
+        addDefaultAttribute(new UnitArmorDurability());
         addDefaultAttribute(new UnitResistanceAir());
         addDefaultAttribute(new UnitResistanceEarth());
         addDefaultAttribute(new UnitResistanceFire());

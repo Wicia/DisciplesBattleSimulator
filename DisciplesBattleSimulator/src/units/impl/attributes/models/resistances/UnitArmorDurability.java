@@ -11,16 +11,16 @@ import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
 import units.impl.attributes.values.NumericValue;
 
 
-public class UnitArmor extends AbstractAttribute implements Attribute{
+public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     
-    public static final AttributeId NAME = AttributeId.ARMOR;
-    public static final int DEFAULT_ARMOR = 0;
+    public static final AttributeId NAME = AttributeId.ARMOR_DURABILITY;
+    public static final int DEFAULT_DURABILITY = 0;
     
-    public UnitArmor() {
-        this(new NumericValue(DEFAULT_ARMOR));
+    public UnitArmorDurability() {
+        this(new NumericValue(DEFAULT_DURABILITY));
     }
     
-    public UnitArmor(AttributeValue value) {
+    public UnitArmorDurability(AttributeValue value) {
         super(NAME, value);
     }
 
