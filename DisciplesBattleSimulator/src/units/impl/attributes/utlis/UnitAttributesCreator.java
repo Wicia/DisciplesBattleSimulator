@@ -11,14 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import units.api.attributes.Attribute;
@@ -28,17 +22,12 @@ import units.api.modificators.LinkedAttributes;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.TextValue;
 import units.impl.attributes.base.AttributesCollection;
+import units.impl.attributes.base.SimpleNumericAttribute;
+import units.impl.attributes.base.SimpleTextAttribute;
 import units.impl.attributes.models.resistances.UnitArmorDurability;
-import units.impl.attributes.models.resistances.UnitResistanceWeapon;
 import units.impl.attributes.models.damage.UnitDamage;
-import units.impl.attributes.models.description.UnitNote;
 import units.impl.attributes.models.hitpoints.UnitHitPoints;
 import units.impl.attributes.models.hitpoints.UnitMaxHitPoints;
-import units.impl.attributes.models.description.UnitName;
-import units.impl.attributes.models.resistances.UnitResistanceAir;
-import units.impl.attributes.models.resistances.UnitResistanceEarth;
-import units.impl.attributes.models.resistances.UnitResistanceFire;
-import units.impl.attributes.models.resistances.UnitResistanceWater;
 import units.impl.attributes.modificators.LinkedAttributesImpl;
 
 /**
@@ -56,17 +45,22 @@ public class UnitAttributesCreator {
     
     private void initPossibleAttributes(){
         this.possibleAttributes = new HashMap<>();
-        addDefaultAttribute(new UnitName());
-        addDefaultAttribute(new UnitResistanceWeapon());
+        
+        addDefaultAttribute(new SimpleTextAttribute(AttributeId.NAME));
+        addDefaultAttribute(new SimpleTextAttribute(AttributeId.RACE));
+        addDefaultAttribute(new SimpleTextAttribute(AttributeId.TYPE));
+        addDefaultAttribute(new SimpleTextAttribute(AttributeId.NOTE));
+        
+        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_WEAPON));
+        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_AIR));
+        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_EARTH));
+        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_WATER));
+        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_FIRE));
+        
         addDefaultAttribute(new UnitDamage());
-        addDefaultAttribute(new UnitNote());
         addDefaultAttribute(new UnitHitPoints());
         addDefaultAttribute(new UnitMaxHitPoints());
-        addDefaultAttribute(new UnitArmorDurability());
-        addDefaultAttribute(new UnitResistanceAir());
-        addDefaultAttribute(new UnitResistanceEarth());
-        addDefaultAttribute(new UnitResistanceFire());
-        addDefaultAttribute(new UnitResistanceWater());       
+        addDefaultAttribute(new UnitArmorDurability()); 
     }
     
     private void addDefaultAttribute(Attribute attribute){

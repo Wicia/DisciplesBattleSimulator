@@ -10,18 +10,17 @@ import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
 import units.impl.actions.ChangeAttributesValuesAction;
-import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.base.AttributesCollection;
 import units.impl.attributes.models.damage.AttackAction;
 import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
 import units.impl.attributes.values.RealValue;
-import units.api.modificators.LinkedAttributes;
+import units.impl.attributes.base.AbstractSimpleAttribute;
 
 /**
  * @TODO: Add description to: class, fields, methods
  * @author Michał 'Wicia' Wietecha
  */
-public class AbstractResistance extends AbstractAttribute{
+public class AbstractResistance extends AbstractSimpleAttribute{
     
     public static final double DEFAULT_RESISTANCE = 0.0;
     public static final double MAX_RESISTANCE = 100.0;

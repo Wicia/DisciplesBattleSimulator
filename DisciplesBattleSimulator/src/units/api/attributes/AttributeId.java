@@ -17,6 +17,8 @@ public enum AttributeId {
 
     NOTE(AttributeDomain.DESCRIPTION, "description.note"),
     NAME(AttributeDomain.DESCRIPTION, "description.name"),
+    TYPE(AttributeDomain.DESCRIPTION, "description.type"),
+    RACE(AttributeDomain.DESCRIPTION, "description.race"),
     
     HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.current"),
     MAX_HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.max"), 
