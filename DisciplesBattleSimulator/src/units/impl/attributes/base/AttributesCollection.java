@@ -8,6 +8,7 @@ package units.impl.attributes.base;
 
 import common.api.validators.Validatable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,24 +21,21 @@ import units.api.attributes.AttributeId;
  */
 public class AttributesCollection implements Validatable{
     
-    private final Map<AttributeId, Attribute> attributes;
+    private Map<AttributeId, Attribute> attributes = new HashMap<>();
     
     public AttributesCollection() {
-        this.attributes = new HashMap<>();
     }
     
-    public AttributesCollection(List<Attribute> attributes) {
-        this.attributes = transformList(attributes);
-    }
-    
-    private Map<AttributeId, Attribute> transformList(List<Attribute> attributes){
-        Map<AttributeId, Attribute> result = new HashMap<>();
-        attributes.stream().forEach((Attribute a) -> (addAttribute(a)));
-        return result;
+    public AttributesCollection(Collection<Attribute> attributes) {
+        addAttributes(attributes);
     }
     
     public Attribute getAttributeByName(AttributeId name){
        return this.attributes.get(name);
+    }
+    
+    public void addAttributes(Collection<Attribute> attributes){
+        attributes.stream().forEach((Attribute a) -> (addAttribute(a)));
     }
     
     public void addAttribute(Attribute attribute){

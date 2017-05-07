@@ -42,6 +42,10 @@ public abstract class AbstractAttribute {
         return this.linkedAttributes;
     }
     
+    public void setLinkedAttributes(LinkedAttributes linkedAttributes){
+        this.linkedAttributes = linkedAttributes;
+    }
+    
     public void update(AttributesCollection attributes, AttributeValue newValue){
         this.setValue(newValue);
     }

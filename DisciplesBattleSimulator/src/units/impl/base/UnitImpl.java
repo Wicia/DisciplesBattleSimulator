@@ -1,7 +1,6 @@
 package units.impl.base;
 
 import java.io.File;
-import java.util.Properties;
 import units.impl.attributes.base.AttributesCollection;
 import units.impl.attributes.utlis.UnitAttributesCreator;
 

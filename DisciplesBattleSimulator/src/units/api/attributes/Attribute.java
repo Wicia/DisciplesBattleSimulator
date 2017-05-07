@@ -27,4 +27,6 @@ public interface Attribute<V> {
     AttributeValue getAttributeValue();
     
     LinkedAttributes getLinkedAttributes();
+    
+    void setLinkedAttributes(LinkedAttributes linkedAttributes);
 }

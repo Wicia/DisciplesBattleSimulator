@@ -69,17 +69,13 @@ public class UnitAttributesCreator {
     
     public AttributesCollection load(File file) {
         
-        AttributesCollection result = new AttributesCollection();
-        
         try {
             JSONObject jsonObject = parseJSONFile(file.getAbsolutePath());
             Iterator keys = jsonObject.keys();
             while(keys.hasNext()){
                 String attributeCode = keys.next().toString();
                 if(LINKED.equals(attributeCode)){
-                    Map<String, LinkedAttributes> loadLinkedAttributes = 
-                            loadLinkedAttributes(jsonObject);
-                    //TODO: wstaw je w pętli do odpowiedniego atrybutu
+                    assignLinkedAttributes(loadLinkedAttributes(jsonObject));
                 }
                 else{
                     AttributeValue value = getAttributeValue(jsonObject, attributeCode);
@@ -92,7 +88,18 @@ public class UnitAttributesCreator {
         } 
         catch (IOException | JSONException ex) {}
         
-        return result;
+        return new AttributesCollection(this.possibleAttributes.values());
+    }
+    
+    private void assignLinkedAttributes(
+            Map<String, LinkedAttributes> atrributeCodeToLinkedAttributes) {
+        atrributeCodeToLinkedAttributes.keySet().stream().forEach((attributeCodeLinked) -> {
+            Attribute attributeWithLinked = this.possibleAttributes.get(attributeCodeLinked);
+            if (attributeWithLinked != null) {
+                attributeWithLinked.setLinkedAttributes(
+                        atrributeCodeToLinkedAttributes.get(attributeCodeLinked));
+            }
+        });
     }
     
     private AttributeValue getAttributeValue(JSONObject jsonObject, 

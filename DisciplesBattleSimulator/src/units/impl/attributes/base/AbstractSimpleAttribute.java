@@ -18,6 +18,7 @@ public abstract class AbstractSimpleAttribute extends AbstractAttribute{
         return new LinkedAttributesImpl();
     }
     
+    @Override
     public void updateReferencedAttributes(AttributesCollection attributes, 
             AttributeValueChangeFactor mainAttributeChangeFactor){
         // DO NOTHING
