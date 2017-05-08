@@ -22,12 +22,15 @@ import units.api.modificators.LinkedAttributes;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.TextValue;
 import units.impl.attributes.base.AttributesCollection;
-import units.impl.attributes.base.SimpleNumericAttribute;
 import units.impl.attributes.base.SimpleTextAttribute;
 import units.impl.attributes.models.resistances.UnitArmorDurability;
 import units.impl.attributes.models.damage.UnitDamage;
 import units.impl.attributes.models.hitpoints.UnitHitPoints;
 import units.impl.attributes.models.hitpoints.UnitMaxHitPoints;
+import units.impl.attributes.models.resistances.UnitElementalResistance;
+import units.impl.attributes.models.resistances.UnitMeeleResistance;
+import units.impl.attributes.models.resistances.UnitMindResistance;
+import units.impl.attributes.models.resistances.UnitProjectileResistance;
 import units.impl.attributes.modificators.LinkedAttributesImpl;
 
 /**
@@ -51,16 +54,16 @@ public class UnitAttributesCreator {
         addDefaultAttribute(new SimpleTextAttribute(AttributeId.TYPE));
         addDefaultAttribute(new SimpleTextAttribute(AttributeId.NOTE));
         
-        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_WEAPON));
-        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_AIR));
-        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_EARTH));
-        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_WATER));
-        addDefaultAttribute(new SimpleNumericAttribute(AttributeId.RESIST_FIRE));
-        
-        addDefaultAttribute(new UnitDamage());
         addDefaultAttribute(new UnitHitPoints());
         addDefaultAttribute(new UnitMaxHitPoints());
-        addDefaultAttribute(new UnitArmorDurability()); 
+        
+        addDefaultAttribute(new UnitArmorDurability());
+        addDefaultAttribute(new UnitMeeleResistance());
+        addDefaultAttribute(new UnitProjectileResistance());
+        addDefaultAttribute(new UnitElementalResistance());
+        addDefaultAttribute(new UnitMindResistance());
+        
+        addDefaultAttribute(new UnitDamage());
     }
     
     private void addDefaultAttribute(Attribute attribute){

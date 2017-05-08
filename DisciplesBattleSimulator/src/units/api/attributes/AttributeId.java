@@ -24,11 +24,10 @@ public enum AttributeId {
     MAX_HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.max"), 
     
     ARMOR_DURABILITY(AttributeDomain.RESISTANCE, "resistance.armorDurability"), 
-    RESIST_WEAPON(AttributeDomain.RESISTANCE, "resistance.weapon"),
-    RESIST_AIR(AttributeDomain.RESISTANCE, "resistance.air"),
-    RESIST_FIRE(AttributeDomain.RESISTANCE, "resistance.fire"),
-    RESIST_EARTH(AttributeDomain.RESISTANCE, "resistance.earth"),
-    RESIST_WATER(AttributeDomain.RESISTANCE, "resistance.water"),
+    RESIST_MEELE(AttributeDomain.RESISTANCE, "resistance.meele"),
+    RESIST_ELEMENTAL(AttributeDomain.RESISTANCE, "resistance.elemental"),
+    RESIST_PROJECTILE(AttributeDomain.RESISTANCE, "resistance.projectile"),
+    RESIST_MIND(AttributeDomain.RESISTANCE, "resistance.mind"),
     
     DAMAGE(AttributeDomain.ATTACK, "attack.damage");
     

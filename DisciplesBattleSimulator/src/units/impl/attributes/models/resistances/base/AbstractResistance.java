@@ -22,8 +22,8 @@ import units.impl.attributes.base.AbstractSimpleAttribute;
  */
 public class AbstractResistance extends AbstractSimpleAttribute{
     
-    public static final double DEFAULT_RESISTANCE = 0.0;
-    public static final double MAX_RESISTANCE = 100.0;
+    public static final int DEFAULT_RESISTANCE = 0;
+    public static final int MAX_RESISTANCE = 100;
 
     public AbstractResistance(AttributeId id, AttributeValue value) {
         super(id, value);
