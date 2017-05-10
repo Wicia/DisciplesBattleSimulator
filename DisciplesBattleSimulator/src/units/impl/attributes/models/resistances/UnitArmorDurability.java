@@ -15,13 +15,15 @@ public class UnitArmorDurability extends AbstractAttribute implements Attribute{
     
     public static final AttributeId NAME = AttributeId.ARMOR_DURABILITY;
     public static final int DEFAULT_DURABILITY = 0;
+    public static final int MIN_DURABILITY = 0;
+    public static final int MAX_DURABILITY = 100;
     
     public UnitArmorDurability() {
         this(new NumericValue(DEFAULT_DURABILITY));
     }
     
     public UnitArmorDurability(AttributeValue value) {
-        super(NAME, value);
+        super(NAME, value, new NumericValue(MIN_DURABILITY), new NumericValue(MAX_DURABILITY));
     }
 
     @Override

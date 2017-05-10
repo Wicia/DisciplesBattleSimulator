@@ -15,13 +15,15 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     
     public static final AttributeId NAME = AttributeId.HIT_POINTS;
     public static final int DEFAULT_HIT_POINTS = 1;
+    public static final int MIN_HIT_POINTS = 1;
+    public static final int MAX_HIT_POINTS = 3000;
     
     public UnitHitPoints() {
-        this(new NumericValue(DEFAULT_HIT_POINTS));
+        this(new NumericValue(DEFAULT_HIT_POINTS), new NumericValue(DEFAULT_HIT_POINTS));
     }
     
-    public UnitHitPoints(AttributeValue value) {
-        super(NAME, value);
+    public UnitHitPoints(AttributeValue value, AttributeValue maxHitPoints) {
+        super(NAME, value, new NumericValue(MIN_HIT_POINTS), new NumericValue(MAX_HIT_POINTS));
     }
 
     @Override

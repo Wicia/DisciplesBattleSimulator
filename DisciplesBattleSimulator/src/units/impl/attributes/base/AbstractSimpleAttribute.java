@@ -9,8 +9,9 @@ import units.impl.attributes.modificators.LinkedAttributesImpl;
 
 public abstract class AbstractSimpleAttribute extends AbstractAttribute{
 
-    public AbstractSimpleAttribute(AttributeId id, AttributeValue value) {
-        super(id, value);
+    public AbstractSimpleAttribute(AttributeId id, AttributeValue value, 
+            AttributeValue minValue, AttributeValue maxValue) {
+        super(id, value, minValue, maxValue, null);
     }
     
     @Override

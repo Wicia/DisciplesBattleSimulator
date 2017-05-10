@@ -9,24 +9,34 @@ package units.impl.attributes.models.resistances.base;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
+import units.api.modificators.LinkedAttributes;
 import units.impl.actions.ChangeAttributesValuesAction;
+import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.base.AttributesCollection;
 import units.impl.attributes.models.damage.AttackAction;
 import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
+import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.RealValue;
-import units.impl.attributes.base.AbstractSimpleAttribute;
 
 /**
  * @TODO: Add description to: class, fields, methods
  * @author Michał 'Wicia' Wietecha
  */
-public class AbstractResistance extends AbstractSimpleAttribute{
+public class AbstractResistance extends AbstractAttribute{
     
     public static final int DEFAULT_RESISTANCE = 0;
+    public static final int MIN_RESISTANCE = -100;
     public static final int MAX_RESISTANCE = 100;
 
+    public AbstractResistance(AttributeId id, AttributeValue value, 
+            LinkedAttributes linkedAttributes) {
+        super(id, value, new NumericValue(MIN_RESISTANCE), 
+                new NumericValue(MAX_RESISTANCE), linkedAttributes);
+    }
+
     public AbstractResistance(AttributeId id, AttributeValue value) {
-        super(id, value);
+        super(id, value, new NumericValue(MIN_RESISTANCE), 
+                new NumericValue(MAX_RESISTANCE));
     }
 
     @Override

@@ -26,7 +26,6 @@ import units.impl.attributes.base.SimpleTextAttribute;
 import units.impl.attributes.models.resistances.UnitArmorDurability;
 import units.impl.attributes.models.damage.UnitDamage;
 import units.impl.attributes.models.hitpoints.UnitHitPoints;
-import units.impl.attributes.models.hitpoints.UnitMaxHitPoints;
 import units.impl.attributes.models.resistances.UnitElementalResistance;
 import units.impl.attributes.models.resistances.UnitMeeleResistance;
 import units.impl.attributes.models.resistances.UnitMindResistance;
@@ -55,7 +54,6 @@ public class UnitAttributesCreator {
         addDefaultAttribute(new SimpleTextAttribute(AttributeId.NOTE));
         
         addDefaultAttribute(new UnitHitPoints());
-        addDefaultAttribute(new UnitMaxHitPoints());
         
         addDefaultAttribute(new UnitArmorDurability());
         addDefaultAttribute(new UnitMeeleResistance());
@@ -90,8 +88,15 @@ public class UnitAttributesCreator {
             }
         } 
         catch (IOException | JSONException ex) {}
+       
+        this.loadAdditionalData();
         
         return new AttributesCollection(this.possibleAttributes.values());
+    }
+    
+    private void loadAdditionalData(){
+        Attribute hitPoints = this.possibleAttributes.get(AttributeId.HIT_POINTS.getCode());
+        this.possibleAttributes.put(AttributeId.MAX_HIT_POINTS.getCode(), hitPoints);
     }
     
     private void assignLinkedAttributes(
