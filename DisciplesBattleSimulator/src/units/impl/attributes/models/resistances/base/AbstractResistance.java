@@ -24,19 +24,19 @@ import units.impl.attributes.values.RealValue;
  */
 public class AbstractResistance extends AbstractAttribute{
     
-    public static final int DEFAULT_RESISTANCE = 0;
-    public static final int MIN_RESISTANCE = -100;
-    public static final int MAX_RESISTANCE = 100;
+    public static final int DEFAULT_VALUE = 0;
+    public static final int MIN_VALUE = -100;
+    public static final int MAX_VALUE = 100;
 
     public AbstractResistance(AttributeId id, AttributeValue value, 
             LinkedAttributes linkedAttributes) {
-        super(id, value, new NumericValue(MIN_RESISTANCE), 
-                new NumericValue(MAX_RESISTANCE), linkedAttributes);
+        super(id, value, new NumericValue(MIN_VALUE), 
+                new NumericValue(MAX_VALUE), linkedAttributes);
     }
 
     public AbstractResistance(AttributeId id, AttributeValue value) {
-        super(id, value, new NumericValue(MIN_RESISTANCE), 
-                new NumericValue(MAX_RESISTANCE));
+        super(id, value, new NumericValue(MIN_VALUE), 
+                new NumericValue(MAX_VALUE));
     }
 
     @Override
@@ -52,10 +52,10 @@ public class AbstractResistance extends AbstractAttribute{
     
     public int getReducedDamage(AttackAction attackAction) {
         double level = (double)super.getAttributeValue().get();
-        if (level == DEFAULT_RESISTANCE) {
+        if (level == DEFAULT_VALUE) {
             return attackAction.getDamage();
         }
-        if (level == MAX_RESISTANCE) {
+        if (level == MAX_VALUE) {
             return 0;
         } 
         else {

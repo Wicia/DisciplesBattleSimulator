@@ -19,7 +19,7 @@ import units.impl.attributes.values.NumericValue;
 public class UnitMeeleResistance extends AbstractResistance implements Attribute{
 
     public UnitMeeleResistance() {
-        this(new NumericValue(DEFAULT_RESISTANCE));
+        this(new NumericValue(DEFAULT_VALUE));
     }
     
     public UnitMeeleResistance(AttributeValue value) {

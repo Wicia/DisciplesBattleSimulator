@@ -6,7 +6,6 @@ import units.impl.actions.ChangeAttributesValuesAction;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
-import units.impl.attributes.modificators.LinkedAttributesImpl;
 import units.api.modificators.LinkedAttributes;
 
 
@@ -33,6 +32,13 @@ public abstract class AbstractAttribute {
         this.value = value;
         this.minValue = minValue;
         this.maxValue = maxValue;
+    }
+    
+    public AbstractAttribute(AttributeId id, AttributeValue value) {
+        this.id = id;
+        this.value = value;
+        this.minValue = null;
+        this.maxValue = null;
     }
 
     /**

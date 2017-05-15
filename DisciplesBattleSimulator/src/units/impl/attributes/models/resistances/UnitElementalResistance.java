@@ -19,7 +19,7 @@ import units.impl.attributes.values.NumericValue;
 public class UnitElementalResistance extends AbstractResistance implements Attribute{
 
     public UnitElementalResistance() {
-        this(new NumericValue(DEFAULT_RESISTANCE));
+        this(new NumericValue(DEFAULT_VALUE));
     }
     
     public UnitElementalResistance(AttributeValue value) {

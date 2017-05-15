@@ -14,6 +14,10 @@ public abstract class AbstractSimpleAttribute extends AbstractAttribute{
         super(id, value, minValue, maxValue, null);
     }
     
+    public AbstractSimpleAttribute(AttributeId id, AttributeValue value) {
+        super(id, value);
+    }
+    
     @Override
     public LinkedAttributes getLinkedAttributes(){
         return new LinkedAttributesImpl();
