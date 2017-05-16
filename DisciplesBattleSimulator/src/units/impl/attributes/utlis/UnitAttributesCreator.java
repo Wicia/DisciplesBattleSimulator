@@ -18,7 +18,6 @@ import org.json.JSONObject;
 import units.api.attributes.Attribute;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
-import units.api.modificators.LinkedAttributes;
 import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.TextValue;
 import units.impl.attributes.base.AttributesCollection;
@@ -30,7 +29,6 @@ import units.impl.attributes.models.resistances.UnitElementalResistance;
 import units.impl.attributes.models.resistances.UnitMeeleResistance;
 import units.impl.attributes.models.resistances.UnitMindResistance;
 import units.impl.attributes.models.resistances.UnitProjectileResistance;
-import units.impl.attributes.modificators.LinkedAttributesImpl;
 
 /**
  * @TODO: Add description to: class, fields, methods
@@ -39,7 +37,6 @@ import units.impl.attributes.modificators.LinkedAttributesImpl;
 public class UnitAttributesCreator {
     
     private Map<String, Attribute> possibleAttributes;
-    private final String LINKED = "attributes.links";
 
     public UnitAttributesCreator() {
         this.initPossibleAttributes();
@@ -75,8 +72,8 @@ public class UnitAttributesCreator {
             Iterator keys = jsonObject.keys();
             while(keys.hasNext()){
                 String attributeCode = keys.next().toString();
-                if(LINKED.equals(attributeCode)){
-                    assignLinkedAttributes(loadLinkedAttributes(jsonObject));
+                if(LinkedAttributesCreator.isLinked(attributeCode)){
+                    LinkedAttributesCreator.load(possibleAttributes, jsonObject);
                 }
                 else{
                     AttributeValue value = getAttributeValue(jsonObject, attributeCode);
@@ -99,47 +96,10 @@ public class UnitAttributesCreator {
         this.possibleAttributes.put(AttributeId.MAX_HIT_POINTS.getCode(), hitPoints);
     }
     
-    private void assignLinkedAttributes(
-            Map<String, LinkedAttributes> atrributeCodeToLinkedAttributes) {
-        atrributeCodeToLinkedAttributes.keySet().stream().forEach((attributeCodeLinked) -> {
-            Attribute attributeWithLinked = this.possibleAttributes.get(attributeCodeLinked);
-            if (attributeWithLinked != null) {
-                attributeWithLinked.setLinkedAttributes(
-                        atrributeCodeToLinkedAttributes.get(attributeCodeLinked));
-            }
-        });
-    }
-    
     private AttributeValue getAttributeValue(JSONObject jsonObject, 
             String attributeCode) throws JSONException{
         Object propertyValue = jsonObject.get(attributeCode);
         return getValue(propertyValue);
-    }
-    
-    private Map<String, LinkedAttributes> loadLinkedAttributes(JSONObject mainObject){
-        
-        Map<String, LinkedAttributes> result = new HashMap<>();
-        try {
-            JSONObject attributeLinks = mainObject.getJSONObject(LINKED);
-            Iterator attributesWithinks = attributeLinks.keys();
-            while(attributesWithinks.hasNext()){
-                String rooAttributeCode = (String) attributesWithinks.next();
-                JSONObject rootAttributeObject = attributeLinks.getJSONObject(rooAttributeCode);
-                Iterator linkedAttributesCodes = rootAttributeObject.keys();
-                LinkedAttributes attributes = new LinkedAttributesImpl();
-                while(linkedAttributesCodes.hasNext()){
-                    String linkedAttributeCode = (String) linkedAttributesCodes.next();
-                    double factorValue = rootAttributeObject.getDouble(linkedAttributeCode);
-                    AttributeId attributeId = this.possibleAttributes.get(linkedAttributeCode).getAttributeId();
-                    attributes.addChangeValue(attributeId, factorValue);
-                }
-                result.put(rooAttributeCode, attributes);
-            }
-            
-        } 
-        catch (JSONException ex) {}
-        
-        return result;
     }
     
     private JSONObject parseJSONFile(String filename) throws JSONException, IOException {
