@@ -61,4 +61,9 @@ public class LinkedAttributesImpl implements LinkedAttributes{
     public Set<AttributeId> geAttributesNames(){
         return this.attributeNameToFactor.keySet();
     }
+
+    @Override
+    public boolean containsFactor(AttributeId attributeId) {
+	return attributeNameToFactor.containsKey(attributeId);
+    }
 }

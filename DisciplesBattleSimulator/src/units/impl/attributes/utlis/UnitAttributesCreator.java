@@ -72,8 +72,8 @@ public class UnitAttributesCreator {
             Iterator keys = jsonObject.keys();
             while(keys.hasNext()){
                 String attributeCode = keys.next().toString();
-                if(LinkedAttributesCreator.isLinked(attributeCode)){
-                    LinkedAttributesCreator.load(possibleAttributes, jsonObject);
+                if(LinkedAttributesLoader.isLinked(attributeCode)){
+                    LinkedAttributesLoader.load(possibleAttributes, jsonObject);
                 }
                 else{
                     AttributeValue value = getAttributeValue(jsonObject, attributeCode);

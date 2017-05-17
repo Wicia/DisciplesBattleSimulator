@@ -19,7 +19,7 @@ import units.impl.attributes.modificators.LinkedAttributesImpl;
  *
  * @author A653901
  */
-public class LinkedAttributesCreator {
+public class LinkedAttributesLoader {
     
     private static final String LINKED = "attributes.links";
     

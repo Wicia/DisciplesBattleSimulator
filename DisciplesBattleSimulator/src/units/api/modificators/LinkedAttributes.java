@@ -23,4 +23,6 @@ public interface LinkedAttributes {
     void addChangeValue(List<AttributeId> names, double factor);
     
     void addChangeValue(AttributeId name, double factor);
+    
+    boolean containsFactor(AttributeId attributeId);
 }
