@@ -11,9 +11,8 @@ public class SimpleNumericAttribute extends AbstractSimpleAttribute
 
     private final static int DEFAULT_VALUE = 0;
     
-    public SimpleNumericAttribute(AttributeId id, AttributeValue value, 
-            AttributeValue minValue, AttributeValue maxValue) {
-        super(id, value, minValue, maxValue);
+    public SimpleNumericAttribute(AttributeId id, AttributeValue value) {
+        super(id, value);
     }
     
     public SimpleNumericAttribute(AttributeId id) {

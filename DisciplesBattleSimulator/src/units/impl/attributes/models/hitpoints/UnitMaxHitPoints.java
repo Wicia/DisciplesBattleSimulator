@@ -6,7 +6,6 @@ import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.base.AttributesCollection;
-import units.impl.attributes.values.NumericValue;
 
 public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
     
@@ -16,9 +15,7 @@ public class UnitMaxHitPoints extends AbstractAttribute implements Attribute{
     public static final int MAX_VALUE = 3000;
     
     public UnitMaxHitPoints(UnitHitPoints hitPoints) {
-        super(NAME, hitPoints.getAttributeValue(), 
-                new NumericValue(UnitHitPoints.MIN_HIT_POINTS), 
-                new NumericValue(UnitHitPoints.MAX_HIT_POINTS));
+        super(NAME, hitPoints.getAttributeValue());
     }
 
     public AttributeValue getCurrentHitPoints(){

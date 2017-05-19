@@ -17,11 +17,11 @@ public class UnitDamage extends AbstractAttribute implements Attribute{
     public static final int MAX_DAMAGE = 250;
     
     public UnitDamage() {
-        this(new NumericValue(DEFAULT_DAMAGE));
+        this(new NumericValue(DEFAULT_DAMAGE, MIN_DAMAGE, MAX_DAMAGE));
     }
     
     public UnitDamage(AttributeValue value) {
-        super(NAME, value, new NumericValue(MIN_DAMAGE), new NumericValue(MAX_DAMAGE));
+        super(NAME, value);
     }
 
     @Override

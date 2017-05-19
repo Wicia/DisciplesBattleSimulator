@@ -12,33 +12,17 @@ import units.api.modificators.LinkedAttributes;
 public abstract class AbstractAttribute {
     
     private final AttributeId id;
-    
     private AttributeValue value;
-    private final AttributeValue minValue;
-    private final AttributeValue maxValue;
-    
     private LinkedAttributes linkedAttributes;
 
-    public AbstractAttribute(AttributeId id, AttributeValue value, 
-            AttributeValue minValue, AttributeValue maxValue, 
-            LinkedAttributes linkedAttributes) {
-        this(id, value, minValue, maxValue);
+    public AbstractAttribute(AttributeId id, AttributeValue value, LinkedAttributes linkedAttributes) {
+        this(id, value);
         this.linkedAttributes = linkedAttributes;
-    }
-    
-    public AbstractAttribute(AttributeId id, AttributeValue value, 
-            AttributeValue minValue, AttributeValue maxValue) {
-        this.id = id;
-        this.value = value;
-        this.minValue = minValue;
-        this.maxValue = maxValue;
     }
     
     public AbstractAttribute(AttributeId id, AttributeValue value) {
         this.id = id;
         this.value = value;
-        this.minValue = null;
-        this.maxValue = null;
     }
 
     /**

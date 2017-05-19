@@ -10,9 +10,8 @@ public class SimpleTextAttribute extends AbstractSimpleAttribute
 
     private final static String DEFAULT_VALUE = "???";
     
-    public SimpleTextAttribute(AttributeId id, AttributeValue value, 
-            AttributeValue minValue, AttributeValue maxValue) {
-        super(id, value, minValue, maxValue);
+    public SimpleTextAttribute(AttributeId id, AttributeValue value) {
+        super(id, value);
     }
     
     public SimpleTextAttribute(AttributeId id) {

@@ -9,13 +9,11 @@ package units.impl.attributes.models.resistances.base;
 import units.api.attributes.AttributeId;
 import units.api.attributes.AttributeValue;
 import units.api.modificators.AttributeValueChangeFactor;
-import units.api.modificators.LinkedAttributes;
 import units.impl.actions.ChangeAttributesValuesAction;
 import units.impl.attributes.base.AbstractAttribute;
 import units.impl.attributes.base.AttributesCollection;
 import units.impl.attributes.models.damage.AttackAction;
 import units.impl.attributes.modificators.AttributeValueChangeFactorImpl;
-import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.RealValue;
 
 /**
@@ -29,7 +27,7 @@ public class AbstractResistance extends AbstractAttribute{
     public static final int MAX_VALUE = 100;
 
     public AbstractResistance(AttributeId id, AttributeValue armorResistance) {
-        super(id, armorResistance, new NumericValue(MIN_VALUE), new NumericValue(MAX_VALUE));
+        super(id, armorResistance);
     }
 
     @Override

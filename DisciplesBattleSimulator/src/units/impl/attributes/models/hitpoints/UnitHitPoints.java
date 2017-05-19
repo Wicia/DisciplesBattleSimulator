@@ -19,11 +19,11 @@ public class UnitHitPoints extends AbstractAttribute implements Attribute{
     public static final int MAX_HIT_POINTS = 3000;
     
     public UnitHitPoints() {
-        this(new NumericValue(DEFAULT_HIT_POINTS), new NumericValue(DEFAULT_HIT_POINTS));
+        this(new NumericValue(DEFAULT_HIT_POINTS, MIN_HIT_POINTS, MAX_HIT_POINTS));
     }
     
-    public UnitHitPoints(AttributeValue value, AttributeValue maxHitPoints) {
-        super(NAME, value, new NumericValue(MIN_HIT_POINTS), new NumericValue(MAX_HIT_POINTS));
+    public UnitHitPoints(AttributeValue value) {
+        super(NAME, value);
     }
 
     @Override
