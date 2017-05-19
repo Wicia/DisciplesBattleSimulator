@@ -22,7 +22,7 @@ public class UnitProjectileResistance extends AbstractResistance implements Attr
         this(new NumericValue(DEFAULT_VALUE));
     }
     
-    public UnitProjectileResistance(AttributeValue value) {
-        super(AttributeId.RESIST_PROJECTILE, value);
+    public UnitProjectileResistance(AttributeValue armorResistance) {
+        super(AttributeId.RESIST_PROJECTILE, armorResistance);
     }
 }

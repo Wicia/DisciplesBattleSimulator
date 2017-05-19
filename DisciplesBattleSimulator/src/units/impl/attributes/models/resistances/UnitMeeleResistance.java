@@ -22,7 +22,7 @@ public class UnitMeeleResistance extends AbstractResistance implements Attribute
         this(new NumericValue(DEFAULT_VALUE));
     }
     
-    public UnitMeeleResistance(AttributeValue value) {
-        super(AttributeId.RESIST_MEELE, value);
+    public UnitMeeleResistance(AttributeValue armorResistance) {
+        super(AttributeId.RESIST_MEELE, armorResistance);
     }
 }

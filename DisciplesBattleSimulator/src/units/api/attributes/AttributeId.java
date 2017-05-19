@@ -20,10 +20,8 @@ public enum AttributeId {
     TYPE(AttributeDomain.DESCRIPTION, "description.type"),
     RACE(AttributeDomain.DESCRIPTION, "description.race"),
     
-    HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.current"),
-    MAX_HIT_POINTS(AttributeDomain.HIT_POINTS, "hitPoints.max"), 
-    
-    ARMOR_DURABILITY(AttributeDomain.RESISTANCE, "resistance.armorDurability"), 
+    HIT_POINTS(AttributeDomain.HIT_POINTS, "resistance.hitPoints"),
+    MAX_HIT_POINTS(AttributeDomain.HIT_POINTS, "resistance.maxHitPoints"), 
     RESIST_MEELE(AttributeDomain.RESISTANCE, "resistance.meele"),
     RESIST_ELEMENTAL(AttributeDomain.RESISTANCE, "resistance.elemental"),
     RESIST_PROJECTILE(AttributeDomain.RESISTANCE, "resistance.projectile"),

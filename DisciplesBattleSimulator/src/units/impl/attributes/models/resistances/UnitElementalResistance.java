@@ -22,7 +22,7 @@ public class UnitElementalResistance extends AbstractResistance implements Attri
         this(new NumericValue(DEFAULT_VALUE));
     }
     
-    public UnitElementalResistance(AttributeValue value) {
-        super(AttributeId.RESIST_ELEMENTAL, value);
+    public UnitElementalResistance(AttributeValue armorResistance) {
+        super(AttributeId.RESIST_ELEMENTAL, armorResistance);
     }
 }

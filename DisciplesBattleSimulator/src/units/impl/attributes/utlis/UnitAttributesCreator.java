@@ -22,7 +22,6 @@ import units.impl.attributes.values.NumericValue;
 import units.impl.attributes.values.TextValue;
 import units.impl.attributes.base.AttributesCollection;
 import units.impl.attributes.base.SimpleTextAttribute;
-import units.impl.attributes.models.resistances.UnitArmorDurability;
 import units.impl.attributes.models.damage.UnitDamage;
 import units.impl.attributes.models.hitpoints.UnitHitPoints;
 import units.impl.attributes.models.resistances.UnitElementalResistance;
@@ -36,28 +35,22 @@ import units.impl.attributes.models.resistances.UnitProjectileResistance;
  */
 public class UnitAttributesCreator {
     
-    private Map<String, Attribute> possibleAttributes;
+    private Map<String, Attribute> possibleAttributes = new HashMap<>();
 
     public UnitAttributesCreator() {
         this.initPossibleAttributes();
     }
     
     private void initPossibleAttributes(){
-        this.possibleAttributes = new HashMap<>();
-        
         addDefaultAttribute(new SimpleTextAttribute(AttributeId.NAME));
         addDefaultAttribute(new SimpleTextAttribute(AttributeId.RACE));
         addDefaultAttribute(new SimpleTextAttribute(AttributeId.TYPE));
         addDefaultAttribute(new SimpleTextAttribute(AttributeId.NOTE));
-        
         addDefaultAttribute(new UnitHitPoints());
-        
-        addDefaultAttribute(new UnitArmorDurability());
         addDefaultAttribute(new UnitMeeleResistance());
         addDefaultAttribute(new UnitProjectileResistance());
         addDefaultAttribute(new UnitElementalResistance());
         addDefaultAttribute(new UnitMindResistance());
-        
         addDefaultAttribute(new UnitDamage());
     }
     
@@ -72,18 +65,13 @@ public class UnitAttributesCreator {
             Iterator keys = jsonObject.keys();
             while(keys.hasNext()){
                 String attributeCode = keys.next().toString();
-                if(LinkedAttributesLoader.isLinked(attributeCode)){
-                    LinkedAttributesLoader.load(possibleAttributes, jsonObject);
-                }
-                else{
-                    AttributeValue value = getAttributeValue(jsonObject, attributeCode);
-                    Attribute attribute = this.possibleAttributes.get(attributeCode);
-                    if(attribute != null){
-                        attribute.setValue(value);
-                    }
-                }
+		AttributeValue value = getAttributeValue(jsonObject, attributeCode);
+		Attribute attribute = this.possibleAttributes.get(attributeCode);
+		if(attribute != null){
+		    attribute.setValue(value);
+		}
             }
-        } 
+        }
         catch (IOException | JSONException ex) {}
        
         this.loadAdditionalData();

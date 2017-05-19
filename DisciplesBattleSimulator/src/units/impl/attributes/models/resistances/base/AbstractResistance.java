@@ -28,15 +28,8 @@ public class AbstractResistance extends AbstractAttribute{
     public static final int MIN_VALUE = -100;
     public static final int MAX_VALUE = 100;
 
-    public AbstractResistance(AttributeId id, AttributeValue value, 
-            LinkedAttributes linkedAttributes) {
-        super(id, value, new NumericValue(MIN_VALUE), 
-                new NumericValue(MAX_VALUE), linkedAttributes);
-    }
-
-    public AbstractResistance(AttributeId id, AttributeValue value) {
-        super(id, value, new NumericValue(MIN_VALUE), 
-                new NumericValue(MAX_VALUE));
+    public AbstractResistance(AttributeId id, AttributeValue armorResistance) {
+        super(id, armorResistance, new NumericValue(MIN_VALUE), new NumericValue(MAX_VALUE));
     }
 
     @Override

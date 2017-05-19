@@ -22,7 +22,7 @@ public class UnitMindResistance extends AbstractResistance implements Attribute{
         this(new NumericValue(DEFAULT_VALUE));
     }
     
-    public UnitMindResistance(AttributeValue value) {
-        super(AttributeId.RESIST_MIND, value);
+    public UnitMindResistance(AttributeValue armorResistance) {
+        super(AttributeId.RESIST_MIND, armorResistance);
     }
 }
