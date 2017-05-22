@@ -5,7 +5,9 @@
  */
 package main;
 
+import database.config.SessionFactoryWrapper;
 import java.io.File;
+import org.hibernate.SessionFactory;
 import units.impl.base.AbstractUnit;
 import units.impl.base.UnitImpl;
 
@@ -19,8 +21,12 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UnitImpl unit = loadUnit();
-        getAction(unit);
+        SessionFactory sessionFactory = SessionFactoryWrapper.getSessionFactory();
+        
+        //UnitImpl unit = loadUnit();
+        //getAction(unit);
+        
+        sessionFactory.close();
     }
     
     private static UnitImpl loadUnit(){

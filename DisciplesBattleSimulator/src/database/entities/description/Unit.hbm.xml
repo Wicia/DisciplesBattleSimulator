@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+    <class name="pl.wicia.projector.database.entities.description.DescriptionEntity" 
+           table="UNITS">
+        
+        <meta attribute="class-description">
+            This class contains definition of Descriptions Table.
+        </meta>
+        
+        <id name="id" type="long" column="id">
+            <generator class="native"/>
+        </id>
+        
+        <property name="name" column="name" type="string" not-null="true"/>
+        
+    </class>
+   
+    <query name="findDescriptionByName">
+        FROM Unit WHERE name = :name
+    </query>
+    
+    <query name="findDescriptionByID">
+        FROM Unit WHERE id = :id
+    </query>
+   
+</hibernate-mapping>
