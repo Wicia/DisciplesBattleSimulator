@@ -6,7 +6,7 @@
 package database.config;
 
 import java.io.File;
-import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -21,28 +21,31 @@ public class SessionFactoryWrapper {
 
     private static final SessionFactory FACTORY;
     
+    private static final String CONFIGURATION_PATH = "src/database/config/data/hibernate.cfg.xml";
+    private static final String DATABASE_URL_PREFIX = "jdbc:h2:file:";
+    private static final String DATABASE_LOCALIZATION = "/db/game_db";
+    private static final String PROPERTY_PROJECT_DIR = "user.dir";
+    private static final String PROPERTY_CONNECTION_URL = "hibernate.connection.url";
+    
     static {
         try {
             Configuration configuration = new Configuration();
-            initDatabaseUrl(configuration);
-            configuration.configure(new File("src/database/config/data/hibernate.cfg.xml"));
-            
-            StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().
-                    applySettings(configuration.getProperties());
-            FACTORY = configuration.buildSessionFactory(ssrb.build());
+            configuration.configure(new File(CONFIGURATION_PATH));
+	    updateDatabaseUrl(configuration);
+            StandardServiceRegistryBuilder registry = new StandardServiceRegistryBuilder().
+		applySettings(configuration.getProperties());
+            FACTORY = configuration.buildSessionFactory(registry.build());
         }
-        catch (Throwable ex) {
+        catch (HibernateException ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
     
-    private static void initDatabaseUrl(Configuration configuration){
-        String instalationPath = System.getProperty("user.dir");
-        String fullPath = "jdbc:h2:file:D:\\db"; // + instalationPath + "/db";
-        configuration.setProperty("connection.url", "jdbc:h2:file:D:/db");
-        
-        // <property name="connection.url">jdbc:h2:file:D:/db</property> <!-- ;IFEXISTS=TRUE -->
+    private static void updateDatabaseUrl(Configuration configuration){
+        String instalationPath = System.getProperty(PROPERTY_PROJECT_DIR);
+        String fullPath = DATABASE_URL_PREFIX + instalationPath + DATABASE_LOCALIZATION;
+        configuration.setProperty(PROPERTY_CONNECTION_URL, fullPath);
     }
     
     public static SessionFactory getSessionFactory() {
