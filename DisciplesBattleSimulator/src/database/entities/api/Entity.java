@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package database.entities;
+package database.entities.api;
 
 /**
  * @TODO: Add description to: class, fields, methods
  * @author Michał 'Wicia' Wietecha
  */
-public interface INameableEntity<IDType> extends IEntity<IDType>{
-    public String getName();
+public interface Entity<IDType> {
+    public IDType getId();
 }

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package database.entities.description;
+package database.entities.impl.models;
 
-import database.entities.INameableEntity;
+import database.entities.api.Entity;
 
 /**
  * @TODO: Add class description
@@ -14,20 +14,17 @@ import database.entities.INameableEntity;
  * @TODO: Add descrptions to methods
  * @author Michał 'Wicia' Wietecha
  */
-public class Unit 
-        implements java.io.Serializable, INameableEntity<Long>{
+public class UnitSetupModel implements java.io.Serializable, Entity<Long>{
 
     private static final long serialVersionUID = 1L;
 
     private long id;
-    private String name;
+    private UnitSetupDescriptionModel description;
 
-    public Unit() {
-    }
+    public UnitSetupModel() {}
 
-    public Unit(long id, String name) {
+    public UnitSetupModel(long id) {
         this.id = id;
-        this.name = name;
     }
 
     @Override
@@ -39,12 +36,11 @@ public class Unit
         this.id = id;
     }
 
-    @Override
-    public String getName() {
-        return name;
+    public UnitSetupDescriptionModel getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(UnitSetupDescriptionModel description) {
+        this.description = description;
     }
 }

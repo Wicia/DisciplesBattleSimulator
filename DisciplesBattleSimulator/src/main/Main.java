@@ -5,7 +5,10 @@
  */
 package main;
 
-import database.config.SessionFactoryWrapper;
+import database.config.SessionFactoryUtils;
+import database.entities.impl.models.UnitSetupModel;
+import database.entities.impl.models.UnitSetupDescriptionModel;
+import database.services.descriptions.UnitSetupService;
 import java.io.File;
 import org.hibernate.SessionFactory;
 import units.impl.base.AbstractUnit;
@@ -21,12 +24,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SessionFactory sessionFactory = SessionFactoryWrapper.getSessionFactory();
-        
-        //UnitImpl unit = loadUnit();
-        //getAction(unit);
-        
-        sessionFactory.close();
+        UnitSetupModel setup = new UnitSetupModel();
+        UnitSetupDescriptionModel desc = new UnitSetupDescriptionModel();
+        desc.setName("Mroczny Władca");
+        desc.setNote("W nagrodę za dobrą służbę, Mortis daje swoim Mrocznym Władcom moc kontrolowania żywiołów");
+        desc.setRace("U");
+        desc.setType("W");
+        setup.setDescription(desc);
+        UnitSetupService.getService().addUnit(setup);
     }
     
     private static UnitImpl loadUnit(){

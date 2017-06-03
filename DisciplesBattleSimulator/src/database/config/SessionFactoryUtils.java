@@ -17,7 +17,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author Michał 'Wicia' Wietecha
  */
-public class SessionFactoryWrapper {
+public class SessionFactoryUtils {
 
     private static final SessionFactory FACTORY;
     

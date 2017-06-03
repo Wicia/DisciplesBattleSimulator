@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+    <class name="database.entities.impl.models.UnitSetupDescriptionModel" 
+           table="UNITS_SETUP_DESCRIPTION">
+        
+        <id name="id" column="ID" type="java.lang.Long">
+            <generator class="foreign">
+                <param name="property">unit</param>
+            </generator>
+        </id>
+        
+        <one-to-one name="unit" class="database.entities.impl.models.UnitSetupModel" constrained="true"/>  
+              
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        
+        <property name="note" column="NOTE" type="string" not-null="true"/>
+        
+        <property name="race" column="RACE" type="string" not-null="true"/>
+        
+        <property name="type" column="TYPE" type="string" not-null="true"/>
+        
+    </class>
+   
+</hibernate-mapping>

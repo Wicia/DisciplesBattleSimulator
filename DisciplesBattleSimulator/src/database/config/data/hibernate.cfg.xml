@@ -21,6 +21,10 @@
 
         <!-- Echo all executed SQL to stdout --> 
         <property name="show_sql">true</property> 
+        
+        <mapping resource="database/entities/impl/resources/UnitSetupDescription.hbm.xml"/>
+                           <!-- src/database/entities/impl/resources/ -->
+        <mapping resource="database/entities/impl/resources/UnitSetup.hbm.xml"/>
    
     </session-factory>
     
