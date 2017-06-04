@@ -11,7 +11,7 @@
         </id>
         
         <one-to-one name="description" 
-                    class="database.entities.impl.model.UnitSetupDescriptionModel" 
+                    class="database.entities.impl.models.UnitSetupDescriptionModel" 
                     cascade="save-update"/>
             
     </class>

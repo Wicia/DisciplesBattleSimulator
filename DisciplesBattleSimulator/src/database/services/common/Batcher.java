@@ -6,6 +6,7 @@
 
 package database.services.common;
 
+import database.configuration.utils.HibernatePropertiesWrapper;
 import org.hibernate.Session;
 
 /**
@@ -18,8 +19,8 @@ public class Batcher {
     private final int BATCH_SIZE;
     private int number;
     
-    public Batcher(int batchSize){
-        this.BATCH_SIZE = batchSize;
+    public Batcher(HibernatePropertiesWrapper properties){
+        this.BATCH_SIZE = properties.getBatchSize();
         this.number = 0;
     }
     

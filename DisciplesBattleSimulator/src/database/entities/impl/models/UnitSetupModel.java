@@ -8,12 +8,6 @@ package database.entities.impl.models;
 
 import database.entities.api.Entity;
 
-/**
- * @TODO: Add class description
- * @TODO: Add descrptions to fields
- * @TODO: Add descrptions to methods
- * @author Michał 'Wicia' Wietecha
- */
 public class UnitSetupModel implements java.io.Serializable, Entity<Long>{
 
     private static final long serialVersionUID = 1L;

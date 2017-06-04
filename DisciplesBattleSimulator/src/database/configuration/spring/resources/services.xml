@@ -15,7 +15,7 @@
             http://www.springframework.org/schema/util/spring-util-3.0.xsd">
     
     <!-- DAO BASE -->
-    <bean id="DAOBase" class="pl.wicia.projector.database.services.common.DAOBase" 
+    <bean id="DAOBase" class="database.services.common.DAOBase" 
           abstract="true" scope="prototype">
         <constructor-arg name="factory" ref="sessionFactory"/>
     </bean>
@@ -24,7 +24,7 @@
     <bean id="unitSetupDAO" class="database.services.impl.UnitSetupDAO" 
           parent="DAOBase" scope="prototype" autowire="constructor"/>
     
-    <bean id="WorkshopService" class="database.services.impl.UnitSetupDAO" 
+    <bean id="unitSetupService" class="database.services.impl.UnitSetupService" 
           scope="prototype" autowire="constructor"/>
    
 </beans>

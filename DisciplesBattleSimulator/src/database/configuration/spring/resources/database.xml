@@ -13,14 +13,14 @@
             http://www.springframework.org/schema/context/spring-context-3.0.xsd
             http://www.springframework.org/schema/util 
             http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-
-    <!-- DB UTILS -->
-    <bean id="batcher" class="database.services.common.Batcher"
-          scope="prototype" autowire="constructor"/>
     
     <!-- IMPORT -->
     <import resource="services.xml"/>
     <import resource="entities.xml"/>
+    
+    <!-- DB UTILS -->
+    <bean id="batcher" class="database.services.common.Batcher"
+          scope="prototype" autowire="constructor"/>
     
     <!-- HIBERNATE BEANS -->
     <bean id="sessionFactory"
@@ -49,14 +49,14 @@
     <bean id="hibernatePropertiesWrapper" 
           class="database.configuration.utils.HibernatePropertiesWrapper" 
           scope="singleton">
-        <constructor-arg name="properties" ref="HibernateProperties"/>
+        <constructor-arg name="properties" ref="hibernateProperties"/>
     </bean>
     
     <!-- DATA SOURCE -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/projector?characterEncoding=UTF-8" />
+        <property name="url" value="#{hibernatePropertiesWrapper.getDatabaseUrl()}" />
         <property name="username" value="root" />
         <property name="password" value="#pass" />
     </bean>

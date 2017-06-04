@@ -16,8 +16,8 @@
     
     <!-- RESOURCES -->
     <util:list id="hibernateEntities" value-type="java.lang.String">
-        <value>database/entities/impl/models/UnitSetup.hbm.xml</value>
-        <value>database/entities/impl/models/UnitSetupDescription.hbm.xml</value>
+        <value>database/entities/impl/resources/UnitSetup.hbm.xml</value>
+        <value>database/entities/impl/resources/UnitSetupDescription.hbm.xml</value>
     </util:list>
 
 </beans>

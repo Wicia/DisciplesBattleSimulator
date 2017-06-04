@@ -13,9 +13,6 @@ import database.services.common.Batcher;
 import database.services.common.DAOBase;
 
 /**
- * @TODO: Add class description
- * @TODO: Add descrptions to fields
- * @TODO: Add descrptions to methods
  * @author Michał 'Wicia' Wietecha
  */
 public class UnitSetupDAO extends DAOBase<UnitSetupModel> 

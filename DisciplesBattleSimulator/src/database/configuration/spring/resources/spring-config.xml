@@ -15,8 +15,7 @@
             http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
     <!-- IMPORT -->
-    <import resource="services.xml"/>
-    <import resource="entities.xml"/>
+    <import resource="database.xml"/>
     
     <!-- CONTEXTS -->
     <bean id="DatabaseContext" class="database.configuration.spring.utils.DatabaseContext" scope="singleton"/>
