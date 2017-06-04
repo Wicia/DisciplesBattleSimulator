@@ -9,7 +9,7 @@ package database.services.common;
 import org.hibernate.Session;
 
 /**
- * Batch update mechanizm class.
+ * Batch update mechanism.
  * 
  * @author Michał 'Wicia' Wietecha
  */

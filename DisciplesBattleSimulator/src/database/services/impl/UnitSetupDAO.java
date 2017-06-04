@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.services.descriptions;
+package database.services.impl;
 
 import java.util.Collection;
 import org.hibernate.SessionFactory;
-import database.common.INameDAO;
+import database.services.common.INameDAO;
 import database.entities.impl.models.UnitSetupModel;
 import database.services.common.Batcher;
 import database.services.common.DAOBase;
@@ -18,10 +18,11 @@ import database.services.common.DAOBase;
  * @TODO: Add descrptions to methods
  * @author Michał 'Wicia' Wietecha
  */
-public class UnitSetupDao extends DAOBase<UnitSetupModel> implements INameDAO<Long, UnitSetupModel> {
+public class UnitSetupDAO extends DAOBase<UnitSetupModel> 
+        implements INameDAO<Long, UnitSetupModel> {
 
-    public UnitSetupDao(SessionFactory factory, Class clazz, Batcher batcher) {
-        super(factory, clazz, batcher);
+    public UnitSetupDAO(SessionFactory factory, Batcher batcher) {
+        super(factory, UnitSetupModel.class, batcher);
     }
 
     @Override

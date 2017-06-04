@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 
-package database.services.descriptions;
+package database.services.impl;
 
-import database.config.SessionFactoryUtils;
 import java.util.Collection;
 import java.util.List;
 import database.entities.impl.models.UnitSetupModel;
-import database.services.common.Batcher;
 
 /**
  * Class storing operations on UNITS_SETUP table.
@@ -19,16 +17,9 @@ import database.services.common.Batcher;
  */
 public class UnitSetupService{
     
-    private UnitSetupDao dao;
+    private UnitSetupDAO dao;
     
-    public static UnitSetupService getService(){
-        UnitSetupDao dao = new UnitSetupDao(
-                SessionFactoryUtils.getSessionFactory(), 
-                UnitSetupModel.class, new Batcher(10));
-        return new UnitSetupService(dao);
-    }
-    
-    public UnitSetupService(UnitSetupDao dao){
+    public UnitSetupService(UnitSetupDAO dao){
         this.dao = dao;
     }
     

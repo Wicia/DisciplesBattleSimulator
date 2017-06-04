@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/util 
+            http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <!-- DB UTILS -->
+    <bean id="batcher" class="database.services.common.Batcher"
+          scope="prototype" autowire="constructor"/>
+    
+    <!-- IMPORT -->
+    <import resource="services.xml"/>
+    <import resource="entities.xml"/>
+    
+    <!-- HIBERNATE BEANS -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mappingResources" ref="hibernateEntities"/>
+        <property name="hibernateProperties" ref="hibernateProperties"/>
+    </bean>
+    
+    <!-- PROPERTIES -->
+    <bean id="hibernateProperties"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="properties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.jdbc.batch_size">10</prop>
+                <prop key="connection.characterEncoding">utf8</prop>
+                <prop key="current_session_context_class">thread</prop>
+                <prop key="cache.provider_class">org.hibernate.cache.NoCacheProvider</prop> 
+                <prop key="show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="hibernatePropertiesWrapper" 
+          class="database.configuration.utils.HibernatePropertiesWrapper" 
+          scope="singleton">
+        <constructor-arg name="properties" ref="HibernateProperties"/>
+    </bean>
+    
+    <!-- DATA SOURCE -->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/projector?characterEncoding=UTF-8" />
+        <property name="username" value="root" />
+        <property name="password" value="#pass" />
+    </bean>
+
+</beans>

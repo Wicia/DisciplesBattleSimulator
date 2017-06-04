@@ -5,12 +5,11 @@
  */
 package main;
 
-import database.config.SessionFactoryUtils;
+import database.configuration.spring.utils.DatabaseContext;
 import database.entities.impl.models.UnitSetupModel;
 import database.entities.impl.models.UnitSetupDescriptionModel;
-import database.services.descriptions.UnitSetupService;
+import database.services.impl.UnitSetupService;
 import java.io.File;
-import org.hibernate.SessionFactory;
 import units.impl.base.AbstractUnit;
 import units.impl.base.UnitImpl;
 
@@ -31,7 +30,9 @@ public class Main {
         desc.setRace("U");
         desc.setType("W");
         setup.setDescription(desc);
-        UnitSetupService.getService().addUnit(setup);
+        
+        UnitSetupService service = (UnitSetupService) DatabaseContext.get().getBean(UnitSetupService.class);
+        service.addUnit(setup);
     }
     
     private static UnitImpl loadUnit(){

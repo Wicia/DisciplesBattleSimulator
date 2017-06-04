@@ -18,8 +18,6 @@ import org.hibernate.metadata.ClassMetadata;
 /**
  * Class representing core for all DAO classes.
  * 
- * @param <ElementType>
- * 
  * @author Michał 'Wicia' Wietecha
  */
 public abstract class DAOBase<ElementType> {

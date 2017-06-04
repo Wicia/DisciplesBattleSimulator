@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.config;
+package database.configuration.utils;
 
 import java.io.File;
 import org.hibernate.HibernateException;
